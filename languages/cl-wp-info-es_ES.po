@@ -1,0 +1,169 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CL WordPress Info\n"
+"POT-Creation-Date: 2017-02-12 19:33+0100\n"
+"PO-Revision-Date: 2017-02-12 19:37+0100\n"
+"Last-Translator: Carlos Longarela <carlos@longarela.eu>\n"
+"Language-Team: Carlos Longarela <carlos@longarela.eu>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: cl-functions.php:20
+msgid "OS Server:"
+msgstr "OS Servidor:"
+
+#: cl-functions.php:26
+msgid "Web Server:"
+msgstr "Servidor Web:"
+
+#: cl-functions.php:33
+msgid "Web Server User:"
+msgstr "Usuario del Servidor Web:"
+
+#: cl-functions.php:40
+msgid "Web Server Name:"
+msgstr "Nombre del Servidor Web:"
+
+#: cl-functions.php:47
+msgid "Web Server Port:"
+msgstr "Puerto del Servidor Web:"
+
+#: cl-functions.php:54
+msgid "Web Server Ip:"
+msgstr "IP del Servidor Web:"
+
+#: cl-functions.php:61
+msgid "Web Server Scheme:"
+msgstr "Protocolo del Servidor Web:"
+
+#: cl-functions.php:68
+msgid "Web Server Http Version:"
+msgstr "Versión Http del Servidor Web:"
+
+#: cl-functions.php:75
+msgid "Web Server Root:"
+msgstr "Raíz del Servidor Web:"
+
+#: cl-functions.php:92
+msgid "PHP Version:"
+msgstr "Versión de PHP:"
+
+#: cl-functions.php:97
+msgid "PHP Loaded Extensions:"
+msgstr "Extensiones PHP Cargadas:"
+
+#: cl-functions.php:107
+msgid "PHP Webserver Interface:"
+msgstr "Interface de PHP en el Servidor Web:"
+
+#: cl-functions.php:115
+msgid "Date/Time Zone:"
+msgstr "Zona horaria:"
+
+#: cl-functions.php:117 cl-functions.php:126 cl-functions.php:135
+#: cl-functions.php:144 cl-functions.php:153 cl-functions.php:162
+msgid "PHP Global:"
+msgstr "Global de PHP:"
+
+#: cl-functions.php:118 cl-functions.php:127 cl-functions.php:136
+#: cl-functions.php:145 cl-functions.php:154 cl-functions.php:163
+msgid "App Local:"
+msgstr "Local de la App:"
+
+#: cl-functions.php:124
+msgid "Error Log:"
+msgstr "Registro de Errores:"
+
+#: cl-functions.php:133
+msgid "Max File Uploads:"
+msgstr "Número Máximo de Archivos a Subir:"
+
+#: cl-functions.php:142
+msgid "Post Max Size:"
+msgstr "Tamaño Máximo de Post:"
+
+#: cl-functions.php:151
+msgid "Upload Max File Size:"
+msgstr "Tamaño Máximo de Archivo a Subir:"
+
+#: cl-functions.php:160
+msgid "Max Memory:"
+msgstr "Memoria Máxima:"
+
+#: cl-functions.php:176
+msgid "WordPress Version:"
+msgstr "Versión de WordPress:"
+
+#: cl-functions.php:186
+msgid "Themes:"
+msgstr "Temas:"
+
+#: cl-functions.php:196
+msgid "Plugins:"
+msgstr "Plugins:"
+
+#: cl-functions.php:201
+msgid "Version"
+msgstr "Versión"
+
+#: cl-functions.php:204
+msgid "Active"
+msgstr "Activo"
+
+#: cl-functions.php:214
+msgid "Absolute Path to WordPress Directory:"
+msgstr "Ruta al Directorio de Contenido de WordPress:"
+
+#: cl-functions.php:221
+msgid "WordPress Content Directory:"
+msgstr "Directorio de Contenido de WordPress:"
+
+#: cl-functions.php:228
+msgid "WordPress Database:"
+msgstr "Base de Datos de WordPress:"
+
+#: cl-functions.php:235
+msgid "WordPress Home:"
+msgstr "Inicio de WordPress:"
+
+#: cl-functions.php:242
+msgid "WordPress URL:"
+msgstr "URL de WordPress:"
+
+#: cl-functions.php:249
+msgid "WordPress Debug:"
+msgstr "WordPress Debug:"
+
+#: cl-wp-info.php:24
+msgid "CL Info WP"
+msgstr "CL Info WP"
+
+#: cl-wp-info.php:25
+msgid "Info WP"
+msgstr "Info WP"
+
+#: cl-wp-info.php:72
+msgid "Server Info"
+msgstr "Información del Servidor"
+
+#: cl-wp-info.php:77
+msgid "PHP Info"
+msgstr "Información de PHP:"
+
+#: cl-wp-info.php:82
+msgid "WordPress Info"
+msgstr "Información de WordPress"
+
+#~ msgid "Installed Themes:"
+#~ msgstr "Temas Instalados:"
+
+#~ msgid "Active Plugins:"
+#~ msgstr "Plugins Activados:"

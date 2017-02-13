@@ -1,0 +1,29 @@
+// out: ../css/cl-wp-info-admin.min.css, compress: true, strictMath: true
+
+@gris-claro: #ccc;
+@azul-claro: #accde0;
+
+.cl-tabla-general {
+    border: 1px solid @gris-claro;
+    margin: 10px auto;
+    padding: 10px;
+    width: 90%;
+
+    td, th {
+        border: 1px solid @gris-claro;
+        padding: 5px 10px;
+    }
+
+    th {
+        background-color: @gris-claro;
+        text-align: right;
+        width: 25%;
+        vertical-align: top;
+    }
+
+    th[colspan]{
+        text-align: center;
+        background-color: @azul-claro;
+        font-size: 150%;
+    }
+}
