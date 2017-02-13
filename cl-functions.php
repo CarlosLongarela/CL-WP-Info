@@ -174,33 +174,47 @@ function cl_wp_wordpress_info() {
 
 	$html .= '<tr>';
 	$html .= '<th>' . __( 'WordPress Version:', 'cl-wp-info' ) . '</th>';
-	$html .= '<td>' . get_bloginfo('version') . '</td>';
+	$html .= '<td>' . get_bloginfo( 'version' ) . '</td>';
 	$html .= '</tr>';
 
 	$args = array( 'errors' => false , 'allowed' => null );
 	$temas = wp_get_themes( $args );
 
-	//$tema_actual = wp_get_theme();
+	$tema_actual = wp_get_theme();
+	$tema_activo_textdomain = $tema_actual->get( 'TextDomain' );
 
 	$html .= '<tr>';
 	$html .= '<th>' . __( 'Themes:', 'cl-wp-info' ) . '</th>';
 	$html .= '<td>';
-	foreach ( $temas as &$valor ) {
-		$html .= '<div>' . $valor . '</div>';
-		//$html .= $valor->headers:WP_Theme:private['Version'];
+	foreach ( $temas as $clave => $valor ) {
+		$tema_nombre     = $valor->get( 'Name' );
+		$tema_version    = $valor->get( 'Version' );
+		$tema_padre      = $valor->get( 'parent' );
+		$tema_textdomain = $valor->get( 'TextDomain' );
+
+		$html .= '<div>';
+		$html .= $tema_nombre;
+		$html .= ' <em>(' . __( 'Version', 'cl-wp-info' ) . ': ' . $tema_version . ')</em>';
+		if ( ! empty( $tema_padre ) ) {
+			$html .= ' <em>(' . __( 'Child Theme', 'cl-wp-info' ) . ': ' . $tema_padre . ')</em>';
+		}
+		if ( $tema_activo_textdomain === $tema_textdomain ) {
+			$html .= ' <strong>' . __( 'Active', 'cl-wp-info' ) . '</strong>';
+		}
+		$html .= '</div>';
 	}
 	$html .= '</td>';
 	$html .= '</tr>';
 
 	$html .= '<tr>';
-	$html .= '<th>' . __( 'Plugins:' ) . '</th>';
+	$html .= '<th>' . __( 'Plugins:', 'cl-wp-info' ) . '</th>';
 	$html .= '<td>';
 	$plugins         = get_plugins();
-	$plugins_activos = get_option( 'active_plugins', array () );
-	foreach ( $plugins as $clave => $valor) {
-		$html .= '<div>' . $valor['Name'] . ' <em>(' . __( 'Version' ) . ': ' . $valor['Version'] . ')</em>';
+	$plugins_activos = get_option( 'active_plugins', array() );
+	foreach ( $plugins as $clave => $valor ) {
+		$html .= '<div>' . $valor['Name'] . ' <em>(' . __( 'Version', 'cl-wp-info' ) . ': ' . $valor['Version'] . ')</em>';
 
-		if ( false !== array_search( $clave, $plugins_activos ) ) {
+		if ( false !== array_search( $clave, $plugins_activos, true ) ) {
 			$html .= ' <strong>' . __( 'Active', 'cl-wp-info' ) . '</strong>';
 		}
 
@@ -251,10 +265,5 @@ function cl_wp_wordpress_info() {
 		$html .= '</tr>';
 	}
 
-/*
-echo '<pre>';
-print_r(ini_get_all());
-echo '</pre>';
-*/
 	return $html;
 } // Final de cl_wp_wordpress_info.

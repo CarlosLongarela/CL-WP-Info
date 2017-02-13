@@ -85,5 +85,3 @@ function cl_wp_info_general() {
 
 	echo '</table>';
 }
-
-//echo 'post_max_size = ' . ini_get('post_max_size');
