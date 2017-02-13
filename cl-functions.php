@@ -189,15 +189,17 @@ function cl_wp_wordpress_info() {
 	foreach ( $temas as $clave => $valor ) {
 		$tema_nombre     = $valor->get( 'Name' );
 		$tema_version    = $valor->get( 'Version' );
-		$tema_padre      = $valor->get( 'parent' );
+		//$tema_padre      = $valor->get( 'parent' );
 		$tema_textdomain = $valor->get( 'TextDomain' );
 
 		$html .= '<div>';
 		$html .= $tema_nombre;
 		$html .= ' <em>(' . __( 'Version', 'cl-wp-info' ) . ': ' . $tema_version . ')</em>';
+		/*
 		if ( ! empty( $tema_padre ) ) {
 			$html .= ' <em>(' . __( 'Child Theme', 'cl-wp-info' ) . ': ' . $tema_padre . ')</em>';
 		}
+		*/
 		if ( $tema_activo_textdomain === $tema_textdomain ) {
 			$html .= ' <strong>' . __( 'Active', 'cl-wp-info' ) . '</strong>';
 		}
