@@ -27,3 +27,20 @@
         font-size: 150%;
     }
 }
+
+// Etilos para impresión (en papel, pdf, etc...)
+@media print {
+    // Ocultamos las barras de administración, mensajes de actualizaciones y errores
+    #adminmenumain, #wpadminbar, #wpfooter, .updated, .error {
+        display: none;
+    }
+
+    .wp-admin {
+        background-color: transparent;
+    }
+
+    // Eliminamos el margen izquierdo de la barra de menú
+    #wpcontent {
+        margin-left: 10px;
+    }
+}
