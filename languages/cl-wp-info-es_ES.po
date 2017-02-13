@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WordPress Info\n"
-"POT-Creation-Date: 2017-02-12 19:33+0100\n"
-"PO-Revision-Date: 2017-02-12 19:37+0100\n"
+"POT-Creation-Date: 2017-02-13 16:31+0100\n"
+"PO-Revision-Date: 2017-02-13 16:31+0100\n"
 "Last-Translator: Carlos Longarela <carlos@longarela.eu>\n"
 "Language-Team: Carlos Longarela <carlos@longarela.eu>\n"
 "Language: es_ES\n"
@@ -102,43 +102,47 @@ msgstr "Memoria Máxima:"
 msgid "WordPress Version:"
 msgstr "Versión de WordPress:"
 
-#: cl-functions.php:186
+#: cl-functions.php:187
 msgid "Themes:"
 msgstr "Temas:"
 
-#: cl-functions.php:196
-msgid "Plugins:"
-msgstr "Plugins:"
-
-#: cl-functions.php:201
+#: cl-functions.php:197 cl-functions.php:215
 msgid "Version"
 msgstr "Versión"
 
-#: cl-functions.php:204
+#: cl-functions.php:199
+msgid "Child Theme"
+msgstr "Tema Hijo"
+
+#: cl-functions.php:202 cl-functions.php:218
 msgid "Active"
 msgstr "Activo"
 
-#: cl-functions.php:214
+#: cl-functions.php:210
+msgid "Plugins:"
+msgstr "Plugins:"
+
+#: cl-functions.php:228
 msgid "Absolute Path to WordPress Directory:"
 msgstr "Ruta al Directorio de Contenido de WordPress:"
 
-#: cl-functions.php:221
+#: cl-functions.php:235
 msgid "WordPress Content Directory:"
 msgstr "Directorio de Contenido de WordPress:"
 
-#: cl-functions.php:228
+#: cl-functions.php:242
 msgid "WordPress Database:"
 msgstr "Base de Datos de WordPress:"
 
-#: cl-functions.php:235
+#: cl-functions.php:249
 msgid "WordPress Home:"
 msgstr "Inicio de WordPress:"
 
-#: cl-functions.php:242
+#: cl-functions.php:256
 msgid "WordPress URL:"
 msgstr "URL de WordPress:"
 
-#: cl-functions.php:249
+#: cl-functions.php:263
 msgid "WordPress Debug:"
 msgstr "WordPress Debug:"
 
