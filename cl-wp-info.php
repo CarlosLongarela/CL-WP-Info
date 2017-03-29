@@ -1,13 +1,13 @@
 <?php
 /**
- * Plugin Name: CL WordPress Info
+ * Plugin Name: CL WP Info
  * Plugin URI: https://desarrolloweb.longarela.eu/
- * Description: Información del servidor, PHP y plugins y temas de WordPress para poder realizar fácilmente un infrme previo de la web sobre la que vamos a trabajar
+ * Description: Información del servidor, PHP y plugins y temas de WordPress para poder realizar fácilmente un informe previo de la web sobre la que vamos a trabajar
  * Version: 1.0
  * Author: Carlos Longarela
  * Author URI: https://desarrolloweb.longarela.eu/
  *
- * @package CL WordPress Info
+ * @package CL WP Info
  * License: GPL2+
  * Text Domain: cl-wp-info
  */

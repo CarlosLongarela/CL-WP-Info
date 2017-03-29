@@ -3,7 +3,7 @@
  *
  * Description: Funciones para devolver info de PHP, WordPress.
  *
- * @package CL WordPress Info
+ * @package CL WP Info
  * License: GPL2+
  * Text Domain: cl-wp-info
  */
