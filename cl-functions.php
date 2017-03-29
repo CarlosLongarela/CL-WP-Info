@@ -16,6 +16,11 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+/**
+ * Información general del servidor.
+ *
+ * @since     1.0.0
+ */
 function cl_wp_server_info() {
 	$html  = '';
 
