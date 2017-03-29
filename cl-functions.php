@@ -13,6 +13,9 @@
  *
  * @since     1.0.0
  */
+
+defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+
 function cl_wp_server_info() {
 	$html  = '';
 
