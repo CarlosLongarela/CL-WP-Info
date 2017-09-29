@@ -1,7 +1,11 @@
 // out: ../css/cl-wp-info-admin.min.css, compress: true, strictMath: true
 
 @gris-claro: #ccc;
+@azul: #0073aa;
 @azul-claro: #accde0;
+@ok: #008000;
+@error: #f00;
+@warning: #ffa500;
 
 .cl-tabla-general {
     border: 1px solid @gris-claro;
@@ -12,13 +16,13 @@
     td, th {
         border: 1px solid @gris-claro;
         padding: 5px 10px;
+        vertical-align: top;
     }
 
     th {
         background-color: @gris-claro;
         text-align: right;
         width: 25%;
-        vertical-align: top;
     }
 
     th[colspan]{
@@ -26,6 +30,48 @@
         background-color: @azul-claro;
         font-size: 150%;
     }
+
+    ol {
+        margin-left: 1em;
+    }
+
+    a {
+        color: @azul;
+        text-decoration: none;
+        border-bottom: 1px dotted @azul;
+    }
+
+    .cl-ok {
+        color: @ok;
+    }
+
+    .cl-ok-fondo {
+        background-color: @ok;
+    }
+
+    .cl-error {
+        color: @error;
+    }
+
+    .cl-error-fondo {
+        background-color: @error;
+    }
+
+    .cl-warning {
+        color: @warning;
+    }
+
+    .cl-warning-fondo {
+        background-color: @warning;
+    }
+
+    .cl-ok-fondo, .cl-error-fondo, .cl-warning-fondo {
+        padding: 2px 10px;
+        border-radius: 10px;
+        color: #fff;
+    }
+
+
 }
 
 // Etilos para impresión (en papel, pdf, etc...)

@@ -3,7 +3,7 @@
  * Plugin Name: CL WP Info
  * Plugin URI: https://desarrolloweb.longarela.eu/
  * Description: Información del servidor, PHP y plugins y temas de WordPress para poder realizar fácilmente un informe previo de la web sobre la que vamos a trabajar
- * Version: 1.0
+ * Version: 1.2
  * Author: Carlos Longarela
  * Author URI: https://desarrolloweb.longarela.eu/
  *
@@ -21,8 +21,8 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  */
 function cl_wp_info_add_menu_page() {
 	add_menu_page(
-		__( 'CL Info WP', 'cl-wp-info' ),
-		__( 'Info WP', 'cl-wp-info' ),
+		esc_html__( 'CL Info WP', 'cl-wp-info' ),
+		esc_html__( 'Info WP', 'cl-wp-info' ),
 		'manage_options',
 		'cl-wp-info',
 		'cl_wp_info_general',
@@ -69,23 +69,23 @@ function cl_wp_info_general() {
 	echo '<table class="cl-tabla-general">';
 
 	echo '<tbody>';
-	echo '<tr><th colspan="2">' . __( 'Server Info', 'cl-wp-info' ) . '</tr></th>';
-	echo cl_wp_server_info();
+	echo '<tr><th colspan="2">' . esc_html__( 'Server Info', 'cl-wp-info' ) . '</tr></th>';
+	cl_wp_server_info();
 	echo '</tbody>';
 
 	echo '<tbody>';
-	echo '<tr><th colspan="2">' . __( 'PHP Info', 'cl-wp-info' ) . '</tr></th>';
-	echo cl_wp_php_info();
+	echo '<tr><th colspan="2">' . esc_html__( 'PHP Info', 'cl-wp-info' ) . '</tr></th>';
+	cl_wp_php_info();
 	echo '</tbody>';
 
 	echo '<tbody>';
-	echo '<tr><th colspan="2">' . __( 'Database Info', 'cl-wp-info' ) . '</tr></th>';
-	echo cl_wp_db_info();
+	echo '<tr><th colspan="2">' . esc_html__( 'Database Info', 'cl-wp-info' ) . '</tr></th>';
+	cl_wp_db_info();
 	echo '</tbody>';
 
 	echo '<tbody>';
-	echo '<tr><th colspan="2">' . __( 'WordPress Info', 'cl-wp-info' ) . '</tr></th>';
-	echo cl_wp_wordpress_info();
+	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Info', 'cl-wp-info' ) . '</tr></th>';
+	cl_wp_wordpress_info();
 	echo '</tbody>';
 
 	echo '</table>';
