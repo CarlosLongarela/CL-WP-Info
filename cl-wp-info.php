@@ -90,5 +90,15 @@ function cl_wp_info_general() {
 	$obj_info->cl_wp_wordpress_info();
 	echo '</tbody>';
 
+	echo '<tbody>';
+	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Themes Info', 'cl-wp-info' ) . '</tr></th>';
+	$obj_info->cl_wp_wordpress_themes();
+	echo '</tbody>';
+
+	echo '<tbody>';
+	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Plugins Info', 'cl-wp-info' ) . '</tr></th>';
+	$obj_info->cl_wp_wordpress_plugins();
+	echo '</tbody>';
+
 	echo '</table>';
 }

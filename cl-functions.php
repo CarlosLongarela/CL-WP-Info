@@ -361,6 +361,23 @@ class Cl_WP_Info {
 			$html .= '</tr>';
 		}
 
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_wordpress_info.
+
+	/**
+	 * Devuelve caracterísitcas de los Temas de WordPress.
+	 *
+	 * @since     1.2.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_wordpress_themes( $echo = true ) {
+		$html  = '';
+
 		$args = array(
 			'errors' => false,
 			'allowed' => null,
@@ -406,6 +423,23 @@ class Cl_WP_Info {
 		$html .= '</ol>';
 		$html .= '</td>';
 		$html .= '</tr>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_wordpress_themes.
+
+	/**
+	 * Devuelve caracterísitcas de los Plugins de WordPress.
+	 *
+	 * @since     1.2.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_wordpress_plugins( $echo = true ) {
+		$html  = '';
 
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Plugins:', 'cl-wp-info' ) . '</th>';
@@ -453,5 +487,5 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_wordpress_info.
+	} // Final de cl_wp_wordpress_plugins.
 }
