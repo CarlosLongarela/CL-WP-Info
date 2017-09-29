@@ -286,6 +286,7 @@ function cl_wp_wordpress_info( $echo = true ) {
 		$html .= '</tr>';
 	}
 
+	// TODO: check
 	if ( defined( 'WP_HOME' ) ) {
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress Home:', 'cl-wp-info' ) . '</th>';
@@ -293,6 +294,7 @@ function cl_wp_wordpress_info( $echo = true ) {
 		$html .= '</tr>';
 	}
 
+	// TODO: check
 	if ( defined( 'WP_SITEURL' ) ) {
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress URL:', 'cl-wp-info' ) . '</th>';
@@ -300,15 +302,68 @@ function cl_wp_wordpress_info( $echo = true ) {
 		$html .= '</tr>';
 	}
 
+	if ( defined( 'MEDIA_TRASH' ) ) {
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'Trash for media:', 'cl-wp-info' ) . '</th>';
+		if ( empty( MEDIA_TRASH ) ) {
+			$html .= '<td>' . esc_html__( 'No', 'cl-wp-info' ) . '</td>';
+		} else {
+			$html .= '<td>' . esc_html__( 'Yes', 'cl-wp-info' ) . '</td>';
+		}
+		$html .= '</tr>';
+	}
+
+	if ( defined( 'EMPTY_TRASH_DAYS' ) ) {
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'Empty trash each:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>' . EMPTY_TRASH_DAYS . ' ' . esc_html__( 'days', 'cl-wp-info' ) . '</td>';
+		$html .= '</tr>';
+	}
+
+	if ( defined( 'WP_MEMORY_LIMIT' ) ) {
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress memory limit:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>' . WP_MEMORY_LIMIT . '</td>';
+		$html .= '</tr>';
+	}
+
+	if ( defined( 'WP_MAX_MEMORY_LIMIT' ) ) {
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress top memory limit:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>' . WP_MAX_MEMORY_LIMIT . '</td>';
+		$html .= '</tr>';
+	}
+
+	if ( defined( 'WP_CACHE' ) ) {
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress Cache:', 'cl-wp-info' ) . '</th>';
+		if ( empty( WP_CACHE ) ) {
+			$html .= '<td>' . esc_html__( 'No', 'cl-wp-info' ) . '</td>';
+		} else {
+			$html .= '<td>' . esc_html__( 'Yes', 'cl-wp-info' ) . '</td>';
+		}
+		$html .= '</tr>';
+	}
+
+	if ( defined( 'MULTISITE' ) ) {
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress Multisite:', 'cl-wp-info' ) . '</th>';
+		if ( empty( MULTISITE ) ) {
+			$html .= '<td>' . esc_html__( 'No', 'cl-wp-info' ) . '</td>';
+		} else {
+			$html .= '<td>' . esc_html__( 'Yes', 'cl-wp-info' ) . '</td>';
+		}
+		$html .= '</tr>';
+	}
+
 	if ( defined( 'WP_DEBUG' ) ) {
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress Debug:', 'cl-wp-info' ) . '</th>';
 		if ( empty( WP_DEBUG ) ) {
-			$html .= '<td>' . esc_html__( 'No', 'cl-wp-info' )  . '</td>';
+			$html .= '<td>' . esc_html__( 'No', 'cl-wp-info' ) . '</td>';
 		} else {
-			$html .= '<td>' . esc_html__( 'Yes', 'cl-wp-info' )  . '</td>';
+			$html .= '<td>' . esc_html__( 'Yes', 'cl-wp-info' ) . '</td>';
 		}
-
 		$html .= '</tr>';
 	}
 

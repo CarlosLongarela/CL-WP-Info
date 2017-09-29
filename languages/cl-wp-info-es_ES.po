@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2017-09-29 18:58+0200\n"
-"PO-Revision-Date: 2017-09-29 18:58+0200\n"
+"POT-Creation-Date: 2017-09-29 19:39+0200\n"
+"PO-Revision-Date: 2017-09-29 19:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: Carlos Longarela carlos@longarela.eu\n"
 "Language: es_ES\n"
@@ -103,82 +103,124 @@ msgstr "Tamaño Máximo de Archivo a Subir:"
 msgid "Max Memory:"
 msgstr "Memoria Máxima:"
 
-#: cl-functions.php:202
+#: cl-functions.php:203
 msgid "WordPress Database:"
 msgstr "Base de Datos de WordPress:"
 
 #: cl-functions.php:209
+msgid "WordPress Database prefix:"
+msgstr "Prefijo de la Base de Datos de WordPress:"
+
+#: cl-functions.php:220
 msgid "WordPress Database Username:"
 msgstr "Usuario de Base de Datos de WordPress:"
 
-#: cl-functions.php:216
+#: cl-functions.php:227
 msgid "WordPress Database Password:"
 msgstr "Clave de Base de Datos de WordPress:"
 
-#: cl-functions.php:223
+#: cl-functions.php:234
 msgid "WordPress Database Hostname:"
 msgstr "Host de Base de Datos de WordPress:"
 
-#: cl-functions.php:230
+#: cl-functions.php:241
 msgid "WordPress Database Charset to use in creating database tables:"
 msgstr ""
 "Conjunto de caracteres de la Base de Datos de WordPress usado en la creación "
 "de nuevas tablas:"
 
-#: cl-functions.php:237
+#: cl-functions.php:248
 msgid "WordPress Database Collate Type:"
 msgstr "Collate Type de la Base de Datos de WordPress:"
 
-#: cl-functions.php:260
+#: cl-functions.php:271
 msgid "WordPress Version:"
 msgstr "Versión de WordPress:"
 
-#: cl-functions.php:266
+#: cl-functions.php:277
 msgid "Absolute Path to WordPress Directory:"
 msgstr "Ruta al Directorio de Contenido de WordPress:"
 
-#: cl-functions.php:273
+#: cl-functions.php:284
 msgid "WordPress Content Directory:"
 msgstr "Directorio de Contenido de WordPress:"
 
-#: cl-functions.php:280
+#: cl-functions.php:292
 msgid "WordPress Home:"
 msgstr "Inicio de WordPress:"
 
-#: cl-functions.php:287
+#: cl-functions.php:300
 msgid "WordPress URL:"
 msgstr "URL de WordPress:"
 
-#: cl-functions.php:294
+#: cl-functions.php:307
+msgid "Trash for media:"
+msgstr "Papelera para los medios:"
+
+#: cl-functions.php:309 cl-functions.php:341 cl-functions.php:352
+#: cl-functions.php:363
+msgid "No"
+msgstr "No"
+
+#: cl-functions.php:311 cl-functions.php:343 cl-functions.php:354
+#: cl-functions.php:365
+msgid "Yes"
+msgstr "Sí"
+
+#: cl-functions.php:318
+msgid "Empty trash each:"
+msgstr "Vaciar papelera cada:"
+
+#: cl-functions.php:319
+msgid "days"
+msgstr "días"
+
+#: cl-functions.php:325
+msgid "WordPress memory limit:"
+msgstr "Límite de memoria de WordPress:"
+
+#: cl-functions.php:332
+msgid "WordPress top memory limit:"
+msgstr "Límite de memoria máximo de WordPress:"
+
+#: cl-functions.php:339
+msgid "WordPress Cache:"
+msgstr "Cache de WordPress:"
+
+#: cl-functions.php:350
+msgid "WordPress Multisite:"
+msgstr "WordPress Multisitio:"
+
+#: cl-functions.php:361
 msgid "WordPress Debug:"
 msgstr "Debug de WordPress:"
 
-#: cl-functions.php:309
+#: cl-functions.php:380
 msgid "Themes:"
 msgstr "Temas:"
 
-#: cl-functions.php:320 cl-functions.php:344 cl-functions.php:346
-#: cl-functions.php:357
+#: cl-functions.php:395 cl-functions.php:397 cl-functions.php:425
+#: cl-functions.php:427 cl-functions.php:438
 msgid "Version"
 msgstr "Versión"
 
-#: cl-functions.php:327 cl-functions.php:351
+#: cl-functions.php:408 cl-functions.php:432
 msgid "Active"
 msgstr "Activo"
 
-#: cl-functions.php:336
+#: cl-functions.php:417
 msgid "Plugins:"
 msgstr "Plugins:"
 
-#: cl-functions.php:356
+#: cl-functions.php:437
 msgid "Update available:"
 msgstr "Actualización disponible"
 
-#: cl-functions.php:358
+#: cl-functions.php:439
 msgid "Compatible with WordPress"
 msgstr "Compatible con WordPress"
 
-#: cl-functions.php:363
+#: cl-functions.php:444
 msgid "Author:"
 msgstr "Autor:"
 
