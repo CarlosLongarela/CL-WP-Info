@@ -292,11 +292,19 @@ function cl_wp_wordpress_info( $echo = true ) {
 	if ( defined( 'WP_DEBUG' ) ) {
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress Debug:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . WP_DEBUG . '</td>';
+		if ( empty( WP_DEBUG ) ) {
+			$html .= '<td>' . esc_html__( 'No', 'cl-wp-info' )  . '</td>';
+		} else {
+			$html .= '<td>' . esc_html__( 'Yes', 'cl-wp-info' )  . '</td>';
+		}
+
 		$html .= '</tr>';
 	}
 
-	$args = array( 'errors' => false , 'allowed' => null );
+	$args = array(
+		'errors' => false,
+		'allowed' => null,
+	);
 	$temas = wp_get_themes( $args );
 
 	$tema_actual = wp_get_theme();
@@ -306,15 +314,25 @@ function cl_wp_wordpress_info( $echo = true ) {
 	$html .= '<th>' . esc_html__( 'Themes:', 'cl-wp-info' ) . '</th>';
 	$html .= '<td>';
 	$html .= '<ol>';
-	foreach ( $temas as $clave => $valor ) {
-		$tema_nombre     = $valor->get( 'Name' );
-		$tema_version    = $valor->get( 'Version' );
-		//$tema_padre      = $valor->get( 'parent' );
-		$tema_textdomain = $valor->get( 'TextDomain' );
+	foreach ( $temas as $clave_tema => $valor_tema ) {
+		//$tema_nombre     = $valor_tema->get( 'Name' );
+		//$tema_version    = $valor_tema->get( 'Version' );
+		//$tema_padre      = $valor_tema->get( 'parent' );
+		$tema_textdomain = $valor_tema->get( 'TextDomain' );
 
-		$html .= '<li>';
-		$html .= $tema_nombre;
-		$html .= ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $tema_version . ')</em>';
+		//$html .= '<li>';
+		//$html .= $tema_nombre;
+		//$html .= ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $tema_version . ')</em>';
+
+
+		if ( empty( $valor_tema['ThemeURI'] ) ) {
+			$html .= '<li>' . $valor_tema['Name'] . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_tema['Version'] . ')</em>';
+		} else {
+			$html .= '<li>' . $valor_tema['Name'] . ' <em><a href="' . $valor_tema['ThemeURI'] . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_tema['Version'] . ')</a></em>';
+		}
+
+
+
 		/*
 		if ( ! empty( $tema_padre ) ) {
 			$html .= ' <em>(' . esc_html__( 'Child Theme', 'cl-wp-info' ) . ': ' . $tema_padre . ')</em>';
@@ -336,30 +354,32 @@ function cl_wp_wordpress_info( $echo = true ) {
 	$plugins         = get_plugins();
 	$plugins_updates = get_plugin_updates();
 	$plugins_activos = get_option( 'active_plugins', array() );
-	foreach ( $plugins as $clave => $valor ) {
-		if ( empty( $valor['PluginURI'] ) ) {
-			$html .= '<li>' . $valor['Name'] . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor['Version'] . ')</em>';
+	foreach ( $plugins as $clave_plugin => $valor_plugin ) {
+		if ( empty( $valor_plugin['PluginURI'] ) ) {
+			$html .= '<li>' . $valor_plugin['Name'] . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_plugin['Version'] . ')</em>';
 		} else {
-			$html .= '<li>' . $valor['Name'] . ' <em><a href="' . $valor['PluginURI'] . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor['Version'] . ')</a></em>';
+			$html .= '<li>' . $valor_plugin['Name'] . ' <em><a href="' . $valor_plugin['PluginURI'] . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_plugin['Version'] . ')</a></em>';
 		}
 
 		// Si el plugin está activado.
-		if ( false !== array_search( $clave, $plugins_activos, true ) ) {
+		if ( false !== array_search( $clave_plugin, $plugins_activos, true ) ) {
 			$html .= ' <strong class="cl-ok-fondo">' . esc_html__( 'Active', 'cl-wp-info' ) . '</strong>';
 		}
 
 		// Si hay actualización para el plugin.
-		// TODO: Comprobar, No funciona.
-		if ( false !== in_array( $clave, $plugins_updates ) ) {
-			$html .= ' <strong class="cl-warning">Actualización...</strong>';
+		if ( false !== array_key_exists( $clave_plugin, $plugins_updates ) ) {
+			$html .= '<br /> <span class="cl-warning">- <strong>' . esc_html__( 'Update available:', 'cl-wp-info' ) . '</strong> ';
+			$html .= esc_html__( 'Version', 'cl-wp-info' ) . ': <strong>' . $plugins_updates[ $clave_plugin ]->update->new_version . '</strong>';
+			$html .= ' <em>(' . esc_html__( 'Compatible with WordPress', 'cl-wp-info' ) . ': ' . $plugins_updates[ $clave_plugin ]->update->tested . ')</em>';
+			$html .= '</span>';
 		}
 
-		$html .= '<br /> - <em>' . $valor['Description'] . '</em>';
+		$html .= '<br /> - <em>' . $valor_plugin['Description'] . '</em>';
 		$html .= '<br /> - ' . esc_html__( 'Author:', 'cl-wp-info' ) . ' ';
-		if ( empty( $valor['AuthorURI'] ) ) {
-			$html .= $valor['Author'];
+		if ( empty( $valor_plugin['AuthorURI'] ) ) {
+			$html .= $valor_plugin['Author'];
 		} else {
-			$html .= '<a href="' . $valor['AuthorURI'] . '" target="_blank" rel="noopener noreferrer">' . $valor['Author'] . '</a>';
+			$html .= '<a href="' . $valor_plugin['AuthorURI'] . '" target="_blank" rel="noopener noreferrer">' . $valor_plugin['Author'] . '</a>';
 		}
 
 		$html .= '</li>';

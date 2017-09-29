@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2017-09-29 18:11+0200\n"
-"PO-Revision-Date: 2017-09-29 18:11+0200\n"
+"POT-Creation-Date: 2017-09-29 18:58+0200\n"
+"PO-Revision-Date: 2017-09-29 18:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: Carlos Longarela carlos@longarela.eu\n"
 "Language: es_ES\n"
@@ -153,23 +153,32 @@ msgstr "URL de WordPress:"
 msgid "WordPress Debug:"
 msgstr "Debug de WordPress:"
 
-#: cl-functions.php:306
+#: cl-functions.php:309
 msgid "Themes:"
 msgstr "Temas:"
 
-#: cl-functions.php:317 cl-functions.php:341 cl-functions.php:343
+#: cl-functions.php:320 cl-functions.php:344 cl-functions.php:346
+#: cl-functions.php:357
 msgid "Version"
 msgstr "Versión"
 
-#: cl-functions.php:324 cl-functions.php:348
+#: cl-functions.php:327 cl-functions.php:351
 msgid "Active"
 msgstr "Activo"
 
-#: cl-functions.php:333
+#: cl-functions.php:336
 msgid "Plugins:"
 msgstr "Plugins:"
 
+#: cl-functions.php:356
+msgid "Update available:"
+msgstr "Actualización disponible"
+
 #: cl-functions.php:358
+msgid "Compatible with WordPress"
+msgstr "Compatible con WordPress"
+
+#: cl-functions.php:363
 msgid "Author:"
 msgstr "Autor:"
 
