@@ -66,26 +66,28 @@ require_once plugin_dir_path( __FILE__ ) . 'cl-functions.php';
  * @since     1.0.0
  */
 function cl_wp_info_general() {
+	$obj_info = new Cl_WP_Info();
+
 	echo '<table class="cl-tabla-general">';
 
 	echo '<tbody>';
 	echo '<tr><th colspan="2">' . esc_html__( 'Server Info', 'cl-wp-info' ) . '</tr></th>';
-	cl_wp_server_info();
+	$obj_info->cl_wp_server_info();
 	echo '</tbody>';
 
 	echo '<tbody>';
 	echo '<tr><th colspan="2">' . esc_html__( 'PHP Info', 'cl-wp-info' ) . '</tr></th>';
-	cl_wp_php_info();
+	$obj_info->cl_wp_php_info();
 	echo '</tbody>';
 
 	echo '<tbody>';
 	echo '<tr><th colspan="2">' . esc_html__( 'Database Info', 'cl-wp-info' ) . '</tr></th>';
-	cl_wp_db_info();
+	$obj_info->cl_wp_db_info();
 	echo '</tbody>';
 
 	echo '<tbody>';
 	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Info', 'cl-wp-info' ) . '</tr></th>';
-	cl_wp_wordpress_info();
+	$obj_info->cl_wp_wordpress_info();
 	echo '</tbody>';
 
 	echo '</table>';
