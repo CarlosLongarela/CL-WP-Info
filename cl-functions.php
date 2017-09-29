@@ -175,6 +175,17 @@ function cl_wp_php_info() {
 } // Final de cl_wp_php_info.
 
 /**
+ * Devuelve caracterísitcas de la Base de Datos.
+ *
+ * @since     1.0.0
+ */
+function cl_wp_db_info() {
+	$html  = '';
+
+	return $html;
+} // Final de cl_wp_db_info.
+
+/**
  * Devuelve caracterísitcas de WordPress.
  */
 function cl_wp_wordpress_info() {

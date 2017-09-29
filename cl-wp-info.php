@@ -79,6 +79,11 @@ function cl_wp_info_general() {
 	echo '</tbody>';
 
 	echo '<tbody>';
+	echo '<tr><th colspan="2">' . __( 'Database Info', 'cl-wp-info' ) . '</tr></th>';
+	echo cl_wp_db_info();
+	echo '</tbody>';
+
+	echo '<tbody>';
 	echo '<tr><th colspan="2">' . __( 'WordPress Info', 'cl-wp-info' ) . '</tr></th>';
 	echo cl_wp_wordpress_info();
 	echo '</tbody>';
