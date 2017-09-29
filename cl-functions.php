@@ -195,6 +195,7 @@ function cl_wp_php_info( $echo = true ) {
  * @param boolean $echo Escribir la salida o devolverla.
  */
 function cl_wp_db_info( $echo = true ) {
+	global $wpdb;
 	$html  = '';
 
 	if ( defined( 'DB_NAME' ) ) {
@@ -203,6 +204,16 @@ function cl_wp_db_info( $echo = true ) {
 		$html .= '<td>' . DB_NAME . '</td>';
 		$html .= '</tr>';
 	}
+
+	$html .= '<tr>';
+	$html .= '<th>' . esc_html__( 'WordPress Database prefix:', 'cl-wp-info' ) . '</th>';
+	$html .= '<td>' . $wpdb->prefix . '</td>';
+	$html .= '</tr>';
+
+	//$html .= '<tr>';
+	//$html .= '<th>' . esc_html__( 'WordPress Database version:', 'cl-wp-info' ) . '</th>';
+	//$html .= '<td>' . $wpdb::db_version . '</td>';
+	//$html .= '</tr>';
 
 	if ( defined( 'DB_USER' ) ) {
 		$html .= '<tr>';
