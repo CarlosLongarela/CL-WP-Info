@@ -14,6 +14,14 @@
 
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
+define( 'CL_WP_INFO_MIN_PHP', '5.2.4' );
+define( 'CL_WP_INFO_MIN_DB_MYSQL', '5.0' );
+define( 'CL_WP_INFO_MIN_DB_MARIA', '10' );
+
+define( 'CL_WP_INFO_REC_PHP', '7' );
+define( 'CL_WP_INFO_REC_MYSQL', '5.6' );
+define( 'CL_WP_INFO_REC_MARIA', '10' );
+
 /**
  * Registramos el menú.
  *
@@ -67,6 +75,8 @@ require_once plugin_dir_path( __FILE__ ) . 'cl-functions.php';
  */
 function cl_wp_info_general() {
 	$obj_info = new Cl_WP_Info();
+
+	echo '<div class="cl-no-print">Colabora</div>';
 
 	echo '<table class="cl-tabla-general">';
 

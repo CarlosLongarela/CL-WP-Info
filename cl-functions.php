@@ -118,7 +118,7 @@ class Cl_WP_Info {
 		$html .= '<th>' . esc_html__( 'PHP Loaded Extensions:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>';
 		$php_extensions = get_loaded_extensions();
-		foreach ( $php_extensions as &$valor ) {
+		foreach ( $php_extensions as $valor ) {
 			$html .= $valor . ', ';
 		}
 		$html .= '</td>';
@@ -137,6 +137,33 @@ class Cl_WP_Info {
 			$html .= '<td>';
 			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.timezone']['global_value'] . '</div>';
 			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.timezone']['local_value'] . '</div>';
+			$html .= '</tr>';
+		}
+
+		if ( ! empty( $php_ini['date.default_latitude'] ) ) {
+			$html .= '<tr>';
+			$html .= '<th>' . esc_html__( 'Date/Time latitude:', 'cl-wp-info' ) . '</th>';
+			$html .= '<td>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_latitude']['global_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_latitude']['local_value'] . '</div>';
+			$html .= '</tr>';
+		}
+
+		if ( ! empty( $php_ini['date.default_longitude'] ) ) {
+			$html .= '<tr>';
+			$html .= '<th>' . esc_html__( 'Date/Time longitude:', 'cl-wp-info' ) . '</th>';
+			$html .= '<td>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_longitude']['global_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_longitude']['local_value'] . '</div>';
+			$html .= '</tr>';
+		}
+
+		if ( ! empty( $php_ini['default_charset'] ) ) {
+			$html .= '<tr>';
+			$html .= '<th>' . esc_html__( 'Default charset:', 'cl-wp-info' ) . '</th>';
+			$html .= '<td>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['default_charset']['global_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['default_charset']['local_value'] . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -203,14 +230,10 @@ class Cl_WP_Info {
 		global $wpdb;
 		$html  = '';
 
-		$db_connection = mysqli_connect( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
-		$db_info       = mysqli_get_server_info( $db_connection );
-		//$sql = 'SHOW VARIABLES LIKE "%version%"';
-		//$res = $wpdb->query( $sql );
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Database Server:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . $db_info . '</td>';
+		$html .= '<td>' . $wpdb->get_var( 'select version();' ) . '</td>';
+		//$html .= '<td>' . $wpdb->db_version(). '</td>';
 		$html .= '</tr>';
 
 		if ( defined( 'DB_NAME' ) ) {
