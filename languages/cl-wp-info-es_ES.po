@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2017-09-30 16:35+0200\n"
-"PO-Revision-Date: 2017-09-30 16:36+0200\n"
+"POT-Creation-Date: 2017-09-30 16:55+0200\n"
+"PO-Revision-Date: 2017-09-30 19:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: Carlos Longarela carlos@longarela.eu\n"
 "Language: es_ES\n"
@@ -242,35 +242,35 @@ msgstr "Plugins:"
 msgid "Compatible with WordPress"
 msgstr "Compatible con WordPress"
 
-#: cl-wp-info.php:24
+#: cl-wp-info.php:32
 msgid "CL Info WP"
 msgstr "CL Info WP"
 
-#: cl-wp-info.php:25
+#: cl-wp-info.php:33
 msgid "Info WP"
 msgstr "Info WP"
 
-#: cl-wp-info.php:76
+#: cl-wp-info.php:84
 msgid "Server Info"
 msgstr "Información del Servidor"
 
-#: cl-wp-info.php:81
+#: cl-wp-info.php:89
 msgid "PHP Info"
 msgstr "Información de PHP"
 
-#: cl-wp-info.php:86
+#: cl-wp-info.php:94
 msgid "Database Info"
 msgstr "Información de la Base de Datos"
 
-#: cl-wp-info.php:91
+#: cl-wp-info.php:99
 msgid "WordPress Info"
 msgstr "Información de WordPress"
 
-#: cl-wp-info.php:96
+#: cl-wp-info.php:104
 msgid "WordPress Themes Info"
 msgstr "Información de Temas de WordPress"
 
-#: cl-wp-info.php:101
+#: cl-wp-info.php:109
 msgid "WordPress Plugins Info"
 msgstr "Información de Plugins de WordPress"
 
