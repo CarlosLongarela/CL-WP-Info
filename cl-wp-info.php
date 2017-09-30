@@ -76,8 +76,6 @@ require_once plugin_dir_path( __FILE__ ) . 'cl-functions.php';
 function cl_wp_info_general() {
 	$obj_info = new Cl_WP_Info();
 
-	echo '<div class="cl-no-print">Colabora</div>';
-
 	echo '<table class="cl-tabla-general">';
 
 	echo '<tbody>';
@@ -116,4 +114,11 @@ function cl_wp_info_general() {
 	echo '</tbody>';
 
 	echo '</table>';
+
+	echo '<div class="cl-no-print cl-donate updated">';
+	echo '<p>' . esc_html__( "If this plugin is useful for you, maybe you'd like to collaborate with its development and invite me to a coffe or a beer", 'cl-wp-info' ) . '</p>';
+	echo '<p><a class="cl-donate-btn" href="https://www.paypal.me/CarlosLongarela" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Yes, of course :)', 'cl-wp-info' ) . '</a></p>';
+	echo '<p>' . esc_html__( 'Or maybe you can donate with Bitcoin', 'cl-wp-info' ) . ' <em>13m3ARiWhLcG7hSswZPmrqNTKaPJbaSvro</em> ' . esc_html__( 'or Ether', 'cl-wp-info' ) . ' <em>0x58cd21317d86dBC6374B518312eB27571abE7638</em></p>';
+	echo '<p class="cl-note">* ' . esc_html__( 'This note will not be printed if you select Print menu and send to printer device or pdf (recomended option)', 'cl-wp-info' ) . '</p>';
+	echo '</div>';
 }

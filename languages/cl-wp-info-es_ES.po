@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2017-09-30 16:55+0200\n"
-"PO-Revision-Date: 2017-09-30 19:20+0200\n"
+"POT-Creation-Date: 2017-10-01 01:50+0200\n"
+"PO-Revision-Date: 2017-10-01 01:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: Carlos Longarela carlos@longarela.eu\n"
 "Language: es_ES\n"
@@ -242,6 +242,14 @@ msgstr "Plugins:"
 msgid "Compatible with WordPress"
 msgstr "Compatible con WordPress"
 
+#: cl-functions.php:545
+msgid "Javascript files:"
+msgstr "Archivos JavaScript:"
+
+#: cl-functions.php:556
+msgid "CSS files:"
+msgstr "Archivos CSS:"
+
 #: cl-wp-info.php:32
 msgid "CL Info WP"
 msgstr "CL Info WP"
@@ -250,29 +258,61 @@ msgstr "CL Info WP"
 msgid "Info WP"
 msgstr "Info WP"
 
-#: cl-wp-info.php:84
+#: cl-wp-info.php:80
+msgid ""
+"If this plugin is useful for you, maybe you'd like to collaborate with its "
+"development and invite me to a coffe or a beer"
+msgstr ""
+"Si este plugin es útil para ti, quizás quieras colaborar con su desarrollo e "
+"invitarme a un café o una cerveza"
+
+#: cl-wp-info.php:81
+msgid "Yes, of course :)"
+msgstr "Sí, desde luego :)"
+
+#: cl-wp-info.php:82
+msgid "Or maybe you can donate with Bitcoin"
+msgstr "O quizás prefieres donar con Bitcoin"
+
+#: cl-wp-info.php:82
+msgid "or Ether"
+msgstr "ó Ether"
+
+#: cl-wp-info.php:83
+msgid ""
+"This note will not be printed if you select Print menu and send to printer "
+"device or pdf (recomended option)"
+msgstr ""
+"Esta nota no se imprimirá si se selecciona el Menú de Impresión e imprimir "
+"en papel o en pdf (opción recomendada)"
+
+#: cl-wp-info.php:89
 msgid "Server Info"
 msgstr "Información del Servidor"
 
-#: cl-wp-info.php:89
+#: cl-wp-info.php:94
 msgid "PHP Info"
 msgstr "Información de PHP"
 
-#: cl-wp-info.php:94
+#: cl-wp-info.php:99
 msgid "Database Info"
 msgstr "Información de la Base de Datos"
 
-#: cl-wp-info.php:99
+#: cl-wp-info.php:104
 msgid "WordPress Info"
 msgstr "Información de WordPress"
 
-#: cl-wp-info.php:104
+#: cl-wp-info.php:109
 msgid "WordPress Themes Info"
 msgstr "Información de Temas de WordPress"
 
-#: cl-wp-info.php:109
+#: cl-wp-info.php:114
 msgid "WordPress Plugins Info"
 msgstr "Información de Plugins de WordPress"
+
+#: cl-wp-info.php:119
+msgid "WordPress Javascript & CSS"
+msgstr "Javascript y CSS de WordPress"
 
 #. Plugin Name of the plugin/theme
 msgid "CL WP Info"

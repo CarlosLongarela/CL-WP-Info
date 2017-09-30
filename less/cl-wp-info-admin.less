@@ -7,6 +7,42 @@
 @error: #f00;
 @warning: #ffa500;
 
+#wpcontent .cl-donate {
+    margin: 10px auto;
+    padding: 10px;
+    width: 90%;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.5em;
+
+    .cl-note {
+        color: @gris-claro;
+        font-style: italic;
+    }
+
+    p {
+        font-size: 1em;
+
+        .cl-donate-btn {
+            background-color: @ok;
+            font-size: 1.2em;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 6px 15px;
+            border-radius: 10px;
+            color: #fff;
+
+            &:hover {
+                color: #000;
+            }
+        }
+
+        em {
+            color: @ok;
+        }
+    }
+}
+
 .cl-tabla-general {
     border: 1px solid @gris-claro;
     margin: 10px auto;
