@@ -203,6 +203,16 @@ class Cl_WP_Info {
 		global $wpdb;
 		$html  = '';
 
+		$db_connection = mysqli_connect( DB_HOST, DB_USER, DB_PASSWORD, DB_NAME );
+		$db_info       = mysqli_get_server_info( $db_connection );
+		//$sql = 'SHOW VARIABLES LIKE "%version%"';
+		//$res = $wpdb->query( $sql );
+
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'Database Server:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>' . $db_info . '</td>';
+		$html .= '</tr>';
+
 		if ( defined( 'DB_NAME' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Database:', 'cl-wp-info' ) . '</th>';
