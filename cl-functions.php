@@ -393,7 +393,7 @@ class Cl_WP_Info {
 		$html .= '<td>';
 		$html .= '<ol>';
 		foreach ( $temas as $clave_tema => $valor_tema ) {
-			//$tema_padre      = $valor_tema->get( 'parent' );
+			$tema_padre      = $valor_tema->get( 'Template' );
 			$tema_textdomain = $valor_tema->get( 'TextDomain' );
 
 			if ( empty( $valor_tema->get( 'ThemeURI' ) ) ) {
@@ -402,11 +402,10 @@ class Cl_WP_Info {
 				$html .= '<li>' . $valor_tema->get( 'Name' ) . ' <em><a href="' . $valor_tema->get( 'ThemeURI' ) . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_tema->get( 'Version' ) . ')</a></em>';
 			}
 
-			/*
 			if ( ! empty( $tema_padre ) ) {
-				$html .= ' <em>(' . esc_html__( 'Child Theme', 'cl-wp-info' ) . ': ' . $tema_padre . ')</em>';
+				$html .= ' <em>[' . esc_html__( 'Child Theme of', 'cl-wp-info' ) . ': ' . $tema_padre . ']</em>';
 			}
-			*/
+
 			if ( $tema_activo_textdomain === $tema_textdomain ) {
 				$html .= ' <strong class="cl-ok-fondo">' . esc_html__( 'Active', 'cl-wp-info' ) . '</strong>';
 			}
