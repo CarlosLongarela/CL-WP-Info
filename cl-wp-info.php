@@ -20,7 +20,7 @@ define( 'CL_WP_INFO_MIN_DB_MARIA', '10' );
 
 define( 'CL_WP_INFO_REC_PHP', '7' );
 define( 'CL_WP_INFO_REC_MYSQL', '5.6' );
-define( 'CL_WP_INFO_REC_MARIA', '10' );
+define( 'CL_WP_INFO_REC_MARIA', '5.1' );
 
 /**
  * Registramos el menú.
