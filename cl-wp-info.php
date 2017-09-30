@@ -15,7 +15,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 define( 'CL_WP_INFO_MIN_PHP', '5.2.4' );
-define( 'CL_WP_INFO_MIN_DB_MYSQL', '5.0' );
+define( 'CL_WP_INFO_MIN_DB', '5.0' );
 define( 'CL_WP_INFO_MIN_DB_MARIA', '10' );
 
 define( 'CL_WP_INFO_REC_PHP', '7' );
@@ -108,6 +108,11 @@ function cl_wp_info_general() {
 	echo '<tbody>';
 	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Plugins Info', 'cl-wp-info' ) . '</tr></th>';
 	$obj_info->cl_wp_wordpress_plugins();
+	echo '</tbody>';
+
+	echo '<tbody>';
+	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Javascript & CSS', 'cl-wp-info' ) . '</tr></th>';
+	$obj_info->cl_wp_js_cs();
 	echo '</tbody>';
 
 	echo '</table>';

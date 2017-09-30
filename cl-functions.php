@@ -528,4 +528,45 @@ class Cl_WP_Info {
 			return $html;
 		}
 	} // Final de cl_wp_wordpress_plugins.
+
+	/**
+	 * Devuelve los javascript y CSS de WordPress.
+	 *
+	 * @since     1.2.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_js_cs( $echo = true ) {
+		global $wp_scripts, $wp_styles;
+
+		$html  = '';
+
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'Javascript files:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>';
+		$html .= '<ol>';
+		foreach ( $wp_scripts->queue as $script ) {
+			$html .= '<li>' . $script . ' => ' . $wp_scripts->registered[$script]->src . '</li>';
+		}
+		$html .= '</ol>';
+		$html .= '</td>';
+		$html .= '</tr>';
+
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'CSS files:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>';
+		$html .= '<ol>';
+		foreach ( $wp_styles->queue as $style ) {
+			$html .= '<li>' . $style . ' => ' . $wp_styles->registered[$style]->src . '</li>';
+		}
+		$html .= '</ol>';
+		$html .= '</td>';
+		$html .= '</tr>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_js_cs.
 }
