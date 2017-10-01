@@ -29,7 +29,7 @@ class Cl_WP_Info {
 	 *
 	 * @param boolean $echo Escribir la salida o devolverla.
 	 */
-	 public function cl_wp_info_general( $echo = true ) {
+	public function cl_wp_info_general( $echo = true ) {
 		$html  = '';
 
 		$html .= 'LALA';
