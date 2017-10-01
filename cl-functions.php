@@ -21,6 +21,26 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  * Funcionalidad general del plugin.
  */
 class Cl_WP_Info {
+
+	/**
+	 * Información general del WP y su estado.
+	 *
+	 * @since     1.0.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	 public function cl_wp_info_general( $echo = true ) {
+		$html  = '';
+
+		$html .= 'LALA';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_info_general.
+
 	/**
 	 * Información general del servidor.
 	 *

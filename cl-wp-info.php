@@ -76,6 +76,10 @@ require_once plugin_dir_path( __FILE__ ) . 'cl-functions.php';
 function cl_wp_info_general() {
 	$obj_info = new Cl_WP_Info();
 
+	echo '<div class="cl-info-general">';
+	$obj_info->cl_wp_info_general();
+	echo '</div>';
+
 	echo '<table class="cl-tabla-general">';
 
 	echo '<tbody>';
