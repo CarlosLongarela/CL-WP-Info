@@ -774,7 +774,7 @@ class Cl_WP_Info {
 		$html  = '';
 
 		$html .= '<tr>';
-		$html .= '<th>' . esc_html__( 'Javascript files:', 'cl-wp-info' ) . '</th>';
+		$html .= '<th>' . esc_html__( 'Javascript files (in this page):', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>';
 		$html .= '<ol>';
 		foreach ( $wp_scripts->queue as $script ) {
@@ -785,7 +785,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		$html .= '<tr>';
-		$html .= '<th>' . esc_html__( 'CSS files:', 'cl-wp-info' ) . '</th>';
+		$html .= '<th>' . esc_html__( 'CSS files (in this page):', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>';
 		$html .= '<ol>';
 		foreach ( $wp_styles->queue as $style ) {
