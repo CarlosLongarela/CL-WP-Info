@@ -26,6 +26,8 @@ class Cl_WP_Info {
 	 */
 	private $wp_version = '';
 
+	private $wp_update_core = false;
+
 	/**
 	 * Objeto con el número de posts.
 	 */
@@ -46,17 +48,27 @@ class Cl_WP_Info {
 	 */
 	private $n_comments = 0;
 
+	private $n_media;
+
+	private $wp_locale;
 	/**
 	 * Constructor desde el que recuperamos valores a utilizar posteriormente.
 	 *
 	 * @since     1.2.0
 	 */
 	public function __construct() {
-		$this->wp_version = get_bloginfo( 'version' );
-		$this->n_posts    = wp_count_posts();
-		$this->n_pages    = wp_count_posts( 'page' );
-		$this->n_users    = count_users();
-		$this->n_comments = get_comments( array( 'count' => true ) );
+		global $wpdb;
+
+		$this->wp_version     = get_bloginfo( 'version' );
+		$this->n_posts        = wp_count_posts();
+		$this->n_pages        = wp_count_posts( 'page' );
+		$this->n_users        = count_users();
+		$this->n_comments     = get_comments( array( 'count' => true ) );
+		$this->n_media        = wp_count_attachments();
+		$this->wp_locale      = get_locale();
+
+		$sql = 'SELECT option_value FROM ' . $wpdb->prefix . "options WHERE option_name = '_site_transient_update_core'";
+		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) );
 	}
 
 	/**
@@ -70,68 +82,23 @@ class Cl_WP_Info {
 		$html  = '';
 
 		// WordPress Version.
-		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</strong></p>';
+		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</strong>';
 
-		// Posts section.
-		$html .= '<p><strong>' . esc_html__( 'WordPress Posts:', 'cl-wp-info' ) . '</strong> ';
-		/* translators: number of posts published. */
-		$html .= sprintf( esc_html( _n( '%d published post', '%d published posts', $this->n_posts->publish, 'cl-wp-info' ) ), $this->n_posts->publish ) . ', ';
-		/* translators: number of posts future. */
-		$html .= sprintf( esc_html( _n( '%d post to publish in the future', '%d posts to publish in the future', $this->n_posts->future, 'cl-wp-info' ) ), $this->n_posts->future ) . ', ';
-		/* translators: number of posts pending. */
-		$html .= sprintf( esc_html( _n( '%d post pending review', '%d posts pending review', $this->n_posts->pending, 'cl-wp-info' ) ), $this->n_posts->pending ) . ', ';
-		/* translators: number of posts in draft. */
-		$html .= sprintf( esc_html( _n( '%d post in draft status', '%d posts in draft status', $this->n_posts->draft, 'cl-wp-info' ) ), $this->n_posts->draft ) . ', ';
-		/* translators: number of posts in auto-draft. */
-		$html .= sprintf( esc_html( _n( '%d newly created post with no content', '%d newly created posts with no content', $this->n_posts->{'auto-draft'}, 'cl-wp-info' ) ), $this->n_posts->{'auto-draft'} ) . ', ';
-		/* translators: number of private posts. */
-		$html .= sprintf( esc_html( _n( '%d post not visible to users who are not logged in', '%d posts not visible to users who are not logged in', $this->n_posts->private, 'cl-wp-info' ) ), $this->n_posts->private ) . ', ';
-		/* translators: number of posts in revision. */
-		$html .= sprintf( esc_html( _n( '%d revision post', '%d revision posts', $this->n_posts->inherit, 'cl-wp-info' ) ), $this->n_posts->inherit );
-		$html .= ' ' . esc_html__( 'and', 'cl-wp-info' ) . ' ';
-		/* translators: number of posts in trash. */
-		$html .= sprintf( esc_html( _n( '%d post in trashbin', '%d posts in trashbin', $this->n_posts->trash, 'cl-wp-info' ) ), $this->n_posts->trash );
-		$html .= '.</p>';
-
-		// Pages section.
-		$html .= '<p><strong>' . esc_html__( 'WordPress Pages:', 'cl-wp-info' ) . '</strong> ';
-		/* translators: number of pages published. */
-		$html .= sprintf( esc_html( _n( '%d published page', '%d published pages', $this->n_pages->publish, 'cl-wp-info' ) ), $this->n_pages->publish ) . ', ';
-		/* translators: number of pages future. */
-		$html .= sprintf( esc_html( _n( '%d page to publish in the future', '%d pages to publish in the future', $this->n_pages->future, 'cl-wp-info' ) ), $this->n_pages->future ) . ', ';
-		/* translators: number of pages pending. */
-		$html .= sprintf( esc_html( _n( '%d page pending review', '%d pages pending review', $this->n_pages->pending, 'cl-wp-info' ) ), $this->n_pages->pending ) . ', ';
-		/* translators: number of pages in draft. */
-		$html .= sprintf( esc_html( _n( '%d page in draft status', '%d pages in draft status', $this->n_pages->draft, 'cl-wp-info' ) ), $this->n_pages->draft ) . ', ';
-		/* translators: number of pages in auto-draft. */
-		$html .= sprintf( esc_html( _n( '%d newly created page with no content', '%d newly created pages with no content', $this->n_pages->{'auto-draft'}, 'cl-wp-info' ) ), $this->n_pages->{'auto-draft'} ) . ', ';
-		/* translators: number of private pages. */
-		$html .= sprintf( esc_html( _n( '%d page not visible to users who are not logged in', '%d pages not visible to users who are not logged in', $this->n_pages->private, 'cl-wp-info' ) ), $this->n_pages->private ) . ', ';
-		/* translators: number of pages in revision. */
-		$html .= sprintf( esc_html( _n( '%d revision page', '%d revision pages', $this->n_pages->inherit, 'cl-wp-info' ) ), $this->n_pages->inherit );
-		$html .= ' ' . esc_html__( 'and', 'cl-wp-info' ) . ' ';
-		/* translators: number of pages in trash. */
-		$html .= sprintf( esc_html( _n( '%d page in trashbin', '%d pages in trashbin', $this->n_pages->trash, 'cl-wp-info' ) ), $this->n_pages->trash );
-		$html .= '.</p>';
-
-		// Comments section.
-		$html .= '<p><strong>' . esc_html__( 'WordPress Comments:', 'cl-wp-info' ) . '</strong> ';
-		/* translators: number of comments. */
-		$html .= sprintf( esc_html( _n( '%d comment', '%d comments', $this->n_comments, 'cl-wp-info' ) ), $this->n_comments );
-		$html .= '.</p>';
-
-		// Users section.
-		$html .= '<p><strong>' . esc_html__( 'WordPress Users:', 'cl-wp-info' ) . '</strong> ';
-		/* translators: number of users. */
-		$html .= sprintf( esc_html( _n( '%d user', '%d users', $this->n_users['total_users'], 'cl-wp-info' ) ), $this->n_users['total_users'] ) . ' (';
-
-		foreach ( $this->n_users['avail_roles'] as $user_rol => $user_num ) {
-			if ( ! empty( $user_num ) ) {
-				$html .= $user_num . ' ' . $user_rol . ', ';
+		if ( is_object( $this->wp_update_core ) ) {
+			if ( $this->wp_update_core->updates[0]->version === $this->wp_update_core->updates[0]->current ) {
+				$html .= ' <span class="cl-ok">(' . esc_html__( 'You have latest available version', 'cl-wp-info' ) . ')</span>';
+			} else {
+				$html .= ' <span class="cl-error">(' . esc_html__( 'There is a new WordPress version available', 'cl-wp-info' ) . ': ' . $this->wp_update_core->updates[0]->version . ')</span>';
 			}
 		}
-		$html = substr( $html, 0, -2 ); // Eliminamos la última comay el espacio.
-		$html .= ').</p>';
+		$html .= '</p>';
+
+		if ( is_object( $this->wp_update_core ) ) {
+			$fecha_check = get_date_from_gmt( date( 'Y-m-d H:i:s', $this->wp_update_core->last_checked ), get_option( 'date_format' ) . ' - ' . get_option( 'time_format' ) );
+			$html .= '<p>';
+			$html .= esc_html__( 'Last WordPress version checked:', 'cl-wp-info' ) . ' ' . $fecha_check;
+			$html .= '</p>';
+		}
 
 		if ( $echo ) {
 			echo $html;
@@ -480,6 +447,11 @@ class Cl_WP_Info {
 			$html .= '</tr>';
 		}
 
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress locale:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>' . $this->wp_locale . '</td>';
+		$html .= '</tr>';
+
 		if ( defined( 'WP_CACHE' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Cache:', 'cl-wp-info' ) . '</th>';
@@ -512,6 +484,90 @@ class Cl_WP_Info {
 			}
 			$html .= '</tr>';
 		}
+
+		// Posts section.
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress Posts:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td><ul>';
+		/* translators: number of posts published. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d published post', '%d published posts', $this->n_posts->publish, 'cl-wp-info' ) ), $this->n_posts->publish ) . '</li>';
+		/* translators: number of posts future. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d post to publish in the future', '%d posts to publish in the future', $this->n_posts->future, 'cl-wp-info' ) ), $this->n_posts->future ) . '</li>';
+		/* translators: number of posts pending. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d post pending review', '%d posts pending review', $this->n_posts->pending, 'cl-wp-info' ) ), $this->n_posts->pending ) . '</li>';
+		/* translators: number of posts in draft. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d post in draft status', '%d posts in draft status', $this->n_posts->draft, 'cl-wp-info' ) ), $this->n_posts->draft ) . '</li>';
+		/* translators: number of posts in auto-draft. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d newly created post with no content', '%d newly created posts with no content', $this->n_posts->{'auto-draft'}, 'cl-wp-info' ) ), $this->n_posts->{'auto-draft'} ) . '</li>';
+		/* translators: number of private posts. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d post not visible to users who are not logged in', '%d posts not visible to users who are not logged in', $this->n_posts->private, 'cl-wp-info' ) ), $this->n_posts->private ) . '</li>';
+		/* translators: number of posts in revision. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d revision post', '%d revision posts', $this->n_posts->inherit, 'cl-wp-info' ) ), $this->n_posts->inherit ) . '</li>';
+		/* translators: number of posts in trash. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d post in trashbin', '%d posts in trashbin', $this->n_posts->trash, 'cl-wp-info' ) ), $this->n_posts->trash ) . '</li>';
+		$html .= '</ul></td>';
+		$html .= '</tr>';
+
+		// Pages section.
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress Pages:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td><ul>';
+		/* translators: number of pages published. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d published page', '%d published pages', $this->n_pages->publish, 'cl-wp-info' ) ), $this->n_pages->publish ) . '</li>';
+		/* translators: number of pages future. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d page to publish in the future', '%d pages to publish in the future', $this->n_pages->future, 'cl-wp-info' ) ), $this->n_pages->future ) . '</li>';
+		/* translators: number of pages pending. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d page pending review', '%d pages pending review', $this->n_pages->pending, 'cl-wp-info' ) ), $this->n_pages->pending ) . '</li>';
+		/* translators: number of pages in draft. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d page in draft status', '%d pages in draft status', $this->n_pages->draft, 'cl-wp-info' ) ), $this->n_pages->draft ) . '</li>';
+		/* translators: number of pages in auto-draft. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d newly created page with no content', '%d newly created pages with no content', $this->n_pages->{'auto-draft'}, 'cl-wp-info' ) ), $this->n_pages->{'auto-draft'} ) . '</li>';
+		/* translators: number of private pages. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d page not visible to users who are not logged in', '%d pages not visible to users who are not logged in', $this->n_pages->private, 'cl-wp-info' ) ), $this->n_pages->private ) . '</li>';
+		/* translators: number of pages in revision. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d revision page', '%d revision pages', $this->n_pages->inherit, 'cl-wp-info' ) ), $this->n_pages->inherit ) . '</li>';
+		/* translators: number of pages in trash. */
+		$html .= '<li>' . sprintf( esc_html( _n( '%d page in trashbin', '%d pages in trashbin', $this->n_pages->trash, 'cl-wp-info' ) ), $this->n_pages->trash ) . '</li>';
+		$html .= '</ul></td>';
+		$html .= '</tr>';
+
+		// Comments section.
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress Comments:', 'cl-wp-info' ) . '</th>';
+		/* translators: number of comments. */
+		$html .= '<td>' . sprintf( esc_html( _n( '%d comment', '%d comments', $this->n_comments, 'cl-wp-info' ) ), $this->n_comments ) . '</td>';
+		$html .= '</tr>';
+
+		// Media section.
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress Media:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td><ul>';
+
+		foreach ( $this->n_media as $media_type => $media_num ) {
+			if ( ! empty( $media_num ) && 'trash' !== $media_type ) {
+				$html .= '<li>' . esc_html__( 'MIME Type', 'cl-wp-info' ) . ' <em>(' . $media_type . ')</em>: ' . $media_num . '</li>';
+			}
+		}
+		$html .= '<li>' . esc_html__( 'Trash:', 'cl-wp-info' ) . ' ' . $this->n_media->trash . '</li>';
+		$html .= '</ul></td>';
+		$html .= '</tr>';
+
+		// Users section.
+		$html .= '<tr>';
+		$html .= '<th>' . esc_html__( 'WordPress Users:', 'cl-wp-info' ) . '</th>';
+		$html .= '<td>';
+		/* translators: number of users. */
+		$html .= '<strong>' . sprintf( esc_html( _n( '%d user', '%d users', $this->n_users['total_users'], 'cl-wp-info' ) ), $this->n_users['total_users'] ) . '</strong><br />';
+
+		$html .= '<ul>';
+		foreach ( $this->n_users['avail_roles'] as $user_rol => $user_num ) {
+			if ( ! empty( $user_num ) ) {
+				$html .= '<li>' . $user_rol . ': ' . $user_num . '</li>';
+			}
+		}
+		$html .= '</ul>';
+		$html .= '</td>';
+		$html .= '</tr>';
 
 		if ( $echo ) {
 			echo $html;
