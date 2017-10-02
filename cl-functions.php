@@ -69,11 +69,11 @@ class Cl_WP_Info {
 	public function cl_wp_info_general( $echo = true ) {
 		$html  = '';
 
-		$html .= '<p>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</p>';
+		// WordPress Version.
+		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</strong></p>';
 
 		// Posts section.
 		$html .= '<p><strong>' . esc_html__( 'WordPress Posts:', 'cl-wp-info' ) . '</strong> ';
-
 		/* translators: number of posts published. */
 		$html .= sprintf( esc_html( _n( '%d published post', '%d published posts', $this->n_posts->publish, 'cl-wp-info' ) ), $this->n_posts->publish ) . ', ';
 		/* translators: number of posts future. */
@@ -91,12 +91,10 @@ class Cl_WP_Info {
 		$html .= ' ' . esc_html__( 'and', 'cl-wp-info' ) . ' ';
 		/* translators: number of posts in trash. */
 		$html .= sprintf( esc_html( _n( '%d post in trashbin', '%d posts in trashbin', $this->n_posts->trash, 'cl-wp-info' ) ), $this->n_posts->trash );
-
 		$html .= '.</p>';
 
 		// Pages section.
 		$html .= '<p><strong>' . esc_html__( 'WordPress Pages:', 'cl-wp-info' ) . '</strong> ';
-
 		/* translators: number of pages published. */
 		$html .= sprintf( esc_html( _n( '%d published page', '%d published pages', $this->n_pages->publish, 'cl-wp-info' ) ), $this->n_pages->publish ) . ', ';
 		/* translators: number of pages future. */
@@ -114,8 +112,26 @@ class Cl_WP_Info {
 		$html .= ' ' . esc_html__( 'and', 'cl-wp-info' ) . ' ';
 		/* translators: number of pages in trash. */
 		$html .= sprintf( esc_html( _n( '%d page in trashbin', '%d pages in trashbin', $this->n_pages->trash, 'cl-wp-info' ) ), $this->n_pages->trash );
-
 		$html .= '.</p>';
+
+		// Comments section.
+		$html .= '<p><strong>' . esc_html__( 'WordPress Comments:', 'cl-wp-info' ) . '</strong> ';
+		/* translators: number of comments. */
+		$html .= sprintf( esc_html( _n( '%d comment', '%d comments', $this->n_comments, 'cl-wp-info' ) ), $this->n_comments );
+		$html .= '.</p>';
+
+		// Users section.
+		$html .= '<p><strong>' . esc_html__( 'WordPress Users:', 'cl-wp-info' ) . '</strong> ';
+		/* translators: number of users. */
+		$html .= sprintf( esc_html( _n( '%d user', '%d users', $this->n_users['total_users'], 'cl-wp-info' ) ), $this->n_users['total_users'] ) . ' (';
+
+		foreach ( $this->n_users['avail_roles'] as $user_rol => $user_num ) {
+			if ( ! empty( $user_num ) ) {
+				$html .= $user_num . ' ' . $user_rol . ', ';
+			}
+		}
+		$html = substr( $html, 0, -2 ); // Eliminamos la última comay el espacio.
+		$html .= ').</p>';
 
 		if ( $echo ) {
 			echo $html;
