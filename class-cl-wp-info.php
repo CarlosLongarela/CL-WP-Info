@@ -14,43 +14,84 @@
  * @since     1.0.0
  */
 
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
 /**
  *
  * Funcionalidad general del plugin.
  */
 class Cl_WP_Info {
+
 	/**
-	 * @var $wp_version string Versión instalada de WordPress.
+	 * Cadena de texto con la versión de WordPress
+	 *
+	 * @var string
 	 */
 	private $wp_version = '';
 
+	/**
+	 * Objeto con los datos de actualización del core de WordPress
+	 *
+	 * @var object
+	 */
 	private $wp_update_core = false;
 
 	/**
-	 * Objeto con el número de posts.
+	 * Objeto con los números de posts
+	 *
+	 * @var object
 	 */
 	private $n_posts;
 
 	/**
-	 * Objeto con el número de páginas.
+	 * Objeto con los números de páginas
+	 *
+	 * @var object
 	 */
 	private $n_pages;
 
 	/**
-	 * Array con el número de usuarios.
+	 * Array con el número de usuarios
+	 *
+	 * @var array
 	 */
 	private $n_users    = array();
 
 	/**
-	 * Objeto con el número de comentarios.
+	 * Número de comentarios
+	 *
+	 * @var int
 	 */
 	private $n_comments = 0;
 
+	/**
+	 * Objeto con los números de medios
+	 *
+	 * @var object
+	 */
 	private $n_media;
 
+	/**
+	 * Cadena de texto con el locale de WordPress
+	 *
+	 * @var string
+	 */
 	private $wp_locale;
+
+	/**
+	 * Booleano indicando si $wp_update_core es un objeto
+	 *
+	 * @var bool
+	 */
+	private $wp_update_core_is_object = false;
+
+	/**
+	 * Cadena de texto con la versión de la BD de WordPress
+	 *
+	 * @var string
+	 */
+	private $db_version;
+
 	/**
 	 * Constructor desde el que recuperamos valores a utilizar posteriormente.
 	 *
@@ -67,8 +108,12 @@ class Cl_WP_Info {
 		$this->n_media        = wp_count_attachments();
 		$this->wp_locale      = get_locale();
 
+		$this->db_version     = $wpdb->get_var( 'select version();' );
+
 		$sql = 'SELECT option_value FROM ' . $wpdb->prefix . "options WHERE option_name = '_site_transient_update_core'";
 		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) );
+
+		$this->wp_update_core_is_object = is_object( $this->wp_update_core );
 	}
 
 	/**
@@ -84,21 +129,39 @@ class Cl_WP_Info {
 		// WordPress Version.
 		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</strong>';
 
-		if ( is_object( $this->wp_update_core ) ) {
+		if ( $this->wp_update_core_is_object ) {
 			if ( $this->wp_update_core->updates[0]->version === $this->wp_update_core->updates[0]->current ) {
-				$html .= ' <span class="cl-ok">(' . esc_html__( 'You have latest available version', 'cl-wp-info' ) . ')</span>';
+				$html .= ' <span class="cl-ok">(' . esc_html__( 'You have latest available version', 'cl-wp-info' ) . ').</span>';
 			} else {
-				$html .= ' <span class="cl-error">(' . esc_html__( 'There is a new WordPress version available', 'cl-wp-info' ) . ': ' . $this->wp_update_core->updates[0]->version . ')</span>';
+				$html .= ' <span class="cl-error">(' . esc_html__( 'There is a new WordPress version available', 'cl-wp-info' ) . ': ' . $this->wp_update_core->updates[0]->version . ').</span>';
 			}
 		}
 		$html .= '</p>';
 
-		if ( is_object( $this->wp_update_core ) ) {
+		if ( $this->wp_update_core_is_object ) {
 			$fecha_check = get_date_from_gmt( date( 'Y-m-d H:i:s', $this->wp_update_core->last_checked ), get_option( 'date_format' ) . ' - ' . get_option( 'time_format' ) );
 			$html .= '<p>';
 			$html .= esc_html__( 'Last WordPress version checked:', 'cl-wp-info' ) . ' ' . $fecha_check;
 			$html .= '</p>';
 		}
+
+		$html .= '<p>';
+		if ( version_compare( CL_WP_INFO_REC_PHP, PHP_VERSION, '<=' ) ) {
+			$html .= '<span class="cl-ok">' . esc_html__( 'Excellent: Your server PHP version is the same or greater than WordPress recomended.', 'cl-wp-info' ) . '</span>';
+		} elseif ( version_compare( CL_WP_INFO_MIN_PHP, PHP_VERSION, '<=' ) ) {
+			$html .= '<span class="cl-warning">' . esc_html__( 'Your server PHP version is the same or greater than WordPress minimum, but lower that recomended. Please update your server PHP Version.', 'cl-wp-info' ) . '</span>';
+		} else {
+			$html .= '<span class="cl-error">' . esc_html__( 'BAD: Your server PHP version is lower than minimum required. Update your server PHP Version.', 'cl-wp-info' ) . '</span>';
+		}
+		$html .= '</p>';
+
+		$html .= '<p>';
+		if ( version_compare( CL_WP_INFO_MIN_DB, $this->db_version, '<=' ) ) {
+			$html .= '<span class="cl-ok">' . esc_html__( 'Your server database version is the same or greater than WordPress recomended.', 'cl-wp-info' ) . '</span>';
+		} else {
+			$html .= '<span class="cl-error">' . esc_html__( 'BAD: Your server database version is lower than minimum required. Update your server database Version.', 'cl-wp-info' ) . '</span>';
+		}
+		$html .= '</p>';
 
 		if ( $echo ) {
 			echo $html;
@@ -318,8 +381,7 @@ class Cl_WP_Info {
 
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Database Server:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . $wpdb->get_var( 'select version();' ) . '</td>';
-		//$html .= '<td>' . $wpdb->db_version(). '</td>';
+		$html .= '<td>' . $this->db_version . '</td>';
 		$html .= '</tr>';
 
 		if ( defined( 'DB_NAME' ) ) {
@@ -333,11 +395,6 @@ class Cl_WP_Info {
 		$html .= '<th>' . esc_html__( 'WordPress Database prefix:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>' . $wpdb->prefix . '</td>';
 		$html .= '</tr>';
-
-		//$html .= '<tr>';
-		//$html .= '<th>' . esc_html__( 'WordPress Database version:', 'cl-wp-info' ) . '</th>';
-		//$html .= '<td>' . $wpdb::db_version . '</td>';
-		//$html .= '</tr>';
 
 		if ( defined( 'DB_USER' ) ) {
 			$html .= '<tr>';
@@ -628,9 +685,9 @@ class Cl_WP_Info {
 			$html .= '<br /> - <em>' . $valor_tema->get( 'Description' ) . '</em>';
 			$html .= '<br /> - ' . esc_html__( 'Author:', 'cl-wp-info' ) . ' ';
 			if ( empty( $valor_tema->get( 'AuthorURI' ) ) ) {
-				$html .= $valor_tema->get( 'Author' ) ;
+				$html .= $valor_tema->get( 'Author' );
 			} else {
-				$html .= '<a href="' . $valor_tema->get( 'AuthorURI' )  . '" target="_blank" rel="noopener noreferrer">' . $valor_tema->get( 'Author' ) . '</a>';
+				$html .= '<a href="' . $valor_tema->get( 'AuthorURI' ) . '" target="_blank" rel="noopener noreferrer">' . $valor_tema->get( 'Author' ) . '</a>';
 			}
 
 			$html .= '</li>';
@@ -721,7 +778,7 @@ class Cl_WP_Info {
 		$html .= '<td>';
 		$html .= '<ol>';
 		foreach ( $wp_scripts->queue as $script ) {
-			$html .= '<li>' . $script . ' => ' . $wp_scripts->registered[$script]->src . '</li>';
+			$html .= '<li>' . $script . ' => ' . $wp_scripts->registered[ $script ]->src . '</li>';
 		}
 		$html .= '</ol>';
 		$html .= '</td>';
@@ -732,7 +789,7 @@ class Cl_WP_Info {
 		$html .= '<td>';
 		$html .= '<ol>';
 		foreach ( $wp_styles->queue as $style ) {
-			$html .= '<li>' . $style . ' => ' . $wp_styles->registered[$style]->src . '</li>';
+			$html .= '<li>' . $style . ' => ' . $wp_styles->registered[ $style ]->src . '</li>';
 		}
 		$html .= '</ol>';
 		$html .= '</td>';

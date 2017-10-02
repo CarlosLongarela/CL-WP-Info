@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2017-10-02 20:01+0200\n"
-"PO-Revision-Date: 2017-10-02 20:02+0200\n"
+"POT-Creation-Date: 2017-10-02 22:09+0200\n"
+"PO-Revision-Date: 2017-10-02 22:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: Carlos Longarela carlos@longarela.eu\n"
 "Language: es_ES\n"
@@ -21,216 +21,257 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: cl-functions.php:85 cl-functions.php:395
+#: cl-functions.php:93 cl-functions.php:425
 msgid "WordPress Version:"
 msgstr "Versión de WordPress:"
 
-#: cl-functions.php:89
+#: cl-functions.php:97
 msgid "You have latest available version"
 msgstr "Tienes la última versión disponible"
 
-#: cl-functions.php:91
+#: cl-functions.php:99
 msgid "There is a new WordPress version available"
 msgstr "Hay una nueva versión de WordPress disponible"
 
-#: cl-functions.php:99
+#: cl-functions.php:107
 msgid "Last WordPress version checked:"
 msgstr "Última comprobación de versión de WordPress:"
 
-#: cl-functions.php:121
+#: cl-functions.php:113
+msgid ""
+"Excellent: Your server PHP version is the same or greater than WordPress "
+"recomended."
+msgstr ""
+"Excelente: La versión de PHP del servidor es igual o mayor que la "
+"recomendada por WordPress."
+
+#: cl-functions.php:115
+msgid ""
+"Your server PHP version is the same or greater than WordPress minimum, but "
+"lower that recomended. Please update your server PHP Version."
+msgstr ""
+"La versión de PHP del servidor es igual omayor que la mínima requerida de "
+"WordPress, pero inferior a la recomendada. Actualiza la versión de PHP del "
+"servidor."
+
+#: cl-functions.php:117
+msgid ""
+"BAD: Your server PHP version is lower than minimum required. Update your "
+"server PHP Version."
+msgstr ""
+"MAL: La versión de PHP del servidor es inferior al mínimo requerido. "
+"Actualiza la versión de PHP del servidor."
+
+#: cl-functions.php:123
+msgid ""
+"Your server database version is the same or greater than WordPress "
+"recomended."
+msgstr ""
+"La versión de la base de datos del servidor es igual o mayor que la "
+"recomendada por WordPress."
+
+#: cl-functions.php:125
+msgid ""
+"BAD: Your server database version is lower than minimum required. Update "
+"your server database Version."
+msgstr ""
+"MAL: La versión de la base de datos del servidor es inferior al mínimo "
+"requerido. Actualiza la versión de la base de datos del servidor."
+
+#: cl-functions.php:152
 msgid "OS Server:"
 msgstr "OS Servidor:"
 
-#: cl-functions.php:127
+#: cl-functions.php:158
 msgid "Web Server:"
 msgstr "Servidor Web:"
 
-#: cl-functions.php:134
+#: cl-functions.php:165
 msgid "Web Server User:"
 msgstr "Usuario del Servidor Web:"
 
-#: cl-functions.php:141
+#: cl-functions.php:172
 msgid "Web Server Name:"
 msgstr "Nombre del Servidor Web:"
 
-#: cl-functions.php:148
+#: cl-functions.php:179
 msgid "Web Server Port:"
 msgstr "Puerto del Servidor Web:"
 
-#: cl-functions.php:155
+#: cl-functions.php:186
 msgid "Web Server Ip:"
 msgstr "IP del Servidor Web:"
 
-#: cl-functions.php:162
+#: cl-functions.php:193
 msgid "Web Server Scheme:"
 msgstr "Protocolo del Servidor Web:"
 
-#: cl-functions.php:169
+#: cl-functions.php:200
 msgid "Web Server Http Version:"
 msgstr "Versión Http del Servidor Web:"
 
-#: cl-functions.php:176
+#: cl-functions.php:207
 msgid "Web Server Root:"
 msgstr "Raíz del Servidor Web:"
 
-#: cl-functions.php:199
+#: cl-functions.php:230
 msgid "PHP Version:"
 msgstr "Versión de PHP:"
 
-#: cl-functions.php:204
+#: cl-functions.php:235
 msgid "PHP Loaded Extensions:"
 msgstr "Extensiones PHP Cargadas:"
 
-#: cl-functions.php:214
+#: cl-functions.php:245
 msgid "PHP Webserver Interface:"
 msgstr "Interface de PHP en el Servidor Web:"
 
-#: cl-functions.php:222
+#: cl-functions.php:253
 msgid "Date/Time Zone:"
 msgstr "Zona horaria:"
 
-#: cl-functions.php:224 cl-functions.php:233 cl-functions.php:242
-#: cl-functions.php:251 cl-functions.php:260 cl-functions.php:269
-#: cl-functions.php:278 cl-functions.php:287 cl-functions.php:296
+#: cl-functions.php:255 cl-functions.php:264 cl-functions.php:273
+#: cl-functions.php:282 cl-functions.php:291 cl-functions.php:300
+#: cl-functions.php:309 cl-functions.php:318 cl-functions.php:327
 msgid "PHP Global:"
 msgstr "Global de PHP:"
 
-#: cl-functions.php:225 cl-functions.php:234 cl-functions.php:243
-#: cl-functions.php:252 cl-functions.php:261 cl-functions.php:270
-#: cl-functions.php:279 cl-functions.php:288 cl-functions.php:297
+#: cl-functions.php:256 cl-functions.php:265 cl-functions.php:274
+#: cl-functions.php:283 cl-functions.php:292 cl-functions.php:301
+#: cl-functions.php:310 cl-functions.php:319 cl-functions.php:328
 msgid "App Local:"
 msgstr "Local de la App:"
 
-#: cl-functions.php:231
+#: cl-functions.php:262
 msgid "Date/Time latitude:"
 msgstr "Latitud de la zona horaria:"
 
-#: cl-functions.php:240
+#: cl-functions.php:271
 msgid "Date/Time longitude:"
 msgstr "Longitud de la zona horaria:"
 
-#: cl-functions.php:249
+#: cl-functions.php:280
 msgid "Default charset:"
 msgstr "Juego de caracteres predefinido:"
 
-#: cl-functions.php:258
+#: cl-functions.php:289
 msgid "Error Log:"
 msgstr "Registro de Errores:"
 
-#: cl-functions.php:267
+#: cl-functions.php:298
 msgid "Max File Uploads:"
 msgstr "Número Máximo de Archivos a Subir:"
 
-#: cl-functions.php:276
+#: cl-functions.php:307
 msgid "Post Max Size:"
 msgstr "Tamaño Máximo de Post:"
 
-#: cl-functions.php:285
+#: cl-functions.php:316
 msgid "Upload Max File Size:"
 msgstr "Tamaño Máximo de Archivo a Subir:"
 
-#: cl-functions.php:294
+#: cl-functions.php:325
 msgid "Max Memory:"
 msgstr "Memoria Máxima:"
 
-#: cl-functions.php:320
+#: cl-functions.php:351
 msgid "Database Server:"
 msgstr "Servidor de Base de Datos:"
 
-#: cl-functions.php:327
+#: cl-functions.php:357
 msgid "WordPress Database:"
 msgstr "Base de Datos de WordPress:"
 
-#: cl-functions.php:333
+#: cl-functions.php:363
 msgid "WordPress Database prefix:"
 msgstr "Prefijo de la Base de Datos de WordPress:"
 
-#: cl-functions.php:344
+#: cl-functions.php:374
 msgid "WordPress Database Username:"
 msgstr "Usuario de Base de Datos de WordPress:"
 
-#: cl-functions.php:351
+#: cl-functions.php:381
 msgid "WordPress Database Password:"
 msgstr "Clave de Base de Datos de WordPress:"
 
-#: cl-functions.php:358
+#: cl-functions.php:388
 msgid "WordPress Database Hostname:"
 msgstr "Host de Base de Datos de WordPress:"
 
-#: cl-functions.php:365
+#: cl-functions.php:395
 msgid "WordPress Database Charset to use in creating database tables:"
 msgstr ""
 "Conjunto de caracteres de la Base de Datos de WordPress usado en la creación "
 "de nuevas tablas:"
 
-#: cl-functions.php:372
+#: cl-functions.php:402
 msgid "WordPress Database Collate Type:"
 msgstr "Tipo de cotejamiento de la base de datos de WordPress:"
 
-#: cl-functions.php:400
+#: cl-functions.php:430
 msgid "WordPress URL:"
 msgstr "URL de WordPress:"
 
-#: cl-functions.php:406
+#: cl-functions.php:436
 msgid "Absolute Path to WordPress Directory:"
 msgstr "Ruta al Directorio de Contenido de WordPress:"
 
-#: cl-functions.php:413
+#: cl-functions.php:443
 msgid "WordPress Content Directory:"
 msgstr "Directorio de Contenido de WordPress:"
 
-#: cl-functions.php:420
+#: cl-functions.php:450
 msgid "Trash for media:"
 msgstr "Papelera para los medios:"
 
-#: cl-functions.php:422 cl-functions.php:459 cl-functions.php:470
-#: cl-functions.php:481
+#: cl-functions.php:452 cl-functions.php:489 cl-functions.php:500
+#: cl-functions.php:511
 msgid "No"
 msgstr "No"
 
-#: cl-functions.php:424 cl-functions.php:461 cl-functions.php:472
-#: cl-functions.php:483
+#: cl-functions.php:454 cl-functions.php:491 cl-functions.php:502
+#: cl-functions.php:513
 msgid "Yes"
 msgstr "Sí"
 
-#: cl-functions.php:431
+#: cl-functions.php:461
 msgid "Empty trash each:"
 msgstr "Vaciar papelera cada:"
 
-#: cl-functions.php:432
+#: cl-functions.php:462
 msgid "days"
 msgstr "días"
 
-#: cl-functions.php:438
+#: cl-functions.php:468
 msgid "WordPress memory limit:"
 msgstr "Límite de memoria de WordPress:"
 
-#: cl-functions.php:445
+#: cl-functions.php:475
 msgid "WordPress top memory limit:"
 msgstr "Límite de memoria máximo de WordPress:"
 
-#: cl-functions.php:451
+#: cl-functions.php:481
 msgid "WordPress locale:"
 msgstr "Localización de WordPress:"
 
-#: cl-functions.php:457
+#: cl-functions.php:487
 msgid "WordPress Cache:"
 msgstr "Cache de WordPress:"
 
-#: cl-functions.php:468
+#: cl-functions.php:498
 msgid "WordPress Multisite:"
 msgstr "WordPress Multisitio:"
 
-#: cl-functions.php:479
+#: cl-functions.php:509
 msgid "WordPress Debug:"
 msgstr "Debug de WordPress:"
 
-#: cl-functions.php:490
+#: cl-functions.php:520
 msgid "WordPress Posts:"
 msgstr "Entradas de WordPress:"
 
 #. translators: number of posts published.
-#: cl-functions.php:493
+#: cl-functions.php:523
 #, php-format
 msgid "%d published post"
 msgid_plural "%d published posts"
@@ -238,7 +279,7 @@ msgstr[0] "%d entrada publicada"
 msgstr[1] "%d entradas publicadas"
 
 #. translators: number of posts future.
-#: cl-functions.php:495
+#: cl-functions.php:525
 #, php-format
 msgid "%d post to publish in the future"
 msgid_plural "%d posts to publish in the future"
@@ -246,7 +287,7 @@ msgstr[0] "%d entrada programada"
 msgstr[1] "%d entradas programadas"
 
 #. translators: number of posts pending.
-#: cl-functions.php:497
+#: cl-functions.php:527
 #, php-format
 msgid "%d post pending review"
 msgid_plural "%d posts pending review"
@@ -254,7 +295,7 @@ msgstr[0] "%d entrada pendiente de revisión"
 msgstr[1] "%d entradas pendientes de revisión"
 
 #. translators: number of posts in draft.
-#: cl-functions.php:499
+#: cl-functions.php:529
 #, php-format
 msgid "%d post in draft status"
 msgid_plural "%d posts in draft status"
@@ -262,7 +303,7 @@ msgstr[0] "%d entrada en borrador"
 msgstr[1] "%d entradas en borrador"
 
 #. translators: number of posts in auto-draft.
-#: cl-functions.php:501
+#: cl-functions.php:531
 #, php-format
 msgid "%d newly created post with no content"
 msgid_plural "%d newly created posts with no content"
@@ -270,7 +311,7 @@ msgstr[0] "%d entrada creada recientemente sin contenido"
 msgstr[1] "%d entradas creadas recientemente sin contenido"
 
 #. translators: number of private posts.
-#: cl-functions.php:503
+#: cl-functions.php:533
 #, php-format
 msgid "%d post not visible to users who are not logged in"
 msgid_plural "%d posts not visible to users who are not logged in"
@@ -278,7 +319,7 @@ msgstr[0] "%d entrada oculta para usuarios no conectados"
 msgstr[1] "%d entradas ocultas para usuarios no conectados"
 
 #. translators: number of posts in revision.
-#: cl-functions.php:505
+#: cl-functions.php:535
 #, php-format
 msgid "%d revision post"
 msgid_plural "%d revision posts"
@@ -286,19 +327,19 @@ msgstr[0] "%d revisión de entrada"
 msgstr[1] "%d revisiones de entradas"
 
 #. translators: number of posts in trash.
-#: cl-functions.php:507
+#: cl-functions.php:537
 #, php-format
 msgid "%d post in trashbin"
 msgid_plural "%d posts in trashbin"
 msgstr[0] "%d entrada en la papelera"
 msgstr[1] "%d entradas en la papelera"
 
-#: cl-functions.php:513
+#: cl-functions.php:543
 msgid "WordPress Pages:"
 msgstr "Páginas de WordPress:"
 
 #. translators: number of pages published.
-#: cl-functions.php:516
+#: cl-functions.php:546
 #, php-format
 msgid "%d published page"
 msgid_plural "%d published pages"
@@ -306,7 +347,7 @@ msgstr[0] "%d página publicada"
 msgstr[1] "%d páginas publicadas"
 
 #. translators: number of pages future.
-#: cl-functions.php:518
+#: cl-functions.php:548
 #, php-format
 msgid "%d page to publish in the future"
 msgid_plural "%d pages to publish in the future"
@@ -314,7 +355,7 @@ msgstr[0] "%d página programada"
 msgstr[1] "%d páginas programadas"
 
 #. translators: number of pages pending.
-#: cl-functions.php:520
+#: cl-functions.php:550
 #, php-format
 msgid "%d page pending review"
 msgid_plural "%d pages pending review"
@@ -322,7 +363,7 @@ msgstr[0] "%d página pendiente de revisión"
 msgstr[1] "%d páginas pendientes de revisión"
 
 #. translators: number of pages in draft.
-#: cl-functions.php:522
+#: cl-functions.php:552
 #, php-format
 msgid "%d page in draft status"
 msgid_plural "%d pages in draft status"
@@ -330,7 +371,7 @@ msgstr[0] "%d página en borrador"
 msgstr[1] "%d páginas en borrador"
 
 #. translators: number of pages in auto-draft.
-#: cl-functions.php:524
+#: cl-functions.php:554
 #, php-format
 msgid "%d newly created page with no content"
 msgid_plural "%d newly created pages with no content"
@@ -338,7 +379,7 @@ msgstr[0] "%d página creada recientemente sin contenido"
 msgstr[1] "%d páginas creadas recientemente sin contenido"
 
 #. translators: number of private pages.
-#: cl-functions.php:526
+#: cl-functions.php:556
 #, php-format
 msgid "%d page not visible to users who are not logged in"
 msgid_plural "%d pages not visible to users who are not logged in"
@@ -346,7 +387,7 @@ msgstr[0] "%d página oculta para usuarios no conectados"
 msgstr[1] "%d páginas ocultas para usuarios no conectados"
 
 #. translators: number of pages in revision.
-#: cl-functions.php:528
+#: cl-functions.php:558
 #, php-format
 msgid "%d revision page"
 msgid_plural "%d revision pages"
@@ -354,87 +395,87 @@ msgstr[0] "%d revisión de página"
 msgstr[1] "%d revisiones de páginas"
 
 #. translators: number of pages in trash.
-#: cl-functions.php:530
+#: cl-functions.php:560
 #, php-format
 msgid "%d page in trashbin"
 msgid_plural "%d pages in trashbin"
 msgstr[0] "%d página en la papelera"
 msgstr[1] "%d páginas en la papelera"
 
-#: cl-functions.php:536
+#: cl-functions.php:566
 msgid "WordPress Comments:"
 msgstr "Comentarios de WordPress:"
 
 #. translators: number of comments.
-#: cl-functions.php:538
+#: cl-functions.php:568
 #, php-format
 msgid "%d comment"
 msgid_plural "%d comments"
 msgstr[0] "%d comentario"
 msgstr[1] "%d comentarios"
 
-#: cl-functions.php:543
+#: cl-functions.php:573
 msgid "WordPress Media:"
 msgstr "Medios de WordPress:"
 
-#: cl-functions.php:548
+#: cl-functions.php:578
 msgid "MIME Type"
 msgstr "Tipo MIME"
 
-#: cl-functions.php:551
+#: cl-functions.php:581
 msgid "Trash:"
 msgstr "Papelera:"
 
-#: cl-functions.php:557
+#: cl-functions.php:587
 msgid "WordPress Users:"
 msgstr "Usuarios de WordPress:"
 
 #. translators: number of users.
-#: cl-functions.php:560
+#: cl-functions.php:590
 #, php-format
 msgid "%d user"
 msgid_plural "%d users"
 msgstr[0] "%d usuario"
 msgstr[1] "%d usuarios"
 
-#: cl-functions.php:600
+#: cl-functions.php:630
 msgid "Themes:"
 msgstr "Temas:"
 
-#: cl-functions.php:608 cl-functions.php:610 cl-functions.php:624
-#: cl-functions.php:668 cl-functions.php:670 cl-functions.php:681
+#: cl-functions.php:638 cl-functions.php:640 cl-functions.php:654
+#: cl-functions.php:698 cl-functions.php:700 cl-functions.php:711
 msgid "Version"
 msgstr "Versión"
 
-#: cl-functions.php:614
+#: cl-functions.php:644
 msgid "Child Theme of"
 msgstr "Tema hijo de"
 
-#: cl-functions.php:618 cl-functions.php:675
+#: cl-functions.php:648 cl-functions.php:705
 msgid "Active"
 msgstr "Activo"
 
-#: cl-functions.php:623 cl-functions.php:680
+#: cl-functions.php:653 cl-functions.php:710
 msgid "Update available:"
-msgstr "Actualización disponible"
+msgstr "Actualización disponible:"
 
-#: cl-functions.php:629 cl-functions.php:687
+#: cl-functions.php:659 cl-functions.php:717
 msgid "Author:"
 msgstr "Autor:"
 
-#: cl-functions.php:660
+#: cl-functions.php:690
 msgid "Plugins:"
 msgstr "Plugins:"
 
-#: cl-functions.php:682
+#: cl-functions.php:712
 msgid "Compatible with WordPress"
 msgstr "Compatible con WordPress"
 
-#: cl-functions.php:720
+#: cl-functions.php:750
 msgid "Javascript files:"
 msgstr "Archivos JavaScript:"
 
-#: cl-functions.php:731
+#: cl-functions.php:761
 msgid "CSS files:"
 msgstr "Archivos CSS:"
 

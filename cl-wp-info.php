@@ -12,7 +12,7 @@
  * Text Domain: cl-wp-info
  */
 
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
 define( 'CL_WP_INFO_MIN_PHP', '5.2.4' );
 define( 'CL_WP_INFO_MIN_DB', '5.0' );
@@ -66,7 +66,7 @@ function cl_wp_info_init() {
 add_action( 'plugins_loaded', 'cl_wp_info_init' );
 
 // Incluimos el archivo con las funciones de info del sistema y WP.
-require_once plugin_dir_path( __FILE__ ) . 'cl-functions.php';
+require_once plugin_dir_path( __FILE__ ) . 'class-cl-wp-info.php';
 
 /**
  * Función principal encargada de mostrar toda la infomación.
