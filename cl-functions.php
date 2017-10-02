@@ -21,6 +21,43 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  * Funcionalidad general del plugin.
  */
 class Cl_WP_Info {
+	/**
+	 * @var $wp_version string Versión instalada de WordPress.
+	 */
+	private $wp_version = '';
+
+	/**
+	 * Objeto con el número de posts.
+	 */
+	private $n_posts;
+
+	/**
+	 * Objeto con el número de páginas.
+	 */
+	private $n_pages;
+
+	/**
+	 * Array con el número de usuarios.
+	 */
+	private $n_users    = array();
+
+	/**
+	 * Objeto con el número de comentarios.
+	 */
+	private $n_comments = 0;
+
+	/**
+	 * Constructor desde el que recuperamos valores a utilizar posteriormente.
+	 *
+	 * @since     1.2.0
+	 */
+	public function __construct() {
+		$this->wp_version = get_bloginfo( 'version' );
+		$this->n_posts    = wp_count_posts();
+		$this->n_pages    = wp_count_posts( 'page' );
+		$this->n_users    = count_users();
+		$this->n_comments = get_comments( array( 'count' => true ) );
+	}
 
 	/**
 	 * Información general del WP y su estado.
@@ -32,7 +69,53 @@ class Cl_WP_Info {
 	public function cl_wp_info_general( $echo = true ) {
 		$html  = '';
 
-		$html .= 'LALA';
+		$html .= '<p>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</p>';
+
+		// Posts section.
+		$html .= '<p><strong>' . esc_html__( 'WordPress Posts:', 'cl-wp-info' ) . '</strong> ';
+
+		/* translators: number of posts published. */
+		$html .= sprintf( esc_html( _n( '%d published post', '%d published posts', $this->n_posts->publish, 'cl-wp-info' ) ), $this->n_posts->publish ) . ', ';
+		/* translators: number of posts future. */
+		$html .= sprintf( esc_html( _n( '%d post to publish in the future', '%d posts to publish in the future', $this->n_posts->future, 'cl-wp-info' ) ), $this->n_posts->future ) . ', ';
+		/* translators: number of posts pending. */
+		$html .= sprintf( esc_html( _n( '%d post pending review', '%d posts pending review', $this->n_posts->pending, 'cl-wp-info' ) ), $this->n_posts->pending ) . ', ';
+		/* translators: number of posts in draft. */
+		$html .= sprintf( esc_html( _n( '%d post in draft status', '%d posts in draft status', $this->n_posts->draft, 'cl-wp-info' ) ), $this->n_posts->draft ) . ', ';
+		/* translators: number of posts in auto-draft. */
+		$html .= sprintf( esc_html( _n( '%d newly created post with no content', '%d newly created posts with no content', $this->n_posts->{'auto-draft'}, 'cl-wp-info' ) ), $this->n_posts->{'auto-draft'} ) . ', ';
+		/* translators: number of private posts. */
+		$html .= sprintf( esc_html( _n( '%d post not visible to users who are not logged in', '%d posts not visible to users who are not logged in', $this->n_posts->private, 'cl-wp-info' ) ), $this->n_posts->private ) . ', ';
+		/* translators: number of posts in revision. */
+		$html .= sprintf( esc_html( _n( '%d revision post', '%d revision posts', $this->n_posts->inherit, 'cl-wp-info' ) ), $this->n_posts->inherit );
+		$html .= ' ' . esc_html__( 'and', 'cl-wp-info' ) . ' ';
+		/* translators: number of posts in trash. */
+		$html .= sprintf( esc_html( _n( '%d post in trashbin', '%d posts in trashbin', $this->n_posts->trash, 'cl-wp-info' ) ), $this->n_posts->trash );
+
+		$html .= '.</p>';
+
+		// Pages section.
+		$html .= '<p><strong>' . esc_html__( 'WordPress Pages:', 'cl-wp-info' ) . '</strong> ';
+
+		/* translators: number of pages published. */
+		$html .= sprintf( esc_html( _n( '%d published page', '%d published pages', $this->n_pages->publish, 'cl-wp-info' ) ), $this->n_pages->publish ) . ', ';
+		/* translators: number of pages future. */
+		$html .= sprintf( esc_html( _n( '%d page to publish in the future', '%d pages to publish in the future', $this->n_pages->future, 'cl-wp-info' ) ), $this->n_pages->future ) . ', ';
+		/* translators: number of pages pending. */
+		$html .= sprintf( esc_html( _n( '%d page pending review', '%d pages pending review', $this->n_pages->pending, 'cl-wp-info' ) ), $this->n_pages->pending ) . ', ';
+		/* translators: number of pages in draft. */
+		$html .= sprintf( esc_html( _n( '%d page in draft status', '%d pages in draft status', $this->n_pages->draft, 'cl-wp-info' ) ), $this->n_pages->draft ) . ', ';
+		/* translators: number of pages in auto-draft. */
+		$html .= sprintf( esc_html( _n( '%d newly created page with no content', '%d newly created pages with no content', $this->n_pages->{'auto-draft'}, 'cl-wp-info' ) ), $this->n_pages->{'auto-draft'} ) . ', ';
+		/* translators: number of private pages. */
+		$html .= sprintf( esc_html( _n( '%d page not visible to users who are not logged in', '%d pages not visible to users who are not logged in', $this->n_pages->private, 'cl-wp-info' ) ), $this->n_pages->private ) . ', ';
+		/* translators: number of pages in revision. */
+		$html .= sprintf( esc_html( _n( '%d revision page', '%d revision pages', $this->n_pages->inherit, 'cl-wp-info' ) ), $this->n_pages->inherit );
+		$html .= ' ' . esc_html__( 'and', 'cl-wp-info' ) . ' ';
+		/* translators: number of pages in trash. */
+		$html .= sprintf( esc_html( _n( '%d page in trashbin', '%d pages in trashbin', $this->n_pages->trash, 'cl-wp-info' ) ), $this->n_pages->trash );
+
+		$html .= '.</p>';
 
 		if ( $echo ) {
 			echo $html;
@@ -327,7 +410,7 @@ class Cl_WP_Info {
 
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . get_bloginfo( 'version' ) . '</td>';
+		$html .= '<td>' . $this->wp_version . '</td>';
 		$html .= '</tr>';
 
 		$html .= '<tr>';
