@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: CL WP Info
- * Plugin URI: https://desarrolloweb.longarela.eu/
+ * Plugin URI: https://github.com/CarlosLongarela/CL-WP-Info
  * Description: Información del servidor, PHP y plugins y temas de WordPress para poder realizar fácilmente un informe previo de la web sobre la que vamos a trabajar
  * Version: 1.2
  * Author: Carlos Longarela
