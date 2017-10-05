@@ -1,5 +1,5 @@
 # CL WP Info
-WordPress plugin that show us information about WordPress install, PHP and and Hosting Server
+WordPress plugin that show us information about WordPress install, PHP, Database and Hosting Server
 
 Versions
 ========
