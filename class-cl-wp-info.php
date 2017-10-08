@@ -399,14 +399,14 @@ class Cl_WP_Info {
 		if ( defined( 'DB_USER' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Database Username:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . DB_USER . '</td>';
+			$html .= '<td><strong><em>' . esc_html__( 'Hidden for security purposes', 'cl-wp-info' ) . '.</em></strong><br />' . esc_html__( 'You can view Database Username in constant DB_USER defined in your wp-config.php in WordPress root folder', 'cl-wp-info' ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( defined( 'DB_PASSWORD' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Database Password:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . DB_PASSWORD . '</td>';
+			$html .= '<td><strong><em>' . esc_html__( 'Hidden for security purposes', 'cl-wp-info' ) . '.</em></strong><br />' . esc_html__( 'You can view Database Password in constant DB_PASSWORD defined in your wp-config.php in WordPress root folder', 'cl-wp-info' ) . '</td>';
 			$html .= '</tr>';
 		}
 

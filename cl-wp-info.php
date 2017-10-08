@@ -60,14 +60,14 @@ add_action( 'admin_menu', 'cl_wp_info_add_menu_page' );
  * @since     1.0.0
  * @param     string $hook   El hook (gancho) de la página actual.
  */
-function load_custom_wp_admin_style( $hook ) {
+function cl_wp_info_load_custom_wp_admin_style( $hook ) {
 	// Cargar solo en ?page=toplevel_page_cl-wp-info.
 	if ( 'toplevel_page_cl-wp-info' !== $hook ) {
 			return;
 	}
 	wp_enqueue_style( 'custom_wp_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) );
 }
-add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );
+add_action( 'admin_enqueue_scripts', 'cl_wp_info_load_custom_wp_admin_style' );
 
 /**
  * Carga inicial en el plugin de traducciones.
