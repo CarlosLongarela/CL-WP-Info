@@ -3,7 +3,7 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 
 Versions
 ========
-1.2.0 [2017-02-13]
+1.2.0 [2017-10-09]
 * Info about database
 * Show WordPress updates
 * Show plugins updates
