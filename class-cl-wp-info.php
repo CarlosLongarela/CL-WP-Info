@@ -185,6 +185,38 @@ class Cl_WP_Info {
 		$html .= '<td>' . php_uname() . '</td>';
 		$html .= '</tr>';
 
+		$mem_info = @file_get_contents( '/proc/meminfo' );
+		if ( $mem_info ) {
+			$mem_data = explode( "\n", $mem_info );
+
+			$html .= '<tr>';
+			$html .= '<th>' . esc_html__( 'Server Memory:', 'cl-wp-info' ) . '</th>';
+			$html .= '<td>';
+			foreach ( $mem_data as $linea ) {
+				if( strpos( $linea, ':' ) !== false ) {
+					list( $clave, $valor ) = explode( ':', $linea );
+					$valor = trim( $valor );
+					$valor = preg_replace( '/ kB$/', '', $valor );
+					if ( is_numeric( $valor ) ) {
+						$valor = intval( $valor );
+					}
+
+					$html .= '<strong>' . $clave . ':</strong> ';
+					if ( $valor >= 1048576 ) { // Greater than 1GB.
+						$html .= number_format_i18n( $valor / 1048576 ) . ' GB.<br />';
+					} elseif ( $valor >= 1024 ) { // Greater than 1MB.
+						$html .= number_format_i18n( $valor / 1024 ) . ' MB.<br />';
+					} elseif ( $valor > 0 ) {
+						$html .= number_format_i18n( $valor ) . ' kB.<br />';
+					} else {
+						$html .= $valor . '<br />';
+					}
+				}
+			}
+			$html .= '</td>';
+			$html .= '</tr>';
+		}
+
 		if ( ! empty( $_SERVER['SERVER_SOFTWARE'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server:', 'cl-wp-info' ) . '</th>';

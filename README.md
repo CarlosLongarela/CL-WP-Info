@@ -5,6 +5,7 @@ Versions
 ========
 1.4.0 [2017-10-14]
 * Changed Menu "Info WP" to "CL WP Info"
+* Changed menu position for less importance in admin menu, now is under tools menu
 
 1.2.0 [2017-10-09]
 * Info about database

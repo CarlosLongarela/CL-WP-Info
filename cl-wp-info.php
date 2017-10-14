@@ -49,7 +49,7 @@ function cl_wp_info_add_menu_page() {
 		'cl-wp-info',
 		'cl_wp_info_general',
 		'dashicons-visibility',
-		3
+		76
 	);
 
 	add_submenu_page(
