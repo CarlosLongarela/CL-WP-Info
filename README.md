@@ -3,6 +3,9 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 
 Versions
 ========
+1.4.0 [2017-10-14]
+* Changed Menu "Info WP" to "CL WP Info"
+
 1.2.0 [2017-10-09]
 * Info about database
 * Show WordPress updates

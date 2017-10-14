@@ -43,8 +43,8 @@ define( 'CL_WP_INFO_REC_MARIA', '5.1' );
  */
 function cl_wp_info_add_menu_page() {
 	add_menu_page(
-		esc_html__( 'CL Info WP', 'cl-wp-info' ),
-		esc_html__( 'Info WP', 'cl-wp-info' ),
+		esc_html__( 'CL WP Info', 'cl-wp-info' ),
+		esc_html__( 'CL WP Info', 'cl-wp-info' ),
 		'manage_options',
 		'cl-wp-info',
 		'cl_wp_info_general',
