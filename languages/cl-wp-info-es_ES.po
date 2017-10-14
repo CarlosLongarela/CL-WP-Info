@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2017-10-08 22:31+0200\n"
-"PO-Revision-Date: 2017-10-09 15:20+0200\n"
+"POT-Creation-Date: 2017-10-14 17:35+0200\n"
+"PO-Revision-Date: 2017-10-14 17:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: Carlos Longarela carlos@longarela.eu\n"
 "Language: es_ES\n"
@@ -21,43 +21,44 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: cl-wp-info.php:46
-msgid "CL Info WP"
-msgstr "CL Info WP"
+#. Plugin Name of the plugin/theme
+#: cl-wp-info.php:46 cl-wp-info.php:47
+msgid "CL WP Info"
+msgstr "CL WP Info"
 
-#: cl-wp-info.php:47
-msgid "Info WP"
-msgstr "Info WP"
+#: cl-wp-info.php:57 cl-wp-info.php:58
+msgid "External Tools"
+msgstr "Herramientas externas"
 
-#: cl-wp-info.php:100
+#: cl-wp-info.php:111
 msgid "Server Info"
 msgstr "Información del Servidor"
 
-#: cl-wp-info.php:105
+#: cl-wp-info.php:116
 msgid "PHP Info"
 msgstr "Información de PHP"
 
-#: cl-wp-info.php:110
+#: cl-wp-info.php:121
 msgid "Database Info"
 msgstr "Información de la Base de Datos"
 
-#: cl-wp-info.php:115
+#: cl-wp-info.php:126
 msgid "WordPress Info"
 msgstr "Información de WordPress"
 
-#: cl-wp-info.php:120
+#: cl-wp-info.php:131
 msgid "WordPress Themes Info"
 msgstr "Información de Temas de WordPress"
 
-#: cl-wp-info.php:125
+#: cl-wp-info.php:136
 msgid "WordPress Plugins Info"
 msgstr "Información de Plugins de WordPress"
 
-#: cl-wp-info.php:130
+#: cl-wp-info.php:141
 msgid "WordPress Javascript & CSS"
 msgstr "Javascript y CSS de WordPress"
 
-#: cl-wp-info.php:137
+#: cl-wp-info.php:148
 msgid ""
 "If this plugin is useful for you, maybe you'd like to collaborate with its "
 "development and invite me to a coffe or a beer"
@@ -65,19 +66,19 @@ msgstr ""
 "Si este plugin es útil para ti, quizás quieras colaborar con su desarrollo e "
 "invitarme a un café o una cerveza"
 
-#: cl-wp-info.php:138
+#: cl-wp-info.php:149
 msgid "Yes, of course :)"
 msgstr "Sí, desde luego :)"
 
-#: cl-wp-info.php:139
+#: cl-wp-info.php:150
 msgid "Or maybe you can donate with Bitcoin"
 msgstr "O quizás prefieres donar con Bitcoin"
 
-#: cl-wp-info.php:139
+#: cl-wp-info.php:150
 msgid "or Ether"
 msgstr "ó Ether"
 
-#: cl-wp-info.php:140
+#: cl-wp-info.php:151
 msgid ""
 "This note will not be printed if you select Print menu and send to printer "
 "device or pdf (recomended option)"
@@ -563,10 +564,6 @@ msgstr "Archivos de JavaScript (en esta página):"
 msgid "CSS files (in this page):"
 msgstr "Archivos CSS (en esta página):"
 
-#. Plugin Name of the plugin/theme
-msgid "CL WP Info"
-msgstr "CL Info WP"
-
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/CarlosLongarela/CL-WP-Info"
 msgstr "https://github.com/CarlosLongarela/CL-WP-Info"
@@ -586,15 +583,3 @@ msgstr "Carlos Longarela"
 #. Author URI of the plugin/theme
 msgid "https://desarrolloweb.longarela.eu/"
 msgstr "https://desarrolloweb.longarela.eu/"
-
-#~ msgid "CSS files:"
-#~ msgstr "Archivos CSS:"
-
-#~ msgid "and"
-#~ msgstr "y"
-
-#~ msgid "Installed Themes:"
-#~ msgstr "Temas Instalados:"
-
-#~ msgid "Active Plugins:"
-#~ msgstr "Plugins Activados:"

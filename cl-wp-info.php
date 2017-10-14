@@ -3,7 +3,7 @@
  * Plugin Name: CL WP Info
  * Plugin URI: https://github.com/CarlosLongarela/CL-WP-Info
  * Description: Información del servidor, PHP y plugins y temas de WordPress para poder realizar fácilmente un informe previo de la web sobre la que vamos a trabajar
- * Version: 1.2
+ * Version: 1.4.0
  * Author: Carlos Longarela
  * Author URI: https://desarrolloweb.longarela.eu/
  *
@@ -51,6 +51,15 @@ function cl_wp_info_add_menu_page() {
 		'dashicons-visibility',
 		3
 	);
+
+	add_submenu_page(
+		'cl-wp-info',
+		esc_html__( 'External Tools', 'cl-wp-info' ),
+		esc_html__( 'External Tools', 'cl-wp-info' ),
+		'manage_options',
+		'cl-wp-info-tools',
+		'cl_wp_info_tools'
+	);
 }
 add_action( 'admin_menu', 'cl_wp_info_add_menu_page' );
 
@@ -61,11 +70,13 @@ add_action( 'admin_menu', 'cl_wp_info_add_menu_page' );
  * @param     string $hook   El hook (gancho) de la página actual.
  */
 function cl_wp_info_load_custom_wp_admin_style( $hook ) {
-	// Cargar solo en ?page=toplevel_page_cl-wp-info.
-	if ( 'toplevel_page_cl-wp-info' !== $hook ) {
-			return;
+	// Cargar solo en ?page=cl-wp-info o ?page=cl-wp-info-tools.
+	if ( 'toplevel_page_cl-wp-info' === $hook || 'cl-wp-info_page_cl-wp-info-tools' === $hook ) {
+		wp_enqueue_style( 'custom_wp_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) );
+	} else {
+		return;
 	}
-	wp_enqueue_style( 'custom_wp_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) );
+
 }
 add_action( 'admin_enqueue_scripts', 'cl_wp_info_load_custom_wp_admin_style' );
 
@@ -138,5 +149,18 @@ function cl_wp_info_general() {
 	echo '<p><a class="cl-donate-btn" href="https://www.paypal.me/CarlosLongarela" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Yes, of course :)', 'cl-wp-info' ) . '</a></p>';
 	echo '<p>' . esc_html__( 'Or maybe you can donate with Bitcoin', 'cl-wp-info' ) . ' <em>13m3ARiWhLcG7hSswZPmrqNTKaPJbaSvro</em> ' . esc_html__( 'or Ether', 'cl-wp-info' ) . ' <em>0x58cd21317d86dBC6374B518312eB27571abE7638</em></p>';
 	echo '<p class="cl-note">* ' . esc_html__( 'This note will not be printed if you select Print menu and send to printer device or pdf (recomended option)', 'cl-wp-info' ) . '</p>';
+	echo '</div>';
+}
+
+/**
+ * Función que muestra herramientras externas de medición.
+ *
+ * @since     1.4.0
+ */
+function cl_wp_info_tools() {
+	$obj_info = new Cl_WP_Info();
+
+	echo '<div class="cl-wp-info-tools">';
+	echo 'SOY External Tools';
 	echo '</div>';
 }
