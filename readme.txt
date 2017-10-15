@@ -28,16 +28,20 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 6. Print (to pdf) version, without admin bar and without WordPress notices and warnings
 
 == Changelog ==
-1.2.0 [2017-10-09]
-* Info about database
-* Show WordPress updates
-* Show plugins updates
-* Show themes updates
-* Scape html in translations
-* Show needed PHP and Database for WordPress execution
 
-1.0.0 [2017-02-13]
-* Initial Version
+= 1.2.0 - 2017-10-09 =
+
+* Feature -  Info about database
+* Feature -  Show WordPress updates
+* Feature -  Show plugins updates
+* Feature -  Show themes updates
+* Feature -  Show needed PHP and Database for WordPress execution
+* Tweak - Scape html in translations
+
+= 1.0.0 - 2017-02-13 =
+* Feature -  Initial Version
 
 == Upgrade Notice ==
-Initial version
+
+= 1.2.0 =
+1.2.0 is a minor update with new features.
