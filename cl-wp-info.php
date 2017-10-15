@@ -36,13 +36,17 @@ define( 'CL_WP_INFO_REC_PHP', '7' );
 define( 'CL_WP_INFO_REC_MYSQL', '5.6' );
 define( 'CL_WP_INFO_REC_MARIA', '5.1' );
 
+$menu_page_hook    = '';
+$submenu_page_hook = '';
 /**
  * Registramos el menú.
  *
  * @since     1.0.0
  */
 function cl_wp_info_add_menu_page() {
-	add_menu_page(
+	global $menu_page_hook, $submenu_page_hook;
+
+	$menu_page_hook = add_menu_page(
 		esc_html__( 'CL WP Info', 'cl-wp-info' ),
 		esc_html__( 'CL WP Info', 'cl-wp-info' ),
 		'manage_options',
@@ -52,7 +56,7 @@ function cl_wp_info_add_menu_page() {
 		76
 	);
 
-	add_submenu_page(
+	$submenu_page_hook = add_submenu_page(
 		'cl-wp-info',
 		esc_html__( 'External Tools', 'cl-wp-info' ),
 		esc_html__( 'External Tools', 'cl-wp-info' ),
@@ -70,13 +74,14 @@ add_action( 'admin_menu', 'cl_wp_info_add_menu_page' );
  * @param     string $hook   El hook (gancho) de la página actual.
  */
 function cl_wp_info_load_custom_wp_admin_style( $hook ) {
-	// Cargar solo en ?page=cl-wp-info o ?page=cl-wp-info-tools.
-	if ( 'toplevel_page_cl-wp-info' === $hook || 'cl-wp-info_page_cl-wp-info-tools' === $hook ) {
-		wp_enqueue_style( 'custom_wp_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) );
-	} else {
+	global $menu_page_hook, $submenu_page_hook;
+
+	// Cargar solo en ?page=xxx del menú registrado o submenú, si no coincide salimos.
+	if ( $menu_page_hook !== $hook && $submenu_page_hook !== $hook ) {
 		return;
 	}
 
+	wp_enqueue_style( 'cl_wp_info_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) );
 }
 add_action( 'admin_enqueue_scripts', 'cl_wp_info_load_custom_wp_admin_style' );
 
