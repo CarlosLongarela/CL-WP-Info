@@ -26,6 +26,7 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 4. Info about Plugins
 5. Info about javascript and CSS
 6. Print (to pdf) version, without admin bar and without WordPress notices and warnings
+7. External tools submenu
 
 == Changelog ==
 
@@ -34,6 +35,8 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 * Feature - Added 19 external tools
 * Feature - Info about server RAM in Linux systems if is permitted by /proc/meminfo
 * Tweak - Better CSS register in admin page and also subpage
+* Tweak - Changed Menu "Info WP" to "CL WP Info"
+* Tweak - Changed menu position for less importance in admin menu, now is under tools menu
 * Fix - Compare current with new WordPress version
 
 = 1.2.0 - 2017-10-09 =
