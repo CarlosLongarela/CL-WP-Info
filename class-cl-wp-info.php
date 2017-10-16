@@ -93,6 +93,20 @@ class Cl_WP_Info {
 	private $db_version;
 
 	/**
+	 * Cadena de texto la url completa del WordPress
+	 *
+	 * @var string
+	 */
+	private $wp_site_url;
+
+	/**
+	 * Cadena de texto con el dominio sobre el que está instalado WordPress
+	 *
+	 * @var string
+	 */
+	private $wp_site_domain;
+
+	/**
 	 * Constructor desde el que recuperamos valores a utilizar posteriormente.
 	 *
 	 * @since     1.2.0
@@ -107,6 +121,9 @@ class Cl_WP_Info {
 		$this->n_comments     = get_comments( array( 'count' => true ) );
 		$this->n_media        = wp_count_attachments();
 		$this->wp_locale      = get_locale();
+
+		$this->wp_site_url    = site_url();
+		$this->wp_site_domain = $_SERVER['SERVER_NAME'];
 
 		$this->db_version     = $wpdb->get_var( 'select version();' );
 
@@ -231,10 +248,10 @@ class Cl_WP_Info {
 			$html .= '</tr>';
 		}
 
-		if ( ! empty( $_SERVER['SERVER_NAME'] ) ) {
+		if ( ! empty( $this->wp_site_domain ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Name:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['SERVER_NAME'] . '</td>';
+			$html .= '<td>' . $this->wp_site_domain . '</td>';
 			$html .= '</tr>';
 		}
 
@@ -487,7 +504,7 @@ class Cl_WP_Info {
 
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress URL:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . site_url() . '</td>';
+		$html .= '<td>' . $this->wp_site_url . '</td>';
 		$html .= '</tr>';
 
 		if ( defined( 'ABSPATH' ) ) {
@@ -833,4 +850,268 @@ class Cl_WP_Info {
 			return $html;
 		}
 	} // Final de cl_wp_js_cs.
+
+	/**
+	 * Función que imprime en pantalla las herramientas de WPO.
+	 *
+	 * @since     1.4.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_tools_wpo( $echo = true ) {
+		$html  = '';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Pingdom Website Speed Test', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p> ' . esc_html__( 'All tests are done with real web browsers, so the results match the end-user experience exactly.' , 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Examine all parts of a web page', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Performance overview', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Performance grade and tips', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Trace your performance history', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Test from multiple locations', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Share your results', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.pingdom.com" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'GTMetrix', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'GTmetrix tells you a lot about your website performance.' , 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'PageSpeed and YSlow scores and Recommendations', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Page Load Details (time, size, number of requests)', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Various Analysis Options', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Waterfall, Video and Report History', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Analyze with Mobile', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Test from multiple regions', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://gtmetrix.com/" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'WebPageTest', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'Run a free website speed test from multiple locations around the globe using real browsers (IE and Chrome)', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'WebPagetest is an open source project that is primarily being developed and supported by Google as part of our efforts to make the web faster.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'WebPagetest is a tool that was originally developed by AOL for use internally and was open-sourced in 2008 under a BSD license. The platform is under active development on GitHub and is also packaged up periodically and available for download if you would like to run your own instance.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://www.webpagetest.org/" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'PageSpeed Insights', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p> ' . esc_html__( 'PageSpeed Insights analyzes the content of a web page, then generates suggestions to make that page faster.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://developers.google.com/speed/pagespeed/insights/?url=' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'keycdn Website Speed Test', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'A page speed test that includes a waterfall breakdown and the website preview.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Select any of the 14 test locations.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Easily share the website speed test results with others.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.keycdn.com/speed" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Geek Flare', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'Find out how much time take to load your site from multiple location across desktop & mobile.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.geekflare.com/report/speed-test/' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final cl_wp_tools_wpo.
+
+	/**
+	 * Función que imprime en pantalla las herramientas de TTFB.
+	 *
+	 * @since     1.4.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_tools_ttfb( $echo = true ) {
+		$html  = '';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'keycdn URL Speed', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'Query a single asset from 14 test locations.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.keycdn.com/performance?url=' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Sucuri Loadtimetester', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'How fast is your site? You can test here the performance of any of your sites from across the globe.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://performance.sucuri.net/domain/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Byte Check', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'TTFB measures the duration from the users browser making a HTTP request to the first byte being returned by the server.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'As soon as the browser has started receiving content, it can start building up the page infront of the user.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://www.bytecheck.com/results?resource=' . rawurlencode( $this->wp_site_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_tools_ttfb.
+
+	/**
+	 * Función que imprime en pantalla las herramientas de TTFB.
+	 *
+	 * @since     1.4.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_tools_http2( $echo = true ) {
+		$html  = '';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'HTTP2.Pro', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'Online tool to check server HTTP/2, ALPN, and Server-push support.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://http2.pro/check?url=' . rawurlencode( $this->wp_site_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Geek Flare', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'Check if your site is taking advantage of new HTTP/2 protocol for fast loading page.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.geekflare.com/report/http2-test/' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'keycdn', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'Online HTTP/2 test - Verify if your server or CDN supports HTTP/2.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.keycdn.com/http2-test" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_tools_http2.
+
+	/**
+	 * Función que imprime en pantalla las herramientas de DNS's.
+	 *
+	 * @since     1.4.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_tools_dns( $echo = true ) {
+		$html  = '';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Pingdom DNS Health', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'Test DNS servers and settings for a domain name.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://dnscheck.pingdom.com/?domain=' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'MX Toolbox', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'The DNS Check test will run a comprehensive DNS Report for your domain.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'A DNS lookup is done directly against the root servers (or TLD Servers).', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'Then we query each name server to make sure your DNS Servers all respond, measure their performance and audit the results against common best practices.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'DNS Checker', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'DNS Checker provides free dns lookup service for checking domain name server records against a randomly selected list of DNS servers in different corners of the world.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#A/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#AAAA/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site with IPv6', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_tools_dns.
+
+	/**
+	 * Función que imprime en pantalla las herramientas de Gzip.
+	 *
+	 * @since     1.4.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_tools_gzip( $echo = true ) {
+		$html  = '';
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Gzip Compression Test', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'This tool checks your server to see if you have Gzip compression enabled.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'This tool supports Gzip compression from mod_deflate, mod_gzip or gzip compression through PHP and other server side programming languages.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://www.gziptest.com/result/' . rawurlencode( $this->wp_site_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'Check GZIP compression', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'With this tool you can check if your web server is sending the correct GZIP enabled header.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://checkgzipcompression.com/?url=' . rawurlencode( $this->wp_site_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_tools_gzip.
+
+	/**
+	 * Función que imprime en pantalla las herramientas de Mail.
+	 *
+	 * @since     1.4.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_tools_mail( $echo = true ) {
+		$html  = '';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'MX Toolbox', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'All of your MX record, DNS, blacklist and SMTP diagnostics in one integrated tool.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=mx%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=smtp%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain SMTP', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Check if my site is in a blacklist', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		$html .= '<div class="cl-wp-info-tools">';
+		$html .= '<h3>' . esc_html__( 'GSuite Toolbox CheckMX', 'cl-wp-info' ) . '</h3>';
+		$html .= '<p>' . esc_html__( 'GSuite tools for check MX records.', 'cl-wp-info' ) . '</p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://toolbox.googleapps.com/apps/checkmx/check?domain=' . $this->wp_site_domain . '&dkim_selector=" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
+		$html .= '</div>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_tools_mail.
+
+	/**
+	 * Función que muestra el mensaje de donación.
+	 *
+	 * @since     1.4.0
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_info_donate( $echo = true ) {
+		$html  = '';
+
+		$html .= '<div class="cl-no-print cl-donate updated">';
+		$html .= '<p>' . esc_html__( "If this plugin is useful for you, maybe you'd like to collaborate with its development and invite me to a coffe or a beer", 'cl-wp-info' ) . '</p>';
+		$html .= '<p><a class="cl-donate-btn" href="https://www.paypal.me/CarlosLongarela" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Yes, of course :)', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p>' . esc_html__( 'Or maybe you can donate with Bitcoin', 'cl-wp-info' ) . ' <em>13m3ARiWhLcG7hSswZPmrqNTKaPJbaSvro</em> ' . esc_html__( 'or Ether', 'cl-wp-info' ) . ' <em>0x58cd21317d86dBC6374B518312eB27571abE7638</em></p>';
+		$html .= '<p class="cl-note">* ' . esc_html__( 'This note will not be printed if you select Print menu and send to printer device or pdf (recomended option)', 'cl-wp-info' ) . '</p>';
+		$html .= '</div>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final cl_wp_info_donate.
 }

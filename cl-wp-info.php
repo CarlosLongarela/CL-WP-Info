@@ -38,6 +38,7 @@ define( 'CL_WP_INFO_REC_MARIA', '5.1' );
 
 $menu_page_hook    = '';
 $submenu_page_hook = '';
+
 /**
  * Registramos el menú.
  *
@@ -81,6 +82,10 @@ function cl_wp_info_load_custom_wp_admin_style( $hook ) {
 		return;
 	}
 
+	if ( $submenu_page_hook === $hook ) { // Javascript sólo en la página de submenú Tools.
+		wp_enqueue_script( 'cl_wp_info_tools_admin_js', plugins_url( 'js/cl-wp-info-tools.min.js', __FILE__ ), array( 'jquery' ), null, true );
+	}
+
 	wp_enqueue_style( 'cl_wp_info_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) );
 }
 add_action( 'admin_enqueue_scripts', 'cl_wp_info_load_custom_wp_admin_style' );
@@ -95,8 +100,11 @@ function cl_wp_info_init() {
 }
 add_action( 'plugins_loaded', 'cl_wp_info_init' );
 
-// Incluimos el archivo con las funciones de info del sistema y WP.
+// Incluimos el archivo de clase con las funciones de info del sistema y WP.
 require_once plugin_dir_path( __FILE__ ) . 'class-cl-wp-info.php';
+
+// Y creamos el objeto.
+$obj_info = new Cl_WP_Info();
 
 /**
  * Función principal encargada de mostrar toda la infomación.
@@ -104,7 +112,7 @@ require_once plugin_dir_path( __FILE__ ) . 'class-cl-wp-info.php';
  * @since     1.0.0
  */
 function cl_wp_info_general() {
-	$obj_info = new Cl_WP_Info();
+	global $obj_info;
 
 	echo '<div class="cl-info-general">';
 	$obj_info->cl_wp_info_general();
@@ -149,12 +157,7 @@ function cl_wp_info_general() {
 
 	echo '</table>';
 
-	echo '<div class="cl-no-print cl-donate updated">';
-	echo '<p>' . esc_html__( "If this plugin is useful for you, maybe you'd like to collaborate with its development and invite me to a coffe or a beer", 'cl-wp-info' ) . '</p>';
-	echo '<p><a class="cl-donate-btn" href="https://www.paypal.me/CarlosLongarela" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Yes, of course :)', 'cl-wp-info' ) . '</a></p>';
-	echo '<p>' . esc_html__( 'Or maybe you can donate with Bitcoin', 'cl-wp-info' ) . ' <em>13m3ARiWhLcG7hSswZPmrqNTKaPJbaSvro</em> ' . esc_html__( 'or Ether', 'cl-wp-info' ) . ' <em>0x58cd21317d86dBC6374B518312eB27571abE7638</em></p>';
-	echo '<p class="cl-note">* ' . esc_html__( 'This note will not be printed if you select Print menu and send to printer device or pdf (recomended option)', 'cl-wp-info' ) . '</p>';
-	echo '</div>';
+	$obj_info->cl_wp_info_donate();
 }
 
 /**
@@ -163,9 +166,52 @@ function cl_wp_info_general() {
  * @since     1.4.0
  */
 function cl_wp_info_tools() {
-	$obj_info = new Cl_WP_Info();
+	global $obj_info;
 
-	echo '<div class="cl-wp-info-tools">';
-	echo 'SOY External Tools';
+	$full_url     = site_url();
+	$url_parseada = wp_parse_url( $full_url );
+	$dominio      = $url_parseada['host'];
+
+	echo '<h1>' . esc_html__( 'External tools for measure page perfomance', 'cl-wp-info' ) . '</h1>';
+
+	echo '<div id="cl-wp-info-botonera">';
+	echo '<button type="button" id="cl-wpo" class="cl-botonera-btn">' . esc_html__( 'WPO', 'cl-wp-info' ) . '</button>';
+	echo '<button type="button" id="cl-ttfb" class="cl-botonera-btn">' . esc_html__( 'Time to first byte', 'cl-wp-info' ) . '</button>';
+	echo '<button type="button" id="cl-http2" class="cl-botonera-btn">' . esc_html__( 'HTTP/2', 'cl-wp-info' ) . '</button>';
+	echo '<button type="button" id="cl-dns" class="cl-botonera-btn">' . esc_html__( 'DNS', 'cl-wp-info' ) . '</button>';
+	echo '<button type="button" id="cl-gzip" class="cl-botonera-btn">' . esc_html__( 'Gzip', 'cl-wp-info' ) . '</button>';
+	echo '<button type="button" id="cl-mail" class="cl-botonera-btn">' . esc_html__( 'Mail', 'cl-wp-info' ) . '</button>';
 	echo '</div>';
+
+	echo '<div id="cl-content-wpo">';
+	echo '<h2 class="cl-tool-type">' . esc_html__( 'WPO (WordPress Page Optimization)', 'cl-wp-info' ) . '</h2>';
+	$obj_info->cl_wp_tools_wpo();
+	echo '</div>';
+
+	echo '<div id="cl-content-ttfb">';
+	echo '<h2 class="cl-tool-type">' . esc_html__( 'TTFB (Time To First Byte)', 'cl-wp-info' ) . '</h2>';
+	$obj_info->cl_wp_tools_ttfb();
+	echo '</div>';
+
+	echo '<div id="cl-content-http2">';
+	echo '<h2 class="cl-tool-type">' . esc_html__( 'HTTP/2', 'cl-wp-info' ) . '</h2>';
+	$obj_info->cl_wp_tools_http2();
+	echo '</div>';
+
+	echo '<div id="cl-content-dns">';
+	echo '<h2 class="cl-tool-type">' . esc_html__( 'DNS', 'cl-wp-info' ) . '</h2>';
+	$obj_info->cl_wp_tools_dns();
+	echo '</div>';
+
+	echo '<div id="cl-content-gzip">';
+	echo '<h2 class="cl-tool-type">' . esc_html__( 'Gzip', 'cl-wp-info' ) . '</h2>';
+	$obj_info->cl_wp_tools_gzip();
+	echo '</div>';
+
+	echo '<div id="cl-content-mail">';
+	echo '<h2 class="cl-tool-type">' . esc_html__( 'Mail', 'cl-wp-info' ) . '</h2>';
+	$obj_info->cl_wp_tools_mail();
+	echo '</div>';
+
+	$obj_info->cl_wp_info_donate();
 }

@@ -29,14 +29,16 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 
 == Changelog ==
 
-= 1.2.0 - 2017-10-09 =
+= 1.4.0 - 2017-10-15 =
+* Tweak - Better CSS register in admin page and also subpage
 
+= 1.2.0 - 2017-10-09 =
 * Feature -  Info about database
 * Feature -  Show WordPress updates
 * Feature -  Show plugins updates
 * Feature -  Show themes updates
 * Feature -  Show needed PHP and Database for WordPress execution
-* Tweak - Scape html in translations
+* Tweak - Scape html in some translations
 
 = 1.0.0 - 2017-02-13 =
 * Feature -  Initial Version

@@ -1,3 +1,6 @@
 // Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
 {
-}
+    "less.compile": {
+        "autoprefixer": "> 5%, last 2 Chrome versions, not ie 6-9"
+    }
+  }

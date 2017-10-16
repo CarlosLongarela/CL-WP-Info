@@ -1,0 +1,27 @@
+{
+    "preset": "wordpress",
+    "fileExtensions": [ ".js" ],
+    "excludeFiles": [
+        "js/**.min.js"
+    ],
+    "requireDotNotation": {
+        "allExcept": ["snake_case", "keywords"]
+    },
+    "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~"],
+    "disallowSpaceBeforePostfixUnaryOperators": true,
+    "maximumLineLength": null,
+    "requireVarDeclFirst": true,
+    "requireSpaceAfterPrefixUnaryOperators": ["!"],
+    "requireSpacesInsideBrackets": null,
+    "requireSpacesInsideParentheses": {
+        "all": true,
+        "except": [ "{", "}", "[", "]" ]
+    },
+    "requireYodaConditions": ["==", "!=", "===", "!=="],
+    "validateQuoteMarks": "'",
+    "requireCapitalizedComments": {
+        "allExcept": ["global", "exported", "jshint", "eslint", "jslint"]
+    },
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+    "requireBlocksOnNewline": true
+}
