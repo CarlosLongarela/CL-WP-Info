@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
 Tested up to: 4.8.2
 Requires PHP: 5.6
-Stable tag: trunk
+Stable tag: 1.4.0
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
