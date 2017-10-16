@@ -1005,7 +1005,7 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Pingdom DNS Health', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Test DNS servers and settings for a domain name.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://dnscheck.pingdom.com/?domain=' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://dnscheck.pingdom.com/?domain=' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
@@ -1013,15 +1013,15 @@ class Cl_WP_Info {
 		$html .= '<p>' . esc_html__( 'The DNS Check test will run a comprehensive DNS Report for your domain.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'A DNS lookup is done directly against the root servers (or TLD Servers).', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Then we query each name server to make sure your DNS Servers all respond, measure their performance and audit the results against common best practices.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'DNS Checker', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'DNS Checker provides free dns lookup service for checking domain name server records against a randomly selected list of DNS servers in different corners of the world.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#A/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#AAAA/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site with IPv6', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#A/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#AAAA/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain with IPv6', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		if ( $echo ) {
@@ -1075,7 +1075,7 @@ class Cl_WP_Info {
 		$html .= '<p>' . esc_html__( 'All of your MX record, DNS, blacklist and SMTP diagnostics in one integrated tool.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=mx%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
 		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=smtp%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain SMTP', 'cl-wp-info' ) . '</a></p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Check if my site is in a blacklist', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Check if my domain is in a blacklist', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
