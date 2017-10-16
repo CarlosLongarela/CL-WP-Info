@@ -147,7 +147,7 @@ class Cl_WP_Info {
 		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</strong>';
 
 		if ( $this->wp_update_core_is_object ) {
-			if ( $this->wp_version === $this->wp_update_core->updates[0]->current ) {
+			if ( version_compare( $this->wp_update_core->updates[0]->current, $this->wp_version, '<=' ) ) {
 				$html .= ' <span class="cl-ok">(' . esc_html__( 'You have latest available version', 'cl-wp-info' ) . ').</span>';
 			} else {
 				$html .= ' <span class="cl-error">(' . esc_html__( 'There is a new WordPress version available', 'cl-wp-info' ) . ': ' . $this->wp_update_core->updates[0]->version . ').</span>';

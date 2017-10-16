@@ -8,6 +8,10 @@
 @error: #f00;
 @warning: #ffa500;
 
+h1 {
+    line-height: 1.5em;
+}
+
 #wpcontent .cl-donate {
     margin: 10px auto;
     padding: 10px;
@@ -254,6 +258,13 @@
 #cl-content-gzip,
 #cl-content-mail {
     display: none;
+}
+
+@media screen and (max-width: 782px) {
+    #cl-wp-info-botonera {
+        display: flex;
+        flex-direction: column;
+    }
 }
 /** External Tools **/
 

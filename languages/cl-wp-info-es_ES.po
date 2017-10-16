@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2017-10-16 22:39+0200\n"
-"PO-Revision-Date: 2017-10-16 22:39+0200\n"
+"POT-Creation-Date: 2017-10-16 22:40+0200\n"
+"PO-Revision-Date: 2017-10-17 00:11+0200\n"
 "Last-Translator: \n"
 "Language-Team: Carlos Longarela carlos@longarela.eu\n"
 "Language: es_ES\n"
@@ -699,8 +699,7 @@ msgstr ""
 
 #: class-cl-wp-info.php:899 class-cl-wp-info.php:913 class-cl-wp-info.php:936
 #: class-cl-wp-info.php:942 class-cl-wp-info.php:949 class-cl-wp-info.php:972
-#: class-cl-wp-info.php:978 class-cl-wp-info.php:1023 class-cl-wp-info.php:1047
-#: class-cl-wp-info.php:1053
+#: class-cl-wp-info.php:978 class-cl-wp-info.php:1047 class-cl-wp-info.php:1053
 msgid "Test my site"
 msgstr "Comprobar mi sitio web"
 
@@ -814,6 +813,7 @@ msgstr ""
 "Comprueba los servidores DNS y configuraciones para un nombre de dominio."
 
 #: class-cl-wp-info.php:1008 class-cl-wp-info.php:1016
+#: class-cl-wp-info.php:1023
 msgid "Test my domain"
 msgstr "Comprobar mi dominio"
 
