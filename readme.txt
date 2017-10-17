@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
 Tested up to: 4.8.2
 Requires PHP: 5.6
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,8 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.1 - 2017-10-17 =
+* Fix - Domain without www for check mails and DNS
 
 = 1.4.0 - 2017-10-16 =
 * Feature - New page with external tools

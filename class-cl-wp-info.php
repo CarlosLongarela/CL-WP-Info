@@ -107,6 +107,13 @@ class Cl_WP_Info {
 	private $wp_site_domain;
 
 	/**
+	 * Cadena de texto con el dominio sobre el que está instalado WordPress y sin www
+	 *
+	 * @var string
+	 */
+	private $wp_site_domain_without_www;
+
+	/**
 	 * Constructor desde el que recuperamos valores a utilizar posteriormente.
 	 *
 	 * @since     1.2.0
@@ -114,18 +121,19 @@ class Cl_WP_Info {
 	public function __construct() {
 		global $wpdb;
 
-		$this->wp_version     = get_bloginfo( 'version' );
-		$this->n_posts        = wp_count_posts();
-		$this->n_pages        = wp_count_posts( 'page' );
-		$this->n_users        = count_users();
-		$this->n_comments     = get_comments( array( 'count' => true ) );
-		$this->n_media        = wp_count_attachments();
-		$this->wp_locale      = get_locale();
+		$this->wp_version                 = get_bloginfo( 'version' );
+		$this->n_posts                    = wp_count_posts();
+		$this->n_pages                    = wp_count_posts( 'page' );
+		$this->n_users                    = count_users();
+		$this->n_comments                 = get_comments( array( 'count' => true ) );
+		$this->n_media                    = wp_count_attachments();
+		$this->wp_locale                  = get_locale();
 
-		$this->wp_site_url    = site_url();
-		$this->wp_site_domain = $_SERVER['SERVER_NAME'];
+		$this->wp_site_url                = site_url();
+		$this->wp_site_domain             = $_SERVER['SERVER_NAME'];
+		$this->wp_site_domain_without_www = str_replace( 'www.', '', $this->wp_site_domain );
 
-		$this->db_version     = $wpdb->get_var( 'select version();' );
+		$this->db_version                 = $wpdb->get_var( 'select version();' );
 
 		$sql = 'SELECT option_value FROM ' . $wpdb->prefix . "options WHERE option_name = '_site_transient_update_core'";
 		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) );
@@ -1005,7 +1013,7 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Pingdom DNS Health', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Test DNS servers and settings for a domain name.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://dnscheck.pingdom.com/?domain=' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://dnscheck.pingdom.com/?domain=' . $this->wp_site_domain_without_www . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
@@ -1013,7 +1021,7 @@ class Cl_WP_Info {
 		$html .= '<p>' . esc_html__( 'The DNS Check test will run a comprehensive DNS Report for your domain.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'A DNS lookup is done directly against the root servers (or TLD Servers).', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Then we query each name server to make sure your DNS Servers all respond, measure their performance and audit the results against common best practices.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 
@@ -1073,15 +1081,15 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'MX Toolbox', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'All of your MX record, DNS, blacklist and SMTP diagnostics in one integrated tool.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=mx%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=smtp%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain SMTP', 'cl-wp-info' ) . '</a></p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' . $this->wp_site_domain . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Check if my domain is in a blacklist', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=mx%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=smtp%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain SMTP', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Check if my domain is in a blacklist', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'GSuite Toolbox CheckMX', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'GSuite tools for check MX records.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://toolbox.googleapps.com/apps/checkmx/check?domain=' . $this->wp_site_domain . '&dkim_selector=" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://toolbox.googleapps.com/apps/checkmx/check?domain=' . $this->wp_site_domain_without_www . '&dkim_selector=" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		if ( $echo ) {
