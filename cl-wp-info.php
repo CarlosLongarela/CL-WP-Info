@@ -9,7 +9,7 @@
  *
  * @package CL WP Info
  * License: GPL2+
- * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: cl-wp-info
  *
  * CL WP Info is free software: you can redistribute it and/or modify
