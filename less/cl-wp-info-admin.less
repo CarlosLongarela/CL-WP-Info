@@ -48,6 +48,29 @@ h1 {
     }
 }
 
+.cl-only-print {
+	display: none;
+}
+
+.cl-info-made-by {
+    margin: 10px auto;
+    padding: 10px;
+    width: 85%;
+
+    p {
+        font-size: 1.2em;
+        font-weight: 700;
+    }
+
+    input {
+        min-width: 300px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
 .cl-info-general {
     border: 2px solid @azul-claro;
     margin: 10px auto;
@@ -283,5 +306,17 @@ h1 {
     // Eliminamos el margen izquierdo de la barra de menú
     #wpcontent {
         margin-left: 10px;
+    }
+
+    .cl-info-made-by {
+        input {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+        }
+    }
+
+    .cl-only-print {
+        display: block;
     }
 }

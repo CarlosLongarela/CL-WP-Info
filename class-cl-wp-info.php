@@ -93,11 +93,25 @@ class Cl_WP_Info {
 	private $db_version;
 
 	/**
-	 * Cadena de texto la url completa del WordPress
+	 * Cadena de texto con la url completa del WordPress
 	 *
 	 * @var string
 	 */
 	private $wp_site_url;
+
+	/**
+	 * Cadena de texto con el título del WordPress
+	 *
+	 * @var string
+	 */
+	private $wp_site_title;
+
+	/**
+	 * Cadena de texto con la descripción del WordPress
+	 *
+	 * @var string
+	 */
+	private $wp_site_description;
 
 	/**
 	 * Cadena de texto con el dominio sobre el que está instalado WordPress
@@ -130,6 +144,8 @@ class Cl_WP_Info {
 		$this->wp_locale                  = get_locale();
 
 		$this->wp_site_url                = site_url();
+		$this->wp_site_title              = get_bloginfo( 'name' );
+		$this->wp_site_description        = get_bloginfo( 'description' );
 		$this->wp_site_domain             = $_SERVER['SERVER_NAME'];
 		$this->wp_site_domain_without_www = str_replace( 'www.', '', $this->wp_site_domain );
 
@@ -140,6 +156,29 @@ class Cl_WP_Info {
 
 		$this->wp_update_core_is_object = is_object( $this->wp_update_core );
 	}
+
+	/**
+	 * Información de quien ha realizado el informe.
+	 *
+	 * @since     1.4.2
+	 *
+	 * @param boolean $echo Escribir la salida o devolverla.
+	 */
+	public function cl_wp_info_made_by( $echo = true ) {
+		$html  = '';
+
+		$html .= '<p>' . sprintf( esc_html__( '%1$s (%2$s) report by:', 'cl-wp-info' ), $this->wp_site_title, $this->wp_site_url );
+		$html .= ' <input type="text" value="" placeholder="' . esc_html__( 'Put your name or company name here', 'cl-wp-info' ) . '" /></p>';
+		$html .= '<p class="cl-only-print"><a href="https://es.wordpress.org/plugins/cl-wp-info/">' . esc_html__( 'Report made with CL WP Info WordPress plugin', 'cl-wp-info' ) . '</a></p>';
+
+		if ( $echo ) {
+			echo $html;
+		} else {
+			return $html;
+		}
+	} // Final de cl_wp_info_made_by.
+
+
 
 	/**
 	 * Información general del WP y su estado.
