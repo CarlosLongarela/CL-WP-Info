@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
 Tested up to: 4.9
 Requires PHP: 5.6
-Stable tag: 1.4.2
+Stable tag: 1.4.3
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,6 +29,9 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.3 - 2017-11-19 =
+* Fix - Wrong text definition
+
 = 1.4.2 - 2017-11-19 =
 * Feature - Info about report made by in printed version
 * Tweak - WordPress compatibility check until 4.9 version
@@ -57,6 +60,8 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 * Feature - Initial Version
 
 == Upgrade Notice ==
+= 1.4.3 =
+1.4.3 is a minor update with a string fix
 
 = 1.4.2 =
 1.4.2 is a minor update with WordPress compatibility check until 4.9

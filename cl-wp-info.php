@@ -188,7 +188,7 @@ function cl_wp_info_tools() {
 	echo '</div>';
 
 	echo '<div id="cl-content-wpo">';
-	echo '<h2 class="cl-tool-type">' . esc_html__( 'WPO (WordPress Page Optimization)', 'cl-wp-info' ) . '</h2>';
+	echo '<h2 class="cl-tool-type">' . esc_html__( 'WPO (Web Performance Optimization)', 'cl-wp-info' ) . '</h2>';
 	$obj_info->cl_wp_tools_wpo();
 	echo '</div>';
 
