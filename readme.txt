@@ -32,7 +32,7 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 = 1.4.4 - 2018-06-01 =
 * Update - Updated WordPress min PHP version.
 * Update - Code rewrited for best WordPress PHPCS compatibility.
-* Fix - Changed http://www.gziptest.com/ (not working) by https://nixcp.com/tools/gzip-test/
+* Fix - Changed http://www.gziptest.com/ (redirecting to new domain) by https://nixcp.com/tools/gzip-test/
 
 = 1.4.3 - 2017-11-19 =
 * Fix - Wrong text definition
