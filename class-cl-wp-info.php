@@ -55,7 +55,7 @@ class Cl_WP_Info {
 	 *
 	 * @var array
 	 */
-	private $n_users    = array();
+	private $n_users = array();
 
 	/**
 	 * Número de comentarios
@@ -142,17 +142,16 @@ class Cl_WP_Info {
 		$this->n_comments                 = get_comments( array( 'count' => true ) );
 		$this->n_media                    = wp_count_attachments();
 		$this->wp_locale                  = get_locale();
-
 		$this->wp_site_url                = site_url();
 		$this->wp_site_title              = get_bloginfo( 'name' );
 		$this->wp_site_description        = get_bloginfo( 'description' );
 		$this->wp_site_domain             = $_SERVER['SERVER_NAME'];
 		$this->wp_site_domain_without_www = str_replace( 'www.', '', $this->wp_site_domain );
-
 		$this->db_version                 = $wpdb->get_var( 'select version();' );
 
 		$sql = 'SELECT option_value FROM ' . $wpdb->prefix . "options WHERE option_name = '_site_transient_update_core'";
-		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) );
+
+		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) ); // WPCS: unprepared SQL ok.
 
 		$this->wp_update_core_is_object = is_object( $this->wp_update_core );
 	}
@@ -165,14 +164,14 @@ class Cl_WP_Info {
 	 * @param boolean $echo Escribir la salida o devolverla.
 	 */
 	public function cl_wp_info_made_by( $echo = true ) {
-		$html  = '';
-
+		$html = '';
+		// Translators: %1$s Site title and %2$s Site url.
 		$html .= '<p>' . sprintf( esc_html__( '%1$s (%2$s) report by:', 'cl-wp-info' ), $this->wp_site_title, $this->wp_site_url );
 		$html .= ' <input type="text" value="" placeholder="' . esc_html__( 'Put your name or company name here', 'cl-wp-info' ) . '" /></p>';
 		$html .= '<p class="cl-only-print"><a href="https://es.wordpress.org/plugins/cl-wp-info/">' . esc_html__( 'Report made with CL WP Info WordPress plugin', 'cl-wp-info' ) . '</a></p>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -188,7 +187,7 @@ class Cl_WP_Info {
 	 * @param boolean $echo Escribir la salida o devolverla.
 	 */
 	public function cl_wp_info_general( $echo = true ) {
-		$html  = '';
+		$html = '';
 
 		// WordPress Version.
 		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</strong>';
@@ -204,6 +203,7 @@ class Cl_WP_Info {
 
 		if ( $this->wp_update_core_is_object ) {
 			$fecha_check = get_date_from_gmt( date( 'Y-m-d H:i:s', $this->wp_update_core->last_checked ), get_option( 'date_format' ) . ' - ' . get_option( 'time_format' ) );
+
 			$html .= '<p>';
 			$html .= esc_html__( 'Last WordPress version checked:', 'cl-wp-info' ) . ' ' . $fecha_check;
 			$html .= '</p>';
@@ -228,7 +228,7 @@ class Cl_WP_Info {
 		$html .= '</p>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -243,13 +243,15 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_server_info( $echo = true ) {
 		$html  = '';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'OS Server:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>' . php_uname() . '</td>';
 		$html .= '</tr>';
 
+		// @codingStandardsIgnoreStart
 		$mem_info = @file_get_contents( '/proc/meminfo' );
+		// @codingStandardsIgnoreEnd
+
 		if ( $mem_info ) {
 			$mem_data = explode( "\n", $mem_info );
 
@@ -257,10 +259,12 @@ class Cl_WP_Info {
 			$html .= '<th>' . esc_html__( 'Server Memory:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
 			foreach ( $mem_data as $linea ) {
-				if( strpos( $linea, ':' ) !== false ) {
+				if ( strpos( $linea, ':' ) !== false ) {
 					list( $clave, $valor ) = explode( ':', $linea );
+
 					$valor = trim( $valor );
 					$valor = preg_replace( '/ kB$/', '', $valor );
+
 					if ( is_numeric( $valor ) ) {
 						$valor = intval( $valor );
 					}
@@ -284,14 +288,14 @@ class Cl_WP_Info {
 		if ( ! empty( $_SERVER['SERVER_SOFTWARE'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['SERVER_SOFTWARE'] . '</td>';
+			$html .= '<td>' . esc_html( $_SERVER['SERVER_SOFTWARE'] ) . '</td>'; // WPCS: input var ok.
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['USER'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server User:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['USER'] . '</td>';
+			$html .= '<td>' . esc_html( $_SERVER['USER'] ) . '</td>';
 			$html .= '</tr>';
 		}
 
@@ -338,7 +342,7 @@ class Cl_WP_Info {
 		}
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -353,22 +357,20 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_php_info( $echo = true ) {
 		$html  = '';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'PHP Version:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>' . phpversion() . '</td>';
 		$html .= '</tr>';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'PHP Loaded Extensions:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>';
+
 		$php_extensions = get_loaded_extensions();
 		foreach ( $php_extensions as $valor ) {
 			$html .= $valor . ', ';
 		}
 		$html .= '</td>';
 		$html .= '</tr>';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'PHP Webserver Interface:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>' . php_sapi_name() . '</td>';
@@ -458,7 +460,7 @@ class Cl_WP_Info {
 		}
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -474,7 +476,6 @@ class Cl_WP_Info {
 	public function cl_wp_db_info( $echo = true ) {
 		global $wpdb;
 		$html  = '';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Database Server:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>' . $this->db_version . '</td>';
@@ -528,7 +529,7 @@ class Cl_WP_Info {
 		}
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -543,12 +544,10 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_wordpress_info( $echo = true ) {
 		$html  = '';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>' . $this->wp_version . '</td>';
 		$html .= '</tr>';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress URL:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>' . $this->wp_site_url . '</td>';
@@ -723,7 +722,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -737,17 +736,18 @@ class Cl_WP_Info {
 	 * @param boolean $echo Escribir la salida o devolverla.
 	 */
 	public function cl_wp_wordpress_themes( $echo = true ) {
-		$html  = '';
+		$html = '';
 
 		$args = array(
-			'errors' => false,
+			'errors'  => false,
 			'allowed' => null,
 		);
+
 		$temas = wp_get_themes( $args );
 
-		$tema_actual = wp_get_theme();
+		$tema_actual            = wp_get_theme();
 		$tema_activo_textdomain = $tema_actual->get( 'TextDomain' );
-		$tema_updates = get_theme_updates();
+		$tema_updates           = get_theme_updates();
 
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Themes:', 'cl-wp-info' ) . '</th>';
@@ -793,7 +793,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -808,14 +808,15 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_wordpress_plugins( $echo = true ) {
 		$html  = '';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Plugins:', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>';
 		$html .= '<ol>';
+
 		$plugins         = get_plugins();
 		$plugins_updates = get_plugin_updates();
 		$plugins_activos = get_option( 'active_plugins', array() );
+
 		foreach ( $plugins as $clave_plugin => $valor_plugin ) {
 			if ( empty( $valor_plugin['PluginURI'] ) ) {
 				$html .= '<li>' . $valor_plugin['Name'] . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_plugin['Version'] . ')</em>';
@@ -851,7 +852,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -868,7 +869,6 @@ class Cl_WP_Info {
 		global $wp_scripts, $wp_styles;
 
 		$html  = '';
-
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Javascript files (in this page):', 'cl-wp-info' ) . '</th>';
 		$html .= '<td>';
@@ -892,7 +892,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -907,10 +907,9 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_tools_wpo( $echo = true ) {
 		$html  = '';
-
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Pingdom Website Speed Test', 'cl-wp-info' ) . '</h3>';
-		$html .= '<p> ' . esc_html__( 'All tests are done with real web browsers, so the results match the end-user experience exactly.' , 'cl-wp-info' ) . '</p>';
+		$html .= '<p> ' . esc_html__( 'All tests are done with real web browsers, so the results match the end-user experience exactly.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Examine all parts of a web page', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Performance overview', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Performance grade and tips', 'cl-wp-info' ) . '</p>';
@@ -922,7 +921,7 @@ class Cl_WP_Info {
 
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'GTMetrix', 'cl-wp-info' ) . '</h3>';
-		$html .= '<p>' . esc_html__( 'GTmetrix tells you a lot about your website performance.' , 'cl-wp-info' ) . '</p>';
+		$html .= '<p>' . esc_html__( 'GTmetrix tells you a lot about your website performance.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'PageSpeed and YSlow scores and Recommendations', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Page Load Details (time, size, number of requests)', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Various Analysis Options', 'cl-wp-info' ) . '</p>';
@@ -961,7 +960,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -976,7 +975,6 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_tools_ttfb( $echo = true ) {
 		$html  = '';
-
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'keycdn URL Speed', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Query a single asset from 14 test locations.', 'cl-wp-info' ) . '</p>';
@@ -997,7 +995,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -1012,7 +1010,6 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_tools_http2( $echo = true ) {
 		$html  = '';
-
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'HTTP2.Pro', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Online tool to check server HTTP/2, ALPN, and Server-push support.', 'cl-wp-info' ) . '</p>';
@@ -1031,9 +1028,8 @@ class Cl_WP_Info {
 		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.keycdn.com/http2-test" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
-
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -1048,7 +1044,6 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_tools_dns( $echo = true ) {
 		$html  = '';
-
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Pingdom DNS Health', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Test DNS servers and settings for a domain name.', 'cl-wp-info' ) . '</p>';
@@ -1063,7 +1058,6 @@ class Cl_WP_Info {
 		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
-
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'DNS Checker', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'DNS Checker provides free dns lookup service for checking domain name server records against a randomly selected list of DNS servers in different corners of the world.', 'cl-wp-info' ) . '</p>';
@@ -1072,7 +1066,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -1091,7 +1085,7 @@ class Cl_WP_Info {
 		$html .= '<h3>' . esc_html__( 'Gzip Compression Test', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'This tool checks your server to see if you have Gzip compression enabled.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'This tool supports Gzip compression from mod_deflate, mod_gzip or gzip compression through PHP and other server side programming languages.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://www.gziptest.com/result/' . rawurlencode( $this->wp_site_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://nixcp.com/tools/gzip-test/" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
@@ -1101,7 +1095,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -1116,7 +1110,6 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_tools_mail( $echo = true ) {
 		$html  = '';
-
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'MX Toolbox', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'All of your MX record, DNS, blacklist and SMTP diagnostics in one integrated tool.', 'cl-wp-info' ) . '</p>';
@@ -1132,7 +1125,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}
@@ -1147,7 +1140,6 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_info_donate( $echo = true ) {
 		$html  = '';
-
 		$html .= '<div class="cl-no-print cl-donate updated">';
 		$html .= '<p>' . esc_html__( "If this plugin is useful for you, maybe you'd like to collaborate with its development and invite me to a coffe or a beer", 'cl-wp-info' ) . '</p>';
 		$html .= '<p><a class="cl-donate-btn" href="https://www.paypal.me/CarlosLongarela" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Yes, of course :)', 'cl-wp-info' ) . '</a></p>';
@@ -1156,7 +1148,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html;
+			echo $html; // WPCS: XSS ok.
 		} else {
 			return $html;
 		}

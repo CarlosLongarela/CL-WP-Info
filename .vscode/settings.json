@@ -1,8 +1,4 @@
 // Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
 {
-    "phpcs.enable": true,
-    "phpcs.standard": "WordPress",
-    "less.compile": {
-        "autoprefixer": "> 5%, last 2 Chrome versions, not ie 6-9"
-    }
-  }
+    "phpcs.enable": true
+}
