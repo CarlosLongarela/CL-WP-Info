@@ -33,6 +33,7 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 * Update - Updated WordPress min PHP version.
 * Tweak - Changed HTML code inside PHP for better readibility.
 * Tweak - Changed comments to English.
+* Feature - German translation, thank to Achim Günzel
 
 = 1.4.4 - 2018-06-01 =
 * Update - Updated WordPress min PHP version.
