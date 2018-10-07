@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: CL WP Info\n"
-"POT-Creation-Date: 2018-10-07 16:34+0200\n"
-"PO-Revision-Date: 2018-10-07 16:34+0200\n"
+"POT-Creation-Date: 2018-10-07 16:31+0200\n"
+"PO-Revision-Date: 2018-10-07 16:33+0200\n"
 "Last-Translator: \n"
-"Language-Team: Carlos Longarela carlos@longarela.eu\n"
-"Language: es_ES\n"
+"Language-Team: Achim Günzel\n"
+"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,40 +28,39 @@ msgstr "CL WP Info"
 
 #: cl-wp-info.php:62 cl-wp-info.php:63
 msgid "External Tools"
-msgstr "Herramientas externas"
+msgstr "Externe Werkzeuge"
 
 #: cl-wp-info.php:125
 msgid "Server Info"
-msgstr "Información del Servidor"
+msgstr "Server Info"
 
 #: cl-wp-info.php:130
 msgid "PHP Info"
-msgstr "Información de PHP"
+msgstr "PHP Info"
 
 #: cl-wp-info.php:135
 msgid "Database Info"
-msgstr "Información de la Base de Datos"
+msgstr "Datenbank Info"
 
 #: cl-wp-info.php:140
 msgid "WordPress Info"
-msgstr "Información de WordPress"
+msgstr "Wordpress Info"
 
 #: cl-wp-info.php:145
 msgid "WordPress Themes Info"
-msgstr "Información de Temas de WordPress"
+msgstr "WordPress Themes Info"
 
 #: cl-wp-info.php:150
 msgid "WordPress Plugins Info"
-msgstr "Información de Plugins de WordPress"
+msgstr "WordPress Plugins Info"
 
 #: cl-wp-info.php:155
 msgid "WordPress Javascript & CSS"
-msgstr "Javascript y CSS de WordPress"
+msgstr "WordPress JavaScript & CSS"
 
 #: cl-wp-info.php:174
 msgid "External tools for measure page perfomance"
-msgstr ""
-"Herramientas externas para la medición del rendimiento de la página web"
+msgstr "Externe Tools zur Messung der Seitengeschwindigkeit"
 
 #: cl-wp-info.php:177
 msgid "WPO"
@@ -69,7 +68,7 @@ msgstr "WPO"
 
 #: cl-wp-info.php:178
 msgid "Time to first byte"
-msgstr "Time to first byte"
+msgstr "Zeit bis zum ersten Byte"
 
 #: cl-wp-info.php:179 cl-wp-info.php:196
 msgid "HTTP/2"
@@ -85,490 +84,489 @@ msgstr "Gzip"
 
 #: cl-wp-info.php:182 cl-wp-info.php:211
 msgid "Mail"
-msgstr "Correo electrónico"
+msgstr "Mail"
 
 #: cl-wp-info.php:186
 msgid "WPO (Web Performance Optimization)"
-msgstr "WPO (Web Performance Optimization)"
+msgstr "WPO (Web Performance Optimierung)"
 
 #: cl-wp-info.php:191
 msgid "TTFB (Time To First Byte)"
-msgstr "TTFB (Time To First Byte)"
+msgstr "TTFB (Zeit bis zum ersten Byte)"
 
 #: class-cl-wp-info.php:163
 #, php-format
 msgid "%1$s (%2$s) report by:"
-msgstr "Informe de %1$s (%2$s) realizado por:"
+msgstr "%1$s (%2$s) Bericht von:"
 
 #: class-cl-wp-info.php:164
 msgid "Put your name or company name here"
-msgstr "Pon tu nombre o el de la empresa aquí"
+msgstr "Geben Sie hier Ihren Namen oder Firmennamen ein"
 
 #: class-cl-wp-info.php:165
 msgid "Report made with CL WP Info WordPress plugin"
-msgstr "Informe realizado con el plugin CL WP Info WordPress"
+msgstr "Bericht erstellt mit CL WP Info WordPress Plugin"
 
 #: class-cl-wp-info.php:187 class-cl-wp-info.php:542
 msgid "WordPress Version:"
-msgstr "Versión de WordPress:"
+msgstr "WordPress Version:"
 
 #: class-cl-wp-info.php:191
 msgid "You have latest available version"
-msgstr "Tienes la última versión disponible"
+msgstr "Du hast die neueste verfügbare Version"
 
 #: class-cl-wp-info.php:193
 msgid "There is a new WordPress version available"
-msgstr "Hay una nueva versión de WordPress disponible"
+msgstr "Es ist eine neue WordPress-Version verfügbar"
 
 #: class-cl-wp-info.php:202
 msgid "Last WordPress version checked:"
-msgstr "Última comprobación de versión de WordPress:"
+msgstr "Letzte WordPress-Version überprüft:"
 
 #: class-cl-wp-info.php:208
 msgid ""
 "Excellent: Your server PHP version is the same or greater than WordPress "
 "recomended."
 msgstr ""
-"Excelente: La versión de PHP del servidor es igual o mayor que la "
-"recomendada por WordPress."
+"Ausgezeichnet: Ihre Server-PHP-Version ist gleich oder größer als von "
+"WordPress empfohlen."
 
 #: class-cl-wp-info.php:210
 msgid ""
 "Your server PHP version is the same or greater than WordPress minimum, but "
 "lower that recomended. Please update your server PHP Version."
 msgstr ""
-"La versión de PHP del servidor es igual o mayor que la mínima requerida de "
-"WordPress, pero inferior a la recomendada. Actualiza la versión de PHP del "
-"servidor."
+"Ihre Server-PHP-Version ist gleich oder größer als WordPress Minimum, aber "
+"niedriger als empfohlen. Bitte aktualisieren Sie Ihre Server-PHP-Version."
 
 #: class-cl-wp-info.php:212
 msgid ""
 "BAD: Your server PHP version is lower than minimum required. Update your "
 "server PHP Version."
 msgstr ""
-"MAL: La versión de PHP del servidor es inferior al mínimo requerido. "
-"Actualiza la versión de PHP del servidor."
+"SCHLECHT: Ihre Server-PHP-Version ist niedriger als das erforderliche "
+"Minimum. Aktualisieren Sie Ihre Server-PHP-Version."
 
 #: class-cl-wp-info.php:218
 msgid ""
 "Your server database version is the same or greater than WordPress "
 "recomended."
 msgstr ""
-"La versión de la base de datos del servidor es igual o mayor que la "
-"recomendada por WordPress."
+"Ihre Server-Datenbankversion ist gleich oder größer als von WordPress "
+"empfohlen."
 
 #: class-cl-wp-info.php:220
 msgid ""
 "BAD: Your server database version is lower than minimum required. Update "
 "your server database Version."
 msgstr ""
-"MAL: La versión de la base de datos del servidor es inferior al mínimo "
-"requerido. Actualiza la versión de la base de datos del servidor."
+"SCHLECHT: Ihre Server-Datenbankversion ist niedriger als das erforderliche "
+"Minimum. Aktualisieren Sie Ihre Server-Datenbank Version."
 
 #: class-cl-wp-info.php:241
 msgid "OS Server:"
-msgstr "OS Servidor:"
+msgstr "OS Server:"
 
 #: class-cl-wp-info.php:253
 msgid "Server Memory:"
-msgstr "Memoria del servidor:"
+msgstr "Server Speicher:"
 
 #: class-cl-wp-info.php:284
 msgid "Web Server:"
-msgstr "Servidor Web:"
+msgstr "Webserver:"
 
 #: class-cl-wp-info.php:291
 msgid "Web Server User:"
-msgstr "Usuario del Servidor Web:"
+msgstr "Webserver-Benutzer:"
 
 #: class-cl-wp-info.php:298
 msgid "Web Server Name:"
-msgstr "Nombre del Servidor Web:"
+msgstr "Web Server Name:"
 
 #: class-cl-wp-info.php:305
 msgid "Web Server Port:"
-msgstr "Puerto del Servidor Web:"
+msgstr "Web Server Port:"
 
 #: class-cl-wp-info.php:312
 msgid "Web Server Ip:"
-msgstr "IP del Servidor Web:"
+msgstr "Web Server Ip:"
 
 #: class-cl-wp-info.php:319
 msgid "Web Server Scheme:"
-msgstr "Protocolo del Servidor Web:"
+msgstr "Webserver-Schema:"
 
 #: class-cl-wp-info.php:326
 msgid "Web Server Http Version:"
-msgstr "Versión Http del Servidor Web:"
+msgstr "Web-Server HTTP-Version:"
 
 #: class-cl-wp-info.php:333
 msgid "Web Server Root:"
-msgstr "Raíz del Servidor Web:"
+msgstr "Web Server Root:"
 
 #: class-cl-wp-info.php:355
 msgid "PHP Version:"
-msgstr "Versión de PHP:"
+msgstr "PHP Version:"
 
 #: class-cl-wp-info.php:359
 msgid "PHP Loaded Extensions:"
-msgstr "Extensiones PHP Cargadas:"
+msgstr "PHP geladene Erweiterungen:"
 
 #: class-cl-wp-info.php:369
 msgid "PHP Webserver Interface:"
-msgstr "Interface de PHP en el Servidor Web:"
+msgstr "PHP Webserver Interface:"
 
 #: class-cl-wp-info.php:377
 msgid "Date/Time Zone:"
-msgstr "Zona horaria:"
+msgstr "Datum/Uhrzeit Zone:"
 
 #: class-cl-wp-info.php:379 class-cl-wp-info.php:388 class-cl-wp-info.php:397
 #: class-cl-wp-info.php:406 class-cl-wp-info.php:415 class-cl-wp-info.php:424
 #: class-cl-wp-info.php:433 class-cl-wp-info.php:442 class-cl-wp-info.php:451
 msgid "PHP Global:"
-msgstr "Global de PHP:"
+msgstr "PHP Global:"
 
 #: class-cl-wp-info.php:380 class-cl-wp-info.php:389 class-cl-wp-info.php:398
 #: class-cl-wp-info.php:407 class-cl-wp-info.php:416 class-cl-wp-info.php:425
 #: class-cl-wp-info.php:434 class-cl-wp-info.php:443 class-cl-wp-info.php:452
 msgid "App Local:"
-msgstr "Local de la App:"
+msgstr "App Local:"
 
 #: class-cl-wp-info.php:386
 msgid "Date/Time latitude:"
-msgstr "Latitud de la zona horaria:"
+msgstr "Datum/Uhrzeit Breitengrad:"
 
 #: class-cl-wp-info.php:395
 msgid "Date/Time longitude:"
-msgstr "Longitud de la zona horaria:"
+msgstr "Datum/Uhrzeit Längengrad:"
 
 #: class-cl-wp-info.php:404
 msgid "Default charset:"
-msgstr "Juego de caracteres predefinido:"
+msgstr "Standardzeichensatz:"
 
 #: class-cl-wp-info.php:413
 msgid "Error Log:"
-msgstr "Registro de Errores:"
+msgstr "Fehlerprotokoll:"
 
 #: class-cl-wp-info.php:422
 msgid "Max File Uploads:"
-msgstr "Número Máximo de Archivos a Subir:"
+msgstr "Max File Uploads:"
 
 #: class-cl-wp-info.php:431
 msgid "Post Max Size:"
-msgstr "Tamaño Máximo de Post:"
+msgstr "Post Max Size:"
 
 #: class-cl-wp-info.php:440
 msgid "Upload Max File Size:"
-msgstr "Tamaño Máximo de Archivo a Subir:"
+msgstr "Upload Max File Size:"
 
 #: class-cl-wp-info.php:449
 msgid "Max Memory:"
-msgstr "Memoria Máxima:"
+msgstr "Maximaler Speicher:"
 
 #: class-cl-wp-info.php:474
 msgid "Database Server:"
-msgstr "Servidor de Base de Datos:"
+msgstr "Datenbank-Server:"
 
 #: class-cl-wp-info.php:480
 msgid "WordPress Database:"
-msgstr "Base de Datos de WordPress:"
+msgstr "WordPress Datenbank:"
 
 #: class-cl-wp-info.php:486
 msgid "WordPress Database prefix:"
-msgstr "Prefijo de la Base de Datos de WordPress:"
+msgstr "WordPress Datenbank-Präfix:"
 
 #: class-cl-wp-info.php:492
 msgid "WordPress Database Username:"
-msgstr "Usuario de Base de Datos de WordPress:"
+msgstr "WordPress Datenbank-Benutzername:"
 
 #: class-cl-wp-info.php:493 class-cl-wp-info.php:500
 msgid "Hidden for security purposes"
-msgstr "Oculto por motivos de seguridad"
+msgstr "Aus Sicherheitsgründen versteckt"
 
 #: class-cl-wp-info.php:493
 msgid ""
 "You can view Database Username in constant DB_USER defined in your wp-config."
 "php in WordPress root folder"
 msgstr ""
-"Puedes ver el Usuario de la Base de Datos en la constante DB_USER definida "
-"en tu wp-config.php de la carpeta raíz de WordPress"
+"Sie können den Datenbankbenutzernamen in der Konstanten DB_USER anzeigen, "
+"die in Ihrer wp-config.php in WordPress Stammordner definiert ist."
 
 #: class-cl-wp-info.php:499
 msgid "WordPress Database Password:"
-msgstr "Clave de Base de Datos de WordPress:"
+msgstr "WordPress Datenbank-Passwort:"
 
 #: class-cl-wp-info.php:500
 msgid ""
 "You can view Database Password in constant DB_PASSWORD defined in your wp-"
 "config.php in WordPress root folder"
 msgstr ""
-"Puedes ver la Clave de la Base de Datos en la constante DB_PASSWORD definida "
-"en tu wp-config.php de la carpeta raíz de WordPress"
+"Sie können das Datenbankpasswort in der Konstanten DB_PASSWORD anzeigen, die "
+"in Ihrer wp-config.php im WordPress-Stammverzeichnis definiert ist."
 
 #: class-cl-wp-info.php:506
 msgid "WordPress Database Hostname:"
-msgstr "Host de Base de Datos de WordPress:"
+msgstr "WordPress Datenbank Hostname:"
 
 #: class-cl-wp-info.php:513
 msgid "WordPress Database Charset to use in creating database tables:"
 msgstr ""
-"Conjunto de caracteres de la Base de Datos de WordPress usado en la creación "
-"de nuevas tablas:"
+"WordPress Datenbank Charset zur Verwendung beim Erstellen von "
+"Datenbanktabellen:"
 
 #: class-cl-wp-info.php:520
 msgid "WordPress Database Collate Type:"
-msgstr "Tipo de cotejamiento de la base de datos de WordPress:"
+msgstr "WordPress Datenbank Sortierungstyp:"
 
 #: class-cl-wp-info.php:546
 msgid "WordPress URL:"
-msgstr "URL de WordPress:"
+msgstr "WordPress URL:"
 
 #: class-cl-wp-info.php:552
 msgid "Absolute Path to WordPress Directory:"
-msgstr "Ruta al Directorio de Contenido de WordPress:"
+msgstr "Absoluter Pfad zum WordPress-Verzeichnis:"
 
 #: class-cl-wp-info.php:559
 msgid "WordPress Content Directory:"
-msgstr "Directorio de Contenido de WordPress:"
+msgstr "WordPress Inhaltsverzeichnis:"
 
 #: class-cl-wp-info.php:566
 msgid "Trash for media:"
-msgstr "Papelera para los medios:"
+msgstr "Papierkorb für Medien:"
 
 #: class-cl-wp-info.php:568 class-cl-wp-info.php:605 class-cl-wp-info.php:616
 #: class-cl-wp-info.php:627
 msgid "No"
-msgstr "No"
+msgstr "Nein"
 
 #: class-cl-wp-info.php:570 class-cl-wp-info.php:607 class-cl-wp-info.php:618
 #: class-cl-wp-info.php:629
 msgid "Yes"
-msgstr "Sí"
+msgstr "Ja"
 
 #: class-cl-wp-info.php:577
 msgid "Empty trash each:"
-msgstr "Vaciar papelera cada:"
+msgstr "Leere alles im Papierkorb:"
 
 #: class-cl-wp-info.php:578
 msgid "days"
-msgstr "días"
+msgstr "Tage"
 
 #: class-cl-wp-info.php:584
 msgid "WordPress memory limit:"
-msgstr "Límite de memoria de WordPress:"
+msgstr "WordPress Speicherlimit:"
 
 #: class-cl-wp-info.php:591
 msgid "WordPress top memory limit:"
-msgstr "Límite de memoria máximo de WordPress:"
+msgstr "WordPress obere Speichergrenze:"
 
 #: class-cl-wp-info.php:597
 msgid "WordPress locale:"
-msgstr "Localización de WordPress:"
+msgstr "WordPress Sprache:"
 
 #: class-cl-wp-info.php:603
 msgid "WordPress Cache:"
-msgstr "Cache de WordPress:"
+msgstr "WordPress Cache:"
 
 #: class-cl-wp-info.php:614
 msgid "WordPress Multisite:"
-msgstr "WordPress Multisitio:"
+msgstr "WordPress Multisite:"
 
 #: class-cl-wp-info.php:625
 msgid "WordPress Debug:"
-msgstr "Debug de WordPress:"
+msgstr "WordPress Debug:"
 
 #: class-cl-wp-info.php:636
 msgid "WordPress Posts:"
-msgstr "Entradas de WordPress:"
+msgstr "WordPress Posts:"
 
 #. translators: number of posts published.
 #: class-cl-wp-info.php:639
 #, php-format
 msgid "%d published post"
 msgid_plural "%d published posts"
-msgstr[0] "%d entrada publicada"
-msgstr[1] "%d entradas publicadas"
+msgstr[0] "%d veröffentlichter Beitrag"
+msgstr[1] "%d veröffentlichte Beiträge"
 
 #. translators: number of posts future.
 #: class-cl-wp-info.php:641
 #, php-format
 msgid "%d post to publish in the future"
 msgid_plural "%d posts to publish in the future"
-msgstr[0] "%d entrada programada"
-msgstr[1] "%d entradas programadas"
+msgstr[0] "%d anstehender Beitrag zur Veröffentlichung"
+msgstr[1] "%d anstehende Beiträge zur Veröffentlichung"
 
 #. translators: number of posts pending.
 #: class-cl-wp-info.php:643
 #, php-format
 msgid "%d post pending review"
 msgid_plural "%d posts pending review"
-msgstr[0] "%d entrada pendiente de revisión"
-msgstr[1] "%d entradas pendientes de revisión"
+msgstr[0] "%d ausstehender Post zur Überprüfung"
+msgstr[1] "%d ausstehende Posts zur Überprüfung"
 
 #. translators: number of posts in draft.
 #: class-cl-wp-info.php:645
 #, php-format
 msgid "%d post in draft status"
 msgid_plural "%d posts in draft status"
-msgstr[0] "%d entrada en borrador"
-msgstr[1] "%d entradas en borrador"
+msgstr[0] "%d Beitrag im Entwurfsstatus"
+msgstr[1] "%d Beiträge im Entwurfsstatus"
 
 #. translators: number of posts in auto-draft.
 #: class-cl-wp-info.php:647
 #, php-format
 msgid "%d newly created post with no content"
 msgid_plural "%d newly created posts with no content"
-msgstr[0] "%d entrada creada recientemente sin contenido"
-msgstr[1] "%d entradas creadas recientemente sin contenido"
+msgstr[0] "%d neu erstellter Beitrag ohne Inhalt"
+msgstr[1] "%d neu erstellte Beiträge ohne Inhalt"
 
 #. translators: number of private posts.
 #: class-cl-wp-info.php:649
 #, php-format
 msgid "%d post not visible to users who are not logged in"
 msgid_plural "%d posts not visible to users who are not logged in"
-msgstr[0] "%d entrada oculta para usuarios no conectados"
-msgstr[1] "%d entradas ocultas para usuarios no conectados"
+msgstr[0] "%d Beitrag nicht sichtbar für Benutzer, die nicht angemeldet sind."
+msgstr[1] "%d Beiträge nicht sichtbar für Benutzer, die nicht angemeldet sind."
 
 #. translators: number of posts in revision.
 #: class-cl-wp-info.php:651
 #, php-format
 msgid "%d revision post"
 msgid_plural "%d revision posts"
-msgstr[0] "%d revisión de entrada"
-msgstr[1] "%d revisiones de entradas"
+msgstr[0] "%d Beitrag Revision"
+msgstr[1] "%d Beitrag Revisionen"
 
 #. translators: number of posts in trash.
 #: class-cl-wp-info.php:653
 #, php-format
 msgid "%d post in trashbin"
 msgid_plural "%d posts in trashbin"
-msgstr[0] "%d entrada en la papelera"
-msgstr[1] "%d entradas en la papelera"
+msgstr[0] "%d Beitrag im Papierkorb"
+msgstr[1] "%d Beiträge im Papierkorb"
 
 #: class-cl-wp-info.php:659
 msgid "WordPress Pages:"
-msgstr "Páginas de WordPress:"
+msgstr "WordPress Seiten:"
 
 #. translators: number of pages published.
 #: class-cl-wp-info.php:662
 #, php-format
 msgid "%d published page"
 msgid_plural "%d published pages"
-msgstr[0] "%d página publicada"
-msgstr[1] "%d páginas publicadas"
+msgstr[0] "%d veröffentlichte Seite"
+msgstr[1] "%d veröffentlichte Seiten"
 
 #. translators: number of pages future.
 #: class-cl-wp-info.php:664
 #, php-format
 msgid "%d page to publish in the future"
 msgid_plural "%d pages to publish in the future"
-msgstr[0] "%d página programada"
-msgstr[1] "%d páginas programadas"
+msgstr[0] "%d Seite die noch veröffentlicht werden soll"
+msgstr[1] "%d Seiten die noch veröffentlicht werden sollen"
 
 #. translators: number of pages pending.
 #: class-cl-wp-info.php:666
 #, php-format
 msgid "%d page pending review"
 msgid_plural "%d pages pending review"
-msgstr[0] "%d página pendiente de revisión"
-msgstr[1] "%d páginas pendientes de revisión"
+msgstr[0] "%d ausstehenden Seite zur Überprüfung"
+msgstr[1] "%d ausstehenden Seiten zur Überprüfung"
 
 #. translators: number of pages in draft.
 #: class-cl-wp-info.php:668
 #, php-format
 msgid "%d page in draft status"
 msgid_plural "%d pages in draft status"
-msgstr[0] "%d página en borrador"
-msgstr[1] "%d páginas en borrador"
+msgstr[0] "%d Seite im Entwurfsstatus"
+msgstr[1] "%d Seiten im Entwurfsstatus"
 
 #. translators: number of pages in auto-draft.
 #: class-cl-wp-info.php:670
 #, php-format
 msgid "%d newly created page with no content"
 msgid_plural "%d newly created pages with no content"
-msgstr[0] "%d página creada recientemente sin contenido"
-msgstr[1] "%d páginas creadas recientemente sin contenido"
+msgstr[0] "%d neu erstellte Seite ohne Inhalt"
+msgstr[1] "%d neu erstellte Seiten ohne Inhalt"
 
 #. translators: number of private pages.
 #: class-cl-wp-info.php:672
 #, php-format
 msgid "%d page not visible to users who are not logged in"
 msgid_plural "%d pages not visible to users who are not logged in"
-msgstr[0] "%d página oculta para usuarios no conectados"
-msgstr[1] "%d páginas ocultas para usuarios no conectados"
+msgstr[0] "%d Seite nicht sichtbar für Benutzer, die nicht angemeldet sind."
+msgstr[1] "%d Seiten nicht sichtbar für Benutzer, die nicht angemeldet sind."
 
 #. translators: number of pages in revision.
 #: class-cl-wp-info.php:674
 #, php-format
 msgid "%d revision page"
 msgid_plural "%d revision pages"
-msgstr[0] "%d revisión de página"
-msgstr[1] "%d revisiones de páginas"
+msgstr[0] "%d Seite Revision"
+msgstr[1] "%d Seiten Revisionen"
 
 #. translators: number of pages in trash.
 #: class-cl-wp-info.php:676
 #, php-format
 msgid "%d page in trashbin"
 msgid_plural "%d pages in trashbin"
-msgstr[0] "%d página en la papelera"
-msgstr[1] "%d páginas en la papelera"
+msgstr[0] "%d Seite im Papierkorb"
+msgstr[1] "%d Seiten im Papierkorb"
 
 #: class-cl-wp-info.php:682
 msgid "WordPress Comments:"
-msgstr "Comentarios de WordPress:"
+msgstr "WordPress Kommentare:"
 
 #. translators: number of comments.
 #: class-cl-wp-info.php:684
 #, php-format
 msgid "%d comment"
 msgid_plural "%d comments"
-msgstr[0] "%d comentario"
-msgstr[1] "%d comentarios"
+msgstr[0] "%d Kommentar"
+msgstr[1] "%d Kommentare"
 
 #: class-cl-wp-info.php:689
 msgid "WordPress Media:"
-msgstr "Medios de WordPress:"
+msgstr "WordPress Medien:"
 
 #: class-cl-wp-info.php:694
 msgid "MIME Type"
-msgstr "Tipo MIME"
+msgstr "MIME Typ"
 
 #: class-cl-wp-info.php:697
 msgid "Trash:"
-msgstr "Papelera:"
+msgstr "Papierkorb:"
 
 #: class-cl-wp-info.php:703
 msgid "WordPress Users:"
-msgstr "Usuarios de WordPress:"
+msgstr "WordPress Benutzer:"
 
 #. translators: number of users.
 #: class-cl-wp-info.php:706
 #, php-format
 msgid "%d user"
 msgid_plural "%d users"
-msgstr[0] "%d usuario"
-msgstr[1] "%d usuarios"
+msgstr[0] "%d Benutzer"
+msgstr[1] "%d Benutzer"
 
 #: class-cl-wp-info.php:747
 msgid "Themes:"
-msgstr "Temas:"
+msgstr "Themes:"
 
 #: class-cl-wp-info.php:755 class-cl-wp-info.php:757 class-cl-wp-info.php:771
 #: class-cl-wp-info.php:816 class-cl-wp-info.php:818 class-cl-wp-info.php:829
 msgid "Version"
-msgstr "Versión"
+msgstr "Version"
 
 #: class-cl-wp-info.php:761
 msgid "Child Theme of"
-msgstr "Tema hijo de"
+msgstr "Child Theme von"
 
 #: class-cl-wp-info.php:765 class-cl-wp-info.php:823
 msgid "Active"
-msgstr "Activo"
+msgstr "Aktiv"
 
 #: class-cl-wp-info.php:770 class-cl-wp-info.php:828
 msgid "Update available:"
-msgstr "Actualización disponible:"
+msgstr "Update verfügbar:"
 
 #: class-cl-wp-info.php:776 class-cl-wp-info.php:835
 msgid "Author:"
@@ -580,15 +578,15 @@ msgstr "Plugins:"
 
 #: class-cl-wp-info.php:830
 msgid "Compatible with WordPress"
-msgstr "Compatible con WordPress"
+msgstr "Kompatibel mit WordPress"
 
 #: class-cl-wp-info.php:867
 msgid "Javascript files (in this page):"
-msgstr "Archivos de JavaScript (en esta página):"
+msgstr "JavaScript-Dateien (auf dieser Seite):"
 
 #: class-cl-wp-info.php:878
 msgid "CSS files (in this page):"
-msgstr "Archivos CSS (en esta página):"
+msgstr "CSS-Dateien (auf dieser Seite):"
 
 #: class-cl-wp-info.php:905
 msgid "Pingdom Website Speed Test"
@@ -599,37 +597,37 @@ msgid ""
 "All tests are done with real web browsers, so the results match the end-user "
 "experience exactly."
 msgstr ""
-"Todas las pruebas se realizan con navegadores web reales, por lo que el "
-"resultado coincide exactamente con la experiencia del usuario final."
+"Alle Tests werden mit echten Webbrowsern durchgeführt, so dass die "
+"Ergebnisse exakt auf die Bedürfnisse des Endbenutzers abgestimmt sind."
 
 #: class-cl-wp-info.php:907
 msgid "Examine all parts of a web page"
-msgstr "Examinar todas las partes de una página web"
+msgstr "Untersuchen Sie alle Teile einer Webseite."
 
 #: class-cl-wp-info.php:908
 msgid "Performance overview"
-msgstr "Resumen del rendimiento"
+msgstr "Performance Übersicht"
 
 #: class-cl-wp-info.php:909
 msgid "Performance grade and tips"
-msgstr "Grado de rendimiento y consejos"
+msgstr "Performance-Grad und Tipps"
 
 #: class-cl-wp-info.php:910
 msgid "Trace your performance history"
-msgstr "Controla tu historial de rendimiento"
+msgstr "Verfolgen Sie Ihre Performance-Historie"
 
 #: class-cl-wp-info.php:911
 msgid "Test from multiple locations"
-msgstr "Comprobación desde múltiples ubicaciones"
+msgstr "Test von mehreren Standorten aus"
 
 #: class-cl-wp-info.php:912
 msgid "Share your results"
-msgstr "Comparte tus resultados"
+msgstr "Teilen Sie Ihre Ergebnisse"
 
 #: class-cl-wp-info.php:913 class-cl-wp-info.php:925 class-cl-wp-info.php:933
 #: class-cl-wp-info.php:947 class-cl-wp-info.php:1022 class-cl-wp-info.php:1082
 msgid "Test"
-msgstr "Comprobar"
+msgstr "Test"
 
 #: class-cl-wp-info.php:917
 msgid "GTMetrix"
@@ -637,31 +635,31 @@ msgstr "GTMetrix"
 
 #: class-cl-wp-info.php:918
 msgid "GTmetrix tells you a lot about your website performance."
-msgstr "GTmetrix te cuenta mucho sobre el rendimiento de tu sitio Web."
+msgstr "GTmetrix sagt Ihnen viel über die Leistung Ihrer Website."
 
 #: class-cl-wp-info.php:919
 msgid "PageSpeed and YSlow scores and Recommendations"
-msgstr "Puntuaciones PageSpeed, YSlow y recomendaciones"
+msgstr "PageSpeed und YSlow Werte und Empfehlungen"
 
 #: class-cl-wp-info.php:920
 msgid "Page Load Details (time, size, number of requests)"
-msgstr "Detalles de carga de página (tiempo, tamaño, número de peticiones)"
+msgstr "Details zum Seitenaufbau (Zeit, Größe, Anzahl der Zugriffe)"
 
 #: class-cl-wp-info.php:921
 msgid "Various Analysis Options"
-msgstr "Varias opciones de análisis"
+msgstr "Verschiedene Analysemöglichkeiten"
 
 #: class-cl-wp-info.php:922
 msgid "Waterfall, Video and Report History"
-msgstr "Cascada de orden de recursos, video e historial de informes"
+msgstr "Wasserfall-, Video- und Berichtsverlauf"
 
 #: class-cl-wp-info.php:923
 msgid "Analyze with Mobile"
-msgstr "Analizar con móvil"
+msgstr "Analysiere mit dem Handy"
 
 #: class-cl-wp-info.php:924
 msgid "Test from multiple regions"
-msgstr "Comprobación desde múltiples regiones"
+msgstr "Test aus mehreren Regionen"
 
 #: class-cl-wp-info.php:929
 msgid "WebPageTest"
@@ -672,18 +670,17 @@ msgid ""
 "Run a free website speed test from multiple locations around the globe using "
 "real browsers (IE and Chrome)"
 msgstr ""
-"Ejecuta una prueba gratuita de rendimiento de la página web desde múltiples "
-"localizaciones en diferentes lugares del mundo usando navegadores reales (IE "
-"y Chrome)"
+"Führen Sie einen kostenlosen Website-Geschwindigkeitstest von mehreren "
+"Standorten auf der ganzen Welt mit echten Browsern (IE und Chrome) durch."
 
 #: class-cl-wp-info.php:931
 msgid ""
 "WebPagetest is an open source project that is primarily being developed and "
 "supported by Google as part of our efforts to make the web faster."
 msgstr ""
-"WebPagetest es un proyecto de código abierto desarrollado y soportado "
-"principalmente por Google como parte de sus esfuerzos para hacer la web más "
-"rápida."
+"WebPagetest ist ein Open-Source-Projekt, das in erster Linie von Google im "
+"Rahmen unserer Bemühungen, das Web schneller zu machen, entwickelt und "
+"unterstützt wird."
 
 #: class-cl-wp-info.php:932
 msgid ""
@@ -692,11 +689,11 @@ msgid ""
 "under active development on GitHub and is also packaged up periodically and "
 "available for download if you would like to run your own instance."
 msgstr ""
-"WebPagetest es una herramienta que fue originalmente desarrollada por AOL "
-"para uso interno y fue liberada como código abierto en el año 2008 bajo una "
-"licencia BSD. La plataforma está bajo desarrollo activo en GitHub y también "
-"se empaqueta periódicamente y se pone disponible para su descarga para el "
-"que quiera ejecutar su propia instancia."
+"WebPagetest ist ein Tool, das ursprünglich von AOL für den internen Gebrauch "
+"entwickelt wurde und 2008 unter einer BSD-Lizenz Open-Source betrieben "
+"wurde. Die Plattform befindet sich in der aktiven Entwicklung auf GitHub und "
+"wird auch regelmäßig zusammengestellt und steht zum Download bereit, wenn "
+"Sie Ihre eigene Instanz betreiben möchten."
 
 #: class-cl-wp-info.php:937
 msgid "PageSpeed Insights"
@@ -707,35 +704,36 @@ msgid ""
 "PageSpeed Insights analyzes the content of a web page, then generates "
 "suggestions to make that page faster."
 msgstr ""
-"PageSpeed Insights analiza el contenido de una página web, después genera "
-"sugerencias para hacer más rápida la página."
+"PageSpeed Insights analysiert den Inhalt einer Webseite und generiert dann "
+"Vorschläge, um diese Seite schneller zu gestalten."
 
 #: class-cl-wp-info.php:939 class-cl-wp-info.php:953 class-cl-wp-info.php:975
 #: class-cl-wp-info.php:981 class-cl-wp-info.php:988 class-cl-wp-info.php:1010
 #: class-cl-wp-info.php:1016 class-cl-wp-info.php:1088
 msgid "Test my site"
-msgstr "Comprobar mi sitio web"
+msgstr "Meine Seite testen"
 
 #: class-cl-wp-info.php:943
 msgid "keycdn Website Speed Test"
-msgstr "keycdn Website Speed Test"
+msgstr "keycdn Website Geschwindigkeitstest"
 
 #: class-cl-wp-info.php:944
 msgid ""
 "A page speed test that includes a waterfall breakdown and the website "
 "preview."
 msgstr ""
-"Una prueba de velocidad de página que incluye un desglose en cascada de los "
-"recursos servidos y la vista previa de página web."
+"Ein Seiten-Geschwindigkeitstest, der einen Wasserfall-Breakdown und die "
+"Vorschau der Website beinhaltet."
 
 #: class-cl-wp-info.php:945
 msgid "Select any of the 14 test locations."
-msgstr "Selecciona cualquiera de los 14 lugares de prueba."
+msgstr "Wählen Sie einen der 14 Testorte aus."
 
 #: class-cl-wp-info.php:946
 msgid "Easily share the website speed test results with others."
 msgstr ""
-"Compartir los resultados de velocidad del sitio web con otros fácilmente."
+"Teilen Sie die Ergebnisse des Website-Geschwindigkeitstests einfach mit "
+"anderen."
 
 #: class-cl-wp-info.php:951 class-cl-wp-info.php:1014
 msgid "Geek Flare"
@@ -746,8 +744,8 @@ msgid ""
 "Find out how much time take to load your site from multiple location across "
 "desktop & mobile."
 msgstr ""
-"Averiguar cuánto tiempo tarda en cargar tu sitio desde múltiples ubicaciones "
-"a través de dispositivos de escritorio y móviles."
+"Erfahren Sie, wie viel Zeit das Laden Ihrer Website von mehreren Standorten "
+"über den Desktop und das Handy in Anspruch nimmt."
 
 #: class-cl-wp-info.php:973
 msgid "keycdn URL Speed"
@@ -755,39 +753,39 @@ msgstr "keycdn URL Speed"
 
 #: class-cl-wp-info.php:974
 msgid "Query a single asset from 14 test locations."
-msgstr "Consulta un recurso desde 14 lugares de prueba."
+msgstr "Abfrage eines einzelnen Assets von 14 Teststandorten aus."
 
 #: class-cl-wp-info.php:979
 msgid "Sucuri Loadtimetester"
-msgstr "Sucuri Loadtimetester"
+msgstr "Sucuri Ladezeit-Tester"
 
 #: class-cl-wp-info.php:980
 msgid ""
 "How fast is your site? You can test here the performance of any of your "
 "sites from across the globe."
 msgstr ""
-"¿Cómo de rápido es tu sitio? Puedes probar aquí el tiempo de respuesta de "
-"cualquiera de tus sitios desde todo el mundo."
+"Wie schnell ist Ihre Website? Sie können hier die Leistung aller Ihrer "
+"Standorte auf der ganzen Welt testen."
 
 #: class-cl-wp-info.php:985
 msgid "Byte Check"
-msgstr "Byte Check"
+msgstr "Byte-Prüfung"
 
 #: class-cl-wp-info.php:986
 msgid ""
 "TTFB measures the duration from the users browser making a HTTP request to "
 "the first byte being returned by the server."
 msgstr ""
-"TTFB mide la duración desde que el navegador de usuario realiza una "
-"solicitud HTTP hasta que el primer byte es devuelto por el servidor."
+"TTFB misst die Dauer vom Browser des Benutzers, der eine HTTP-Anfrage "
+"stellt, bis das erste Byte vom Server zurückgegeben wird."
 
 #: class-cl-wp-info.php:987
 msgid ""
 "As soon as the browser has started receiving content, it can start building "
 "up the page infront of the user."
 msgstr ""
-"Tan pronto el navegador inicia la recepción de contenido, puede comenzar la "
-"construcción de la página de usuario."
+"Sobald der Browser mit dem Empfangen von Inhalten begonnen hat, kann er mit "
+"dem Aufbau der Seite vor dem Benutzer beginnen."
 
 #: class-cl-wp-info.php:1008
 msgid "HTTP2.Pro"
@@ -796,16 +794,16 @@ msgstr "HTTP2.Pro"
 #: class-cl-wp-info.php:1009
 msgid "Online tool to check server HTTP/2, ALPN, and Server-push support."
 msgstr ""
-"Herramienta online para comprobar el soporte de servidor de HTTP/2 y el "
-"soporte Server-push."
+"Online-Tool zur Überprüfung der Unterstützung von Server HTTP/2, ALPN und "
+"Server-Push."
 
 #: class-cl-wp-info.php:1015
 msgid ""
 "Check if your site is taking advantage of new HTTP/2 protocol for fast "
 "loading page."
 msgstr ""
-"Comprobar si tu sitio está aprovechando la ventaja del nuevo protocolo "
-"HTTP/2 para cargar más rápidamente la página."
+"Überprüfen Sie, ob Ihre Website die Vorteile des neuen HTTP/2-Protokolls für "
+"das schnelle Laden der Seite nutzt."
 
 #: class-cl-wp-info.php:1020
 msgid "keycdn"
@@ -814,7 +812,8 @@ msgstr "keycdn"
 #: class-cl-wp-info.php:1021
 msgid "Online HTTP/2 test - Verify if your server or CDN supports HTTP/2."
 msgstr ""
-"Comprobación HTTP/2 online - Verifica si tu servidor o CDN soporta HTTP/2."
+"Online-HTTP/2-Test - Überprüfen Sie, ob Ihr Server oder CDN HTTP/2 "
+"unterstützt."
 
 #: class-cl-wp-info.php:1042
 msgid "Pingdom DNS Health"
@@ -822,13 +821,12 @@ msgstr "Pingdom DNS Health"
 
 #: class-cl-wp-info.php:1043
 msgid "Test DNS servers and settings for a domain name."
-msgstr ""
-"Comprueba los servidores DNS y configuraciones para un nombre de dominio."
+msgstr "Testen Sie DNS-Server und Einstellungen für einen Domänennamen."
 
 #: class-cl-wp-info.php:1044 class-cl-wp-info.php:1052
 #: class-cl-wp-info.php:1058
 msgid "Test my domain"
-msgstr "Comprobar mi dominio"
+msgstr "Meine Domain testen"
 
 #: class-cl-wp-info.php:1048 class-cl-wp-info.php:1108
 msgid "MX Toolbox"
@@ -836,14 +834,15 @@ msgstr "MX Toolbox"
 
 #: class-cl-wp-info.php:1049
 msgid "The DNS Check test will run a comprehensive DNS Report for your domain."
-msgstr "DNS Check test ejecutará un informe completo de DNS para tu dominio."
+msgstr ""
+"Der DNS-Check-Test führt einen umfassenden DNS-Bericht für Ihre Domain aus."
 
 #: class-cl-wp-info.php:1050
 msgid ""
 "A DNS lookup is done directly against the root servers (or TLD Servers)."
 msgstr ""
-"Se realiza una búsqueda de DNS directamente contra los servidores raíz (o "
-"servidores TLD)."
+"Ein DNS-Lookup wird direkt gegen die Root-Server (oder TLD-Server) "
+"durchgeführt."
 
 #: class-cl-wp-info.php:1051
 msgid ""
@@ -851,9 +850,9 @@ msgid ""
 "measure their performance and audit the results against common best "
 "practices."
 msgstr ""
-"Entonces preguntamos a cada servidor de nombres para asegurarnos que tus "
-"servidores DNS responden, medimos su rendimiento y auditamos los resultados "
-"de nuevo con las mejores prácticas de uso."
+"Dann fragen wir jeden Nameserver ab, um sicherzustellen, dass Ihre DNS-"
+"Server alle reagieren, messen ihre Leistung und überprüfen die Ergebnisse "
+"anhand gängiger Best Practices."
 
 #: class-cl-wp-info.php:1056
 msgid "DNS Checker"
@@ -865,65 +864,64 @@ msgid ""
 "records against a randomly selected list of DNS servers in different corners "
 "of the world."
 msgstr ""
-"DNS Checker proporciona un servicio de búsqueda dns gratuito para el control "
-"de registros de servidor de nombres de dominio en una lista seleccionada al "
-"azar de servidores DNS de diferentes rincones del mundo."
+"DNS Checker bietet einen kostenlosen DNS-Nachschlagedienst zum Überprüfen "
+"von Datensätzen von Domain Name Servern gegen eine zufällig ausgewählte "
+"Liste von DNS-Servern in verschiedenen Teilen der Welt."
 
 #: class-cl-wp-info.php:1059
 msgid "Test my domain with IPv6"
-msgstr "Comprobar mi dominio con IPv6"
+msgstr "Meine Domain mit IPv6 testen"
 
 #: class-cl-wp-info.php:1079
 msgid "Gzip Compression Test"
-msgstr "Gzip Compression Test"
+msgstr "Gzip-Kompressionstest"
 
 #: class-cl-wp-info.php:1080
 msgid ""
 "This tool checks your server to see if you have Gzip compression enabled."
 msgstr ""
-"Esta herramienta comprueba tu servidor para ver si tienes la compresión Gzip "
-"activada."
+"Dieses Tool überprüft Ihren Server, um zu sehen, ob Sie die Gzip-"
+"Komprimierung aktiviert haben."
 
 #: class-cl-wp-info.php:1081
 msgid ""
 "This tool supports Gzip compression from mod_deflate, mod_gzip or gzip "
 "compression through PHP and other server side programming languages."
 msgstr ""
-"Esta herramienta soporta la compresión Gzip de mod_deflate, mod_gzip o la "
-"compresión gzip a través de PHP y otros lenguajes de programación del lado "
-"del servidor."
+"Dieses Tool unterstützt die Gzip-Kompression von mod_deflate, mod_gzip oder "
+"gzip-Kompression durch PHP und andere serverseitige Programmiersprachen."
 
 #: class-cl-wp-info.php:1086
 msgid "Check GZIP compression"
-msgstr "Check GZIP compression"
+msgstr "GZIP-Komprimierung prüfen"
 
 #: class-cl-wp-info.php:1087
 msgid ""
 "With this tool you can check if your web server is sending the correct GZIP "
 "enabled header."
 msgstr ""
-"Con esta herramienta puedes comprobar si el servidor web está enviando el "
-"encabezado de activación GZIP correcto."
+"Mit diesem Tool können Sie überprüfen, ob Ihr Webserver den richtigen GZIP-"
+"fähigen Header sendet."
 
 #: class-cl-wp-info.php:1109
 msgid ""
 "All of your MX record, DNS, blacklist and SMTP diagnostics in one integrated "
 "tool."
 msgstr ""
-"Todos los registros MX, diagnóstico de listas negras, DNS y SMTP en una "
-"única herramienta integrada."
+"Alle Ihre MX-Einträge, DNS-, Blacklist- und SMTP-Diagnosen in einem "
+"integrierten Tool."
 
 #: class-cl-wp-info.php:1110 class-cl-wp-info.php:1118
 msgid "Test my domain MX"
-msgstr "Comprobar los registros MX de mi dominio"
+msgstr "Meine Domain MX testen"
 
 #: class-cl-wp-info.php:1111
 msgid "Test my domain SMTP"
-msgstr "Comprobar el SMTP de mi dominio"
+msgstr "Testen Sie meine Domain SMTP"
 
 #: class-cl-wp-info.php:1112
 msgid "Check if my domain is in a blacklist"
-msgstr "Comprobar si mi dominio está en una lista negra"
+msgstr "Überprüfen Sie, ob meine Domain in einer Blacklist steht."
 
 #: class-cl-wp-info.php:1116
 msgid "GSuite Toolbox CheckMX"
@@ -931,35 +929,35 @@ msgstr "GSuite Toolbox CheckMX"
 
 #: class-cl-wp-info.php:1117
 msgid "GSuite tools for check MX records."
-msgstr "GSuite tools para comprobar los registros MX."
+msgstr "GSuite-Tools zur Überprüfung von MX-Einträgen."
 
 #: class-cl-wp-info.php:1138
 msgid ""
 "If this plugin is useful for you, maybe you'd like to collaborate with its "
 "development and invite me to a coffe or a beer"
 msgstr ""
-"Si este plugin es útil para ti, quizás quieras colaborar con su desarrollo e "
-"invitarme a un café o una cerveza"
+"Wenn dieses Plugin für dich nützlich ist, möchtest du vielleicht an seiner "
+"Entwicklung mitwirken und mich zu einem Kaffee oder Bier einladen?"
 
 #: class-cl-wp-info.php:1139
 msgid "Yes, of course :)"
-msgstr "Sí, desde luego :)"
+msgstr "Ja, natürlich :)"
 
 #: class-cl-wp-info.php:1140
 msgid "Or maybe you can donate with Bitcoin"
-msgstr "O quizás prefieres donar con Bitcoin"
+msgstr "Oder vielleicht kannst du mit Bitcoin spenden."
 
 #: class-cl-wp-info.php:1140
 msgid "or Ether"
-msgstr "ó Ether"
+msgstr "oder Ethernet"
 
 #: class-cl-wp-info.php:1141
 msgid ""
 "This note will not be printed if you select Print menu and send to printer "
 "device or pdf (recomended option)"
 msgstr ""
-"Esta nota no se imprimirá si se selecciona el Menú de Impresión e imprimir "
-"en papel o en pdf (opción recomendada)"
+"Diese Notiz wird nicht gedruckt, wenn Sie das Menü Drucken wählen und an das "
+"Druckergerät oder PDF senden (empfohlene Option)."
 
 #. Plugin URI of the plugin/theme
 msgid "https://github.com/CarlosLongarela/CL-WP-Info"
@@ -970,8 +968,8 @@ msgid ""
 "Información del servidor, PHP y plugins y temas de WordPress para poder "
 "realizar fácilmente un informe previo de la web sobre la que vamos a trabajar"
 msgstr ""
-"Información del servidor, PHP y plugins y temas de WordPress para poder "
-"realizar fácilmente un informe previo de la web sobre la que vamos a trabajar"
+"Serverinformationen, PHP- und WordPress-Plugins und -Themen, um leicht einen "
+"Vorbericht über das Web, an dem wir arbeiten werden, erstellen zu können."
 
 #. Author of the plugin/theme
 msgid "Carlos Longarela"
