@@ -5,7 +5,7 @@
  * Description: Información del servidor, PHP y plugins y temas de WordPress para poder realizar fácilmente un informe previo de la web sobre la que vamos a trabajar
  * Version: 1.4.4
  * Author: Carlos Longarela
- * Author URI: https://desarrolloweb.longarela.eu/
+ * Author URI: https://tabernawp.com/
  *
  * @package CL WP Info
  * License: GPL2+
@@ -32,15 +32,15 @@ define( 'CL_WP_INFO_MIN_PHP', '5.6' );
 define( 'CL_WP_INFO_MIN_DB', '5.0' );
 define( 'CL_WP_INFO_MIN_DB_MARIA', '10' );
 
-define( 'CL_WP_INFO_REC_PHP', '7' );
+define( 'CL_WP_INFO_REC_PHP', '7.2' );
 define( 'CL_WP_INFO_REC_MYSQL', '5.6' );
-define( 'CL_WP_INFO_REC_MARIA', '5.1' );
+define( 'CL_WP_INFO_REC_MARIA', '10' );
 
 $menu_page_hook    = '';
 $submenu_page_hook = '';
 
 /**
- * Registramos el menú.
+ * Menu register.
  *
  * @since     1.0.0
  */
@@ -69,7 +69,7 @@ function cl_wp_info_add_menu_page() {
 add_action( 'admin_menu', 'cl_wp_info_add_menu_page' );
 
 /**
- * Carga de archivo CSS sólo en esta página de admin.
+ * Load CSS files only in this admin page.
  *
  * @since     1.0.0
  * @param     string $hook   El hook (gancho) de la página actual.
@@ -77,12 +77,12 @@ add_action( 'admin_menu', 'cl_wp_info_add_menu_page' );
 function cl_wp_info_load_custom_wp_admin_style( $hook ) {
 	global $menu_page_hook, $submenu_page_hook;
 
-	// Cargar solo en ?page=xxx del menú registrado o submenú, si no coincide salimos.
+	// Load only in ?page=xxx from registered menu or submenu, if is different, we exit.
 	if ( $menu_page_hook !== $hook && $submenu_page_hook !== $hook ) {
 		return;
 	}
 
-	if ( $submenu_page_hook === $hook ) { // Javascript sólo en la página de submenú Tools.
+	if ( $submenu_page_hook === $hook ) { // Javascript only in submenu page Tools.
 		wp_enqueue_script( 'cl_wp_info_tools_admin_js', plugins_url( 'js/cl-wp-info-tools.min.js', __FILE__ ), array( 'jquery' ), null, true );
 	}
 
@@ -91,7 +91,7 @@ function cl_wp_info_load_custom_wp_admin_style( $hook ) {
 add_action( 'admin_enqueue_scripts', 'cl_wp_info_load_custom_wp_admin_style' );
 
 /**
- * Carga inicial en el plugin de traducciones.
+ * Initial plugin translations load.
  *
  * @since     1.0.0
  */
@@ -100,72 +100,70 @@ function cl_wp_info_init() {
 }
 add_action( 'plugins_loaded', 'cl_wp_info_init' );
 
-// Incluimos el archivo de clase con las funciones de info del sistema y WP.
+// Include class file with system info and WP info.
 require_once plugin_dir_path( __FILE__ ) . 'class-cl-wp-info.php';
 
-// Y creamos el objeto.
+// And we create object.
 $obj_info = new Cl_WP_Info();
 
 /**
- * Función principal encargada de mostrar toda la infomación.
+ * Principal functions for show all information.
  *
  * @since     1.0.0
  */
 function cl_wp_info_general() {
 	global $obj_info;
+	?>
 
-	echo '<div class="cl-info-made-by">';
-	$obj_info->cl_wp_info_made_by();
-	echo '</div>';
+	<div class="cl-info-made-by"><?php $obj_info->cl_wp_info_made_by(); ?></div>
 
-	echo '<div class="cl-info-general">';
-	$obj_info->cl_wp_info_general();
-	echo '</div>';
+	<div class="cl-info-general"><?php $obj_info->cl_wp_info_general(); ?></div>
 
-	echo '<table class="cl-tabla-general">';
+	<table class="cl-tabla-general">
+		<tbody>
+			<tr>
+				<th colspan="2"><?php esc_html_e( 'Server Info', 'cl-wp-info' ); ?></th>
+			</tr>
+			<?php $obj_info->cl_wp_server_info(); ?>
 
-	echo '<tbody>';
-	echo '<tr><th colspan="2">' . esc_html__( 'Server Info', 'cl-wp-info' ) . '</tr></th>';
-	$obj_info->cl_wp_server_info();
-	echo '</tbody>';
+			<tr>
+				<th colspan="2"><?php esc_html_e( 'PHP Info', 'cl-wp-info' ); ?></th>
+			</tr>
+			<?php $obj_info->cl_wp_php_info(); ?>
 
-	echo '<tbody>';
-	echo '<tr><th colspan="2">' . esc_html__( 'PHP Info', 'cl-wp-info' ) . '</tr></th>';
-	$obj_info->cl_wp_php_info();
-	echo '</tbody>';
+			<tr>
+				<th colspan="2"><?php esc_html_e( 'Database Info', 'cl-wp-info' ); ?></th>
+			</tr>
+			<?php $obj_info->cl_wp_db_info(); ?>
 
-	echo '<tbody>';
-	echo '<tr><th colspan="2">' . esc_html__( 'Database Info', 'cl-wp-info' ) . '</tr></th>';
-	$obj_info->cl_wp_db_info();
-	echo '</tbody>';
+			<tr>
+				<th colspan="2"><?php esc_html_e( 'WordPress Info', 'cl-wp-info' ); ?></th>
+			</tr>
+			<?php $obj_info->cl_wp_wordpress_info(); ?>
 
-	echo '<tbody>';
-	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Info', 'cl-wp-info' ) . '</tr></th>';
-	$obj_info->cl_wp_wordpress_info();
-	echo '</tbody>';
+			<tr>
+				<th colspan="2"><?php esc_html_e( 'WordPress Themes Info', 'cl-wp-info' ); ?></th>
+			</tr>
+			<?php $obj_info->cl_wp_wordpress_themes(); ?>
 
-	echo '<tbody>';
-	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Themes Info', 'cl-wp-info' ) . '</tr></th>';
-	$obj_info->cl_wp_wordpress_themes();
-	echo '</tbody>';
+			<tr>
+				<th colspan="2"><?php esc_html_e( 'WordPress Plugins Info', 'cl-wp-info' ); ?></th>
+			</tr>
+			<?php $obj_info->cl_wp_wordpress_plugins(); ?>
 
-	echo '<tbody>';
-	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Plugins Info', 'cl-wp-info' ) . '</tr></th>';
-	$obj_info->cl_wp_wordpress_plugins();
-	echo '</tbody>';
+			<tr>
+				<th colspan="2"><?php esc_html_e( 'WordPress Javascript & CSS', 'cl-wp-info' ); ?></th>
+			</tr>
+			<?php $obj_info->cl_wp_js_cs(); ?>
+		</tbody>
+	</table>
 
-	echo '<tbody>';
-	echo '<tr><th colspan="2">' . esc_html__( 'WordPress Javascript & CSS', 'cl-wp-info' ) . '</tr></th>';
-	$obj_info->cl_wp_js_cs();
-	echo '</tbody>';
-
-	echo '</table>';
-
+	<?php
 	$obj_info->cl_wp_info_donate();
-}
+} // End function cl_wp_info_general.
 
 /**
- * Función que muestra herramientras externas de medición.
+ * Show external tools for measurements.
  *
  * @since     1.4.0
  */
@@ -175,47 +173,49 @@ function cl_wp_info_tools() {
 	$full_url     = site_url();
 	$url_parseada = wp_parse_url( $full_url );
 	$dominio      = $url_parseada['host'];
+	?>
 
-	echo '<h1>' . esc_html__( 'External tools for measure page perfomance', 'cl-wp-info' ) . '</h1>';
+	<h1><?php esc_html_e( 'External tools for measure page perfomance', 'cl-wp-info' ); ?></h1>
 
-	echo '<div id="cl-wp-info-botonera">';
-	echo '<button type="button" id="cl-wpo" class="cl-botonera-btn">' . esc_html__( 'WPO', 'cl-wp-info' ) . '</button>';
-	echo '<button type="button" id="cl-ttfb" class="cl-botonera-btn">' . esc_html__( 'Time to first byte', 'cl-wp-info' ) . '</button>';
-	echo '<button type="button" id="cl-http2" class="cl-botonera-btn">' . esc_html__( 'HTTP/2', 'cl-wp-info' ) . '</button>';
-	echo '<button type="button" id="cl-dns" class="cl-botonera-btn">' . esc_html__( 'DNS', 'cl-wp-info' ) . '</button>';
-	echo '<button type="button" id="cl-gzip" class="cl-botonera-btn">' . esc_html__( 'Gzip', 'cl-wp-info' ) . '</button>';
-	echo '<button type="button" id="cl-mail" class="cl-botonera-btn">' . esc_html__( 'Mail', 'cl-wp-info' ) . '</button>';
-	echo '</div>';
+	<div id="cl-wp-info-botonera">
+		<button type="button" id="cl-wpo" class="cl-botonera-btn"><?php esc_html_e( 'WPO', 'cl-wp-info' ); ?></button>
+		<button type="button" id="cl-ttfb" class="cl-botonera-btn"><?php esc_html_e( 'Time to first byte', 'cl-wp-info' ); ?></button>
+		<button type="button" id="cl-http2" class="cl-botonera-btn"><?php esc_html_e( 'HTTP/2', 'cl-wp-info' ); ?></button>
+		<button type="button" id="cl-dns" class="cl-botonera-btn"><?php esc_html_e( 'DNS', 'cl-wp-info' ); ?></button>
+		<button type="button" id="cl-gzip" class="cl-botonera-btn"><?php esc_html_e( 'Gzip', 'cl-wp-info' ); ?></button>
+		<button type="button" id="cl-mail" class="cl-botonera-btn"><?php esc_html_e( 'Mail', 'cl-wp-info' ); ?></button>
+	</div>
 
-	echo '<div id="cl-content-wpo">';
-	echo '<h2 class="cl-tool-type">' . esc_html__( 'WPO (Web Performance Optimization)', 'cl-wp-info' ) . '</h2>';
-	$obj_info->cl_wp_tools_wpo();
-	echo '</div>';
+	<div id="cl-content-wpo">
+		<h2 class="cl-tool-type"><?php esc_html_e( 'WPO (Web Performance Optimization)', 'cl-wp-info' ); ?></h2>
+		<?php $obj_info->cl_wp_tools_wpo(); ?>
+	</div>
 
-	echo '<div id="cl-content-ttfb">';
-	echo '<h2 class="cl-tool-type">' . esc_html__( 'TTFB (Time To First Byte)', 'cl-wp-info' ) . '</h2>';
-	$obj_info->cl_wp_tools_ttfb();
-	echo '</div>';
+	<div id="cl-content-ttfb">
+		<h2 class="cl-tool-type"><?php esc_html_e( 'TTFB (Time To First Byte)', 'cl-wp-info' ); ?></h2>
+		<?php $obj_info->cl_wp_tools_ttfb(); ?>
+	</div>
 
-	echo '<div id="cl-content-http2">';
-	echo '<h2 class="cl-tool-type">' . esc_html__( 'HTTP/2', 'cl-wp-info' ) . '</h2>';
-	$obj_info->cl_wp_tools_http2();
-	echo '</div>';
+	<div id="cl-content-http2">
+		<h2 class="cl-tool-type"><?php esc_html_e( 'HTTP/2', 'cl-wp-info' ); ?></h2>
+		<?php $obj_info->cl_wp_tools_http2(); ?>
+	</div>
 
-	echo '<div id="cl-content-dns">';
-	echo '<h2 class="cl-tool-type">' . esc_html__( 'DNS', 'cl-wp-info' ) . '</h2>';
-	$obj_info->cl_wp_tools_dns();
-	echo '</div>';
+	<div id="cl-content-dns">
+		<h2 class="cl-tool-type"><?php esc_html_e( 'DNS', 'cl-wp-info' ); ?></h2>
+		<?php $obj_info->cl_wp_tools_dns(); ?>
+	</div>
 
-	echo '<div id="cl-content-gzip">';
-	echo '<h2 class="cl-tool-type">' . esc_html__( 'Gzip', 'cl-wp-info' ) . '</h2>';
-	$obj_info->cl_wp_tools_gzip();
-	echo '</div>';
+	<div id="cl-content-gzip">
+		<h2 class="cl-tool-type"><?php esc_html_e( 'Gzip', 'cl-wp-info' ); ?></h2>
+		<?php $obj_info->cl_wp_tools_gzip(); ?>
+	</div>
 
-	echo '<div id="cl-content-mail">';
-	echo '<h2 class="cl-tool-type">' . esc_html__( 'Mail', 'cl-wp-info' ) . '</h2>';
-	$obj_info->cl_wp_tools_mail();
-	echo '</div>';
+	<div id="cl-content-mail">
+		<h2 class="cl-tool-type"><?php esc_html_e( 'Mail', 'cl-wp-info' ); ?></h2>
+		<?php $obj_info->cl_wp_tools_mail(); ?>
+	</div>
 
+	<?php
 	$obj_info->cl_wp_info_donate();
-}
+} // End function cl_wp_info_tools.
