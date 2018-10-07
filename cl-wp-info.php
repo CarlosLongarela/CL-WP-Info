@@ -169,10 +169,6 @@ function cl_wp_info_general() {
  */
 function cl_wp_info_tools() {
 	global $obj_info;
-
-	$full_url     = site_url();
-	$url_parseada = wp_parse_url( $full_url );
-	$dominio      = $url_parseada['host'];
 	?>
 
 	<h1><?php esc_html_e( 'External tools for measure page perfomance', 'cl-wp-info' ); ?></h1>

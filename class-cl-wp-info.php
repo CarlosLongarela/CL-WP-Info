@@ -1,134 +1,128 @@
 <?php
 /**
  *
- * Description: Funciones para devolver info de PHP, WordPress.
+ * Description: Return PHP and WordPress info.
  *
  * @package CL WP Info
  * License: GPL2+
  * Text Domain: cl-wp-info
  */
 
-/**
- * Devuelve caracterísitcas del Servidor.
- *
- * @since     1.0.0
- */
-
 defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
 /**
  *
- * Funcionalidad general del plugin.
+ * Plugin general class.
  */
 class Cl_WP_Info {
 
 	/**
-	 * Cadena de texto con la versión de WordPress
+	 * WordPress version
 	 *
 	 * @var string
 	 */
 	private $wp_version = '';
 
 	/**
-	 * Objeto con los datos de actualización del core de WordPress
+	 * Object with WordPress core update data
 	 *
 	 * @var object
 	 */
 	private $wp_update_core = false;
 
 	/**
-	 * Objeto con los números de posts
+	 * Object with number of posts
 	 *
 	 * @var object
 	 */
 	private $n_posts;
 
 	/**
-	 * Objeto con los números de páginas
+	 * Object with number of pages
 	 *
 	 * @var object
 	 */
 	private $n_pages;
 
 	/**
-	 * Array con el número de usuarios
+	 * Array with number of users
 	 *
 	 * @var array
 	 */
 	private $n_users = array();
 
 	/**
-	 * Número de comentarios
+	 * Comments number
 	 *
 	 * @var int
 	 */
 	private $n_comments = 0;
 
 	/**
-	 * Objeto con los números de medios
+	 * Object with number of media
 	 *
 	 * @var object
 	 */
 	private $n_media;
 
 	/**
-	 * Cadena de texto con el locale de WordPress
+	 * WordPress locale
 	 *
 	 * @var string
 	 */
 	private $wp_locale;
 
 	/**
-	 * Booleano indicando si $wp_update_core es un objeto
+	 * Boolean that said if $wp_update_core is object
 	 *
 	 * @var bool
 	 */
 	private $wp_update_core_is_object = false;
 
 	/**
-	 * Cadena de texto con la versión de la BD de WordPress
+	 * WordPress DB version
 	 *
 	 * @var string
 	 */
 	private $db_version;
 
 	/**
-	 * Cadena de texto con la url completa del WordPress
+	 * WordPress full url
 	 *
 	 * @var string
 	 */
 	private $wp_site_url;
 
 	/**
-	 * Cadena de texto con el título del WordPress
+	 * WordPress title
 	 *
 	 * @var string
 	 */
 	private $wp_site_title;
 
 	/**
-	 * Cadena de texto con la descripción del WordPress
+	 * WordPress description
 	 *
 	 * @var string
 	 */
 	private $wp_site_description;
 
 	/**
-	 * Cadena de texto con el dominio sobre el que está instalado WordPress
+	 * WordPress installed domain
 	 *
 	 * @var string
 	 */
 	private $wp_site_domain;
 
 	/**
-	 * Cadena de texto con el dominio sobre el que está instalado WordPress y sin www
+	 * WordPress installed domain without www
 	 *
 	 * @var string
 	 */
 	private $wp_site_domain_without_www;
 
 	/**
-	 * Constructor desde el que recuperamos valores a utilizar posteriormente.
+	 * Constructor.
 	 *
 	 * @since     1.2.0
 	 */
@@ -157,11 +151,11 @@ class Cl_WP_Info {
 	}
 
 	/**
-	 * Información de quien ha realizado el informe.
+	 * Information about report creator.
 	 *
 	 * @since     1.4.2
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_info_made_by( $echo = true ) {
 		$html = '';
@@ -175,16 +169,16 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_info_made_by.
+	} // End function cl_wp_info_made_by.
 
 
 
 	/**
-	 * Información general del WP y su estado.
+	 * General information about WP and its state.
 	 *
 	 * @since     1.0.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_info_general( $echo = true ) {
 		$html = '';
@@ -232,14 +226,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_info_general.
+	} // End function cl_wp_info_general.
 
 	/**
-	 * Información general del servidor.
+	 * General information about server.
 	 *
 	 * @since     1.0.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_server_info( $echo = true ) {
 		$html  = '';
@@ -259,7 +253,7 @@ class Cl_WP_Info {
 			$html .= '<th>' . esc_html__( 'Server Memory:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
 			foreach ( $mem_data as $linea ) {
-				if ( strpos( $linea, ':' ) !== false ) {
+				if ( false !== strpos( $linea, ':' ) ) {
 					list( $clave, $valor ) = explode( ':', $linea );
 
 					$valor = trim( $valor );
@@ -346,14 +340,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_server_info.
+	} // End function cl_wp_server_info.
 
 	/**
-	 * Devuelve caracterísitcas de PHP.
+	 * Return PHP info.
 	 *
 	 * @since     1.0.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_php_info( $echo = true ) {
 		$html  = '';
@@ -464,14 +458,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_php_info.
+	} // End function cl_wp_php_info.
 
 	/**
-	 * Devuelve caracterísitcas de la Base de Datos.
+	 * Return database options.
 	 *
 	 * @since     1.2.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_db_info( $echo = true ) {
 		global $wpdb;
@@ -533,14 +527,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_db_info.
+	} // End function cl_wp_db_info.
 
 	/**
-	 * Devuelve caracterísitcas de WordPress.
+	 * Return WordPress options.
 	 *
 	 * @since     1.0.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_wordpress_info( $echo = true ) {
 		$html  = '';
@@ -726,14 +720,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_wordpress_info.
+	} // End function cl_wp_wordpress_info.
 
 	/**
-	 * Devuelve caracterísitcas de los Temas de WordPress.
+	 * Return WordPress Themes options.
 	 *
 	 * @since     1.2.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_wordpress_themes( $echo = true ) {
 		$html = '';
@@ -771,7 +765,7 @@ class Cl_WP_Info {
 				$html .= ' <strong class="cl-ok-fondo">' . esc_html__( 'Active', 'cl-wp-info' ) . '</strong>';
 			}
 
-			// Si hay actualización para el tema.
+			// If theme update exists.
 			if ( false !== array_key_exists( $clave_tema, $tema_updates ) ) {
 				$html .= '<br /> <span class="cl-warning">- <strong>' . esc_html__( 'Update available:', 'cl-wp-info' ) . '</strong> ';
 				$html .= esc_html__( 'Version', 'cl-wp-info' ) . ': <strong>' . $tema_updates[ $clave_tema ]->update['new_version'] . '</strong>';
@@ -797,14 +791,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_wordpress_themes.
+	} // End function cl_wp_wordpress_themes.
 
 	/**
-	 * Devuelve caracterísitcas de los Plugins de WordPress.
+	 * Return WordPress Plugins options.
 	 *
 	 * @since     1.2.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_wordpress_plugins( $echo = true ) {
 		$html  = '';
@@ -824,12 +818,12 @@ class Cl_WP_Info {
 				$html .= '<li>' . $valor_plugin['Name'] . ' <em><a href="' . $valor_plugin['PluginURI'] . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_plugin['Version'] . ')</a></em>';
 			}
 
-			// Si el plugin está activado.
+			// If plugins is active.
 			if ( false !== array_search( $clave_plugin, $plugins_activos, true ) ) {
 				$html .= ' <strong class="cl-ok-fondo">' . esc_html__( 'Active', 'cl-wp-info' ) . '</strong>';
 			}
 
-			// Si hay actualización para el plugin.
+			// If plugin update exists.
 			if ( false !== array_key_exists( $clave_plugin, $plugins_updates ) ) {
 				$html .= '<br /> <span class="cl-warning">- <strong>' . esc_html__( 'Update available:', 'cl-wp-info' ) . '</strong> ';
 				$html .= esc_html__( 'Version', 'cl-wp-info' ) . ': <strong>' . $plugins_updates[ $clave_plugin ]->update->new_version . '</strong>';
@@ -856,14 +850,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_wordpress_plugins.
+	} // End function cl_wp_wordpress_plugins.
 
 	/**
-	 * Devuelve los javascript y CSS de WordPress.
+	 * Return WordPress javascript and CSS .
 	 *
 	 * @since     1.2.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_js_cs( $echo = true ) {
 		global $wp_scripts, $wp_styles;
@@ -896,14 +890,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_js_cs.
+	} // End function cl_wp_js_cs.
 
 	/**
-	 * Función que imprime en pantalla las herramientas de WPO.
+	 * Print in screen WPO tools.
 	 *
 	 * @since     1.4.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_tools_wpo( $echo = true ) {
 		$html  = '';
@@ -967,11 +961,11 @@ class Cl_WP_Info {
 	} // Final cl_wp_tools_wpo.
 
 	/**
-	 * Función que imprime en pantalla las herramientas de TTFB.
+	 * Print in screen TTFB tools.
 	 *
 	 * @since     1.4.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_tools_ttfb( $echo = true ) {
 		$html  = '';
@@ -999,14 +993,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_tools_ttfb.
+	} // End function cl_wp_tools_ttfb.
 
 	/**
-	 * Función que imprime en pantalla las herramientas de TTFB.
+	 * Print in screen HTTP2 tools.
 	 *
 	 * @since     1.4.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_tools_http2( $echo = true ) {
 		$html  = '';
@@ -1033,14 +1027,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_tools_http2.
+	} // End function cl_wp_tools_http2.
 
 	/**
-	 * Función que imprime en pantalla las herramientas de DNS's.
+	 * Print in screen DNS's tools.
 	 *
 	 * @since     1.4.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_tools_dns( $echo = true ) {
 		$html  = '';
@@ -1070,14 +1064,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_tools_dns.
+	} // End function cl_wp_tools_dns.
 
 	/**
-	 * Función que imprime en pantalla las herramientas de Gzip.
+	 * Print in screen Gzip tools.
 	 *
 	 * @since     1.4.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_tools_gzip( $echo = true ) {
 		$html  = '';
@@ -1099,14 +1093,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_tools_gzip.
+	} // End function cl_wp_tools_gzip.
 
 	/**
-	 * Función que imprime en pantalla las herramientas de Mail.
+	 * Print in screen Mail tools.
 	 *
 	 * @since     1.4.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_tools_mail( $echo = true ) {
 		$html  = '';
@@ -1129,14 +1123,14 @@ class Cl_WP_Info {
 		} else {
 			return $html;
 		}
-	} // Final de cl_wp_tools_mail.
+	} // End function cl_wp_tools_mail.
 
 	/**
-	 * Función que muestra el mensaje de donación.
+	 * Print in screen donation message.
 	 *
 	 * @since     1.4.0
 	 *
-	 * @param boolean $echo Escribir la salida o devolverla.
+	 * @param boolean $echo Write or return output.
 	 */
 	public function cl_wp_info_donate( $echo = true ) {
 		$html  = '';
