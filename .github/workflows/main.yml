@@ -11,7 +11,7 @@ action "tag" {
 
 action "WordPress Plugin Deploy" {
   needs = ["tag"]
-  uses = "CarlosLongarela/CL-WP-Info@master"
+  uses = "10up/actions-wordpress/dotorg-plugin-deploy@master"
   secrets = ["SVN_USERNAME", "SVN_PASSWORD", "GITHUB_TOKEN"]
   env = {
     SLUG = "cl-wp-info"
