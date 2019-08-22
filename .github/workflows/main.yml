@@ -1,6 +1,8 @@
 workflow "Deploy" {
   resolves = ["WordPress Plugin Deploy"]
   on = "push"
+    branches:
+    - master
 }
 
 # Filter for tag
