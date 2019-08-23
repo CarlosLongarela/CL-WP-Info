@@ -145,7 +145,7 @@ class Cl_WP_Info {
 
 		$sql = 'SELECT option_value FROM ' . $wpdb->prefix . "options WHERE option_name = '_site_transient_update_core'";
 
-		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) ); // WPCS: unprepared SQL ok.
+		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) ); // phpcs:ignore
 
 		$this->wp_update_core_is_object = is_object( $this->wp_update_core );
 	}
@@ -165,7 +165,7 @@ class Cl_WP_Info {
 		$html .= '<p class="cl-only-print"><a href="https://es.wordpress.org/plugins/cl-wp-info/">' . esc_html__( 'Report made with CL WP Info WordPress plugin', 'cl-wp-info' ) . '</a></p>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -222,7 +222,7 @@ class Cl_WP_Info {
 		$html .= '</p>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -336,7 +336,7 @@ class Cl_WP_Info {
 		}
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -454,7 +454,7 @@ class Cl_WP_Info {
 		}
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -523,7 +523,7 @@ class Cl_WP_Info {
 		}
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -716,7 +716,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -787,7 +787,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -846,7 +846,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -886,7 +886,7 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -954,7 +954,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -989,7 +989,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -1023,7 +1023,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -1060,7 +1060,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -1089,7 +1089,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -1119,7 +1119,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}
@@ -1142,7 +1142,7 @@ class Cl_WP_Info {
 		$html .= '</div>';
 
 		if ( $echo ) {
-			echo $html; // WPCS: XSS ok.
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $html;
 		}

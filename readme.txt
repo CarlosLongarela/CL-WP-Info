@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,10 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.8 - 2019-08-23 =
+* Update - Updated WordPress min PHP version.
+* Update - Latest PHPCS compatibility.
+
 = 1.4.7 - 2019-08-23 =
 * Fix - Repository images fixed.
 
