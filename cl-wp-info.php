@@ -83,10 +83,10 @@ function cl_wp_info_load_custom_wp_admin_style( $hook ) {
 	}
 
 	if ( $submenu_page_hook === $hook ) { // Javascript only in submenu page Tools.
-		wp_enqueue_script( 'cl_wp_info_tools_admin_js', plugins_url( 'js/cl-wp-info-tools.min.js', __FILE__ ), array( 'jquery' ), null, true );
+		wp_enqueue_script( 'cl_wp_info_tools_admin_js', plugins_url( 'js/cl-wp-info-tools.min.js', __FILE__ ), array( 'jquery' ), null, true ); // phpcs:ignore
 	}
 
-	wp_enqueue_style( 'cl_wp_info_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) );
+	wp_enqueue_style( 'cl_wp_info_admin_css', plugins_url( 'css/cl-wp-info-admin.min.css', __FILE__ ) ); // phpcs:ignore
 }
 add_action( 'admin_enqueue_scripts', 'cl_wp_info_load_custom_wp_admin_style' );
 
