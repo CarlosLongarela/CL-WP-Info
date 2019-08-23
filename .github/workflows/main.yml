@@ -1,19 +1,18 @@
-workflow "Deploy" {
-  resolves = ["WordPress Plugin Deploy"]
-  on = "push"
-}
-
-# Filter for tag
-action "tag" {
-    uses = "actions/bin/filter@master"
-    args = "tag"
-}
-
-action "WordPress Plugin Deploy" {
-  needs = ["tag"]
-  uses = "10up/actions-wordpress/dotorg-plugin-deploy@master"
-  secrets = ["SVN_USERNAME", "SVN_PASSWORD", "GITHUB_TOKEN"]
-  env = {
-    SLUG = "cl-wp-info"
-  }
-}
+name: Deploy to WordPress.org
+on:
+  push:
+    branches:
+    - refs/tags/*
+jobs:
+  tag:
+    name: New tag
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: WordPress Plugin Deploy
+      uses: 10up/action-wordpress-plugin-deploy@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+        SLUG: cl-wp-info
