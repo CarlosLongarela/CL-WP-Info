@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
 Tested up to: 5.2.2
 Requires PHP: 5.6
-Stable tag: 1.4.8
+Stable tag: 1.4.9
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,15 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.9 - 2019-08-26 =
+* Fix - Deleted Geek Flare from WPO tools
+* Fix - Deleted Pingdom DNS Health
+* Fix - Deleted checkgzipcompression from Gzip tools
+* Fix - Updated Geek Flare HTTP/2 test url
+* Fix - Fixed Notice: https://wordpress.org/support/topic/notice-when-using-plugin-with-wp-cli/ thanks to @darkpollo
+* Feature - Added smallseotools Gzip check in Gzip tools
+* Feature - Added PHP and Database minimum, recommended and installed versions
+
 = 1.4.8 - 2019-08-23 =
 * Update - Updated WordPress min PHP version.
 * Update - Latest PHPCS compatibility.

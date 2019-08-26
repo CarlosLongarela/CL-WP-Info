@@ -129,19 +129,25 @@ class Cl_WP_Info {
 	public function __construct() {
 		global $wpdb;
 
-		$this->wp_version                 = get_bloginfo( 'version' );
-		$this->n_posts                    = wp_count_posts();
-		$this->n_pages                    = wp_count_posts( 'page' );
-		$this->n_users                    = count_users();
-		$this->n_comments                 = get_comments( array( 'count' => true ) );
-		$this->n_media                    = wp_count_attachments();
-		$this->wp_locale                  = get_locale();
-		$this->wp_site_url                = site_url();
-		$this->wp_site_title              = get_bloginfo( 'name' );
-		$this->wp_site_description        = get_bloginfo( 'description' );
-		$this->wp_site_domain             = $_SERVER['SERVER_NAME'];
-		$this->wp_site_domain_without_www = str_replace( 'www.', '', $this->wp_site_domain );
-		$this->db_version                 = $wpdb->get_var( 'select version();' );
+		$this->wp_version          = get_bloginfo( 'version' );
+		$this->n_posts             = wp_count_posts();
+		$this->n_pages             = wp_count_posts( 'page' );
+		$this->n_users             = count_users();
+		$this->n_comments          = get_comments( array( 'count' => true ) );
+		$this->n_media             = wp_count_attachments();
+		$this->wp_locale           = get_locale();
+		$this->wp_site_url         = site_url();
+		$this->wp_site_title       = get_bloginfo( 'name' );
+		$this->wp_site_description = get_bloginfo( 'description' );
+		$this->db_version          = $wpdb->get_var( 'select version();' );
+
+		if ( empty( $_SERVER['SERVER_NAME'] ) ) {
+			$this->wp_site_domain             = esc_html__( 'Not available', 'cl-wp-info' );
+			$this->wp_site_domain_without_www = esc_html__( 'Not available', 'cl-wp-info' );
+		} else {
+			$this->wp_site_domain             = $_SERVER['SERVER_NAME'];
+			$this->wp_site_domain_without_www = str_replace( 'www.', '', $this->wp_site_domain );
+		}
 
 		$sql = 'SELECT option_value FROM ' . $wpdb->prefix . "options WHERE option_name = '_site_transient_update_core'";
 
@@ -205,21 +211,32 @@ class Cl_WP_Info {
 
 		$html .= '<p>';
 		if ( version_compare( CL_WP_INFO_REC_PHP, PHP_VERSION, '<=' ) ) {
-			$html .= '<span class="cl-ok">' . esc_html__( 'Excellent: Your server PHP version is the same or greater than WordPress recomended.', 'cl-wp-info' ) . '</span>';
+			$html .= '<span class="cl-ok">' . esc_html__( 'Excellent: Your server PHP version is the same or greater than WordPress recommended.', 'cl-wp-info' ) . '</span>';
 		} elseif ( version_compare( CL_WP_INFO_MIN_PHP, PHP_VERSION, '<=' ) ) {
-			$html .= '<span class="cl-warning">' . esc_html__( 'Your server PHP version is the same or greater than WordPress minimum, but lower that recomended. Please update your server PHP Version.', 'cl-wp-info' ) . '</span>';
+			$html .= '<span class="cl-warning">' . esc_html__( 'Your server PHP version is the same or greater than WordPress minimum, but lower that recommended. Please update your server PHP Version.', 'cl-wp-info' ) . '</span>';
 		} else {
 			$html .= '<span class="cl-error">' . esc_html__( 'BAD: Your server PHP version is lower than minimum required. Update your server PHP Version.', 'cl-wp-info' ) . '</span>';
 		}
 		$html .= '</p>';
 
+		$html .= '<p class="cl-versions-info"><small>';
+		$html .= esc_html__( 'Recommended PHP version', 'cl-wp-info' ) . ': <strong>' . CL_WP_INFO_REC_PHP . '</strong><br />';
+		$html .= esc_html__( 'Installed PHP version', 'cl-wp-info' ) . ': <strong>' . PHP_VERSION . '</strong><br />';
+		$html .= esc_html__( 'Minimum required PHP version', 'cl-wp-info' ) . ': <strong>' . CL_WP_INFO_MIN_PHP . '</strong><br />';
+		$html .= '</small><p>';
+
 		$html .= '<p>';
 		if ( version_compare( CL_WP_INFO_MIN_DB, $this->db_version, '<=' ) ) {
-			$html .= '<span class="cl-ok">' . esc_html__( 'Your server database version is the same or greater than WordPress recomended.', 'cl-wp-info' ) . '</span>';
+			$html .= '<span class="cl-ok">' . esc_html__( 'Your server database version is the same or greater than WordPress recommended.', 'cl-wp-info' ) . '</span>';
 		} else {
 			$html .= '<span class="cl-error">' . esc_html__( 'BAD: Your server database version is lower than minimum required. Update your server database Version.', 'cl-wp-info' ) . '</span>';
 		}
 		$html .= '</p>';
+
+		$html .= '<p class="cl-versions-info"><small>';
+		$html .= esc_html__( 'Server database version', 'cl-wp-info' ) . ': <strong>' . $this->db_version . '</strong><br />';
+		$html .= esc_html__( 'WordPress minimum recommended database version', 'cl-wp-info' ) . ': <strong>' . CL_WP_INFO_MIN_DB . '</strong><br />';
+		$html .= '</small><p>';
 
 		if ( $echo ) {
 			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -947,12 +964,6 @@ class Cl_WP_Info {
 		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.keycdn.com/speed" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
-		$html .= '<div class="cl-wp-info-tools">';
-		$html .= '<h3>' . esc_html__( 'Geek Flare', 'cl-wp-info' ) . '</h3>';
-		$html .= '<p>' . esc_html__( 'Find out how much time take to load your site from multiple location across desktop & mobile.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.geekflare.com/report/speed-test/' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
-		$html .= '</div>';
-
 		if ( $echo ) {
 			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
@@ -1013,7 +1024,7 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Geek Flare', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Check if your site is taking advantage of new HTTP/2 protocol for fast loading page.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.geekflare.com/report/http2-test/' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.geekflare.com/http2-test?' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
@@ -1038,12 +1049,6 @@ class Cl_WP_Info {
 	 */
 	public function cl_wp_tools_dns( $echo = true ) {
 		$html  = '';
-		$html .= '<div class="cl-wp-info-tools">';
-		$html .= '<h3>' . esc_html__( 'Pingdom DNS Health', 'cl-wp-info' ) . '</h3>';
-		$html .= '<p>' . esc_html__( 'Test DNS servers and settings for a domain name.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://dnscheck.pingdom.com/?domain=' . $this->wp_site_domain_without_www . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
-		$html .= '</div>';
-
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'MX Toolbox', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'The DNS Check test will run a comprehensive DNS Report for your domain.', 'cl-wp-info' ) . '</p>';
@@ -1085,7 +1090,7 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Check GZIP compression', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'With this tool you can check if your web server is sending the correct GZIP enabled header.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://checkgzipcompression.com/?url=' . rawurlencode( $this->wp_site_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://smallseotools.com/check-gzip-compression/" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		if ( $echo ) {
