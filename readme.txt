@@ -31,8 +31,8 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
-= 1.4.12 - 2020-03-09 =
-* Update - Update plugin version and Tested up to WordPress version
+= 1.4.12 - 2020-03-10 =
+* Update - Update plugin version and Tested up to WordPress version 5.4
 
 = 1.4.9 - 2019-08-26 =
 * Fix - Deleted Geek Flare from WPO tools
