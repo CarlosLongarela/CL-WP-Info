@@ -3,9 +3,9 @@ Contributors: carloslongarela
 Tags: info, system, debug, development
 Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
-Tested up to: 5.2.2
+Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 1.4.9
+Stable tag: 1.4.10
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,9 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.10 - 2020-03-09 =
+* Update - Update plugin version and Tested up to WordPress version
+
 = 1.4.9 - 2019-08-26 =
 * Fix - Deleted Geek Flare from WPO tools
 * Fix - Deleted Pingdom DNS Health
