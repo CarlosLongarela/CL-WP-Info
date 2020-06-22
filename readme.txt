@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
 Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 1.4.14
+Stable tag: 1.4.15
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,6 +31,9 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.15 - 2020-06-22 =
+* Update - Changed date to gmdate to be zone independent
+
 = 1.4.14 - 2020-03-10 =
 * Update - Changed recomended PHP version to 7.4
 

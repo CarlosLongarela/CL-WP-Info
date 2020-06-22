@@ -202,7 +202,7 @@ class Cl_WP_Info {
 		$html .= '</p>';
 
 		if ( $this->wp_update_core_is_object ) {
-			$fecha_check = get_date_from_gmt( date( 'Y-m-d H:i:s', $this->wp_update_core->last_checked ), get_option( 'date_format' ) . ' - ' . get_option( 'time_format' ) );
+			$fecha_check = get_date_from_gmt( gmdate( 'Y-m-d H:i:s', $this->wp_update_core->last_checked ), get_option( 'date_format' ) . ' - ' . get_option( 'time_format' ) );
 
 			$html .= '<p>';
 			$html .= esc_html__( 'Last WordPress version checked:', 'cl-wp-info' ) . ' ' . $fecha_check;

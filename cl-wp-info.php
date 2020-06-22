@@ -2,8 +2,8 @@
 /**
  * Plugin Name: CL WP Info
  * Plugin URI: https://github.com/CarlosLongarela/CL-WP-Info
- * Description: Información del servidor, PHP y plugins y temas de WordPress para poder realizar fácilmente un informe previo de la web sobre la que vamos a trabajar
- * Version: 1.4.14
+ * Description: Server information, PHP and WordPress plugins and themes so that we can easily preview the website we are going to work on
+ * Version: 1.4.15
  * Author: Carlos Longarela
  * Author URI: https://tabernawp.com/
  *
