@@ -260,7 +260,9 @@ class Cl_WP_Info {
 		$html .= '</tr>';
 
 		// @codingStandardsIgnoreStart
-		$mem_info = @file_get_contents( '/proc/meminfo' );
+		if ( file_exists( '/proc/meminfo' ) ) {
+			$mem_info = @file_get_contents( '/proc/meminfo' );
+		}
 		// @codingStandardsIgnoreEnd
 
 		if ( $mem_info ) {

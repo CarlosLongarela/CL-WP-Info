@@ -3,9 +3,9 @@ Contributors: carloslongarela
 Tags: info, system, debug, development
 Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 4.x
-Tested up to: 5.4
+Tested up to: 6.3.1
 Requires PHP: 5.6
-Stable tag: 1.4.15
+Stable tag: 1.4.17
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,6 +14,7 @@ Show us information about WordPress install, PHP, Database and Hosting Server
 
 
 == Description ==
+* Note: this plugin is no longer maintained because WordPress offers a similar option in Tools -> Site health
 WordPress plugin that show us information about WordPress install, PHP, Database and Hosting Server and also minimum requisites and recommendations for PHP and Database versions.
 
 == Installation ==
@@ -31,6 +32,12 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.17 - 2023-09-01 =
+* Update - Compatibility versions updated
+
+= 1.4.16 - 2023-04-27 =
+* Update - Note about plugin not maintained
+
 = 1.4.15 - 2020-06-22 =
 * Update - Changed date to gmdate to be zone independent
 
