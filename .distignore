@@ -14,15 +14,12 @@ Thumbs.db
 behat.yml
 bin
 circle.yml
-composer.json
 composer.lock
 Gruntfile.js
-package.json
 phpunit.xml
 phpunit.xml.dist
 multisite.xml
 multisite.xml.dist
-phpcs.ruleset.xml
 README.md
 wp-cli.local.yml
 tests
