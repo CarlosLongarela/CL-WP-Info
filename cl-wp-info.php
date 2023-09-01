@@ -7,6 +7,9 @@
  * Author: Carlos Longarela
  * Author URI: https://tabernawp.com/
  *
+ * Tested up to: 6.3.1
+ * Requires PHP: 5.6
+ *
  * @package CL WP Info
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
