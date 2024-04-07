@@ -2,10 +2,10 @@
 Contributors: carloslongarela
 Tags: info, system, debug, development
 Donate link: https://www.paypal.me/CarlosLongarela
-Requires at least: 5.x
+Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.0
-Stable tag: 1.4.22
+Stable tag: 1.4.23
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
