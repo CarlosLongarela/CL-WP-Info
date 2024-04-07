@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.0
-Stable tag: 1.4.23
+Stable tag: 1.4.24
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,10 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.24 - 2024-04-07 =
+* Increased version to match tag version
+* Added blueprint to live test plugin form WordPress.org repo
+
 = 1.4.18 - 2024-04-07 =
 * Update - Compatibility versions updated
 * Update - Changed recomended PHP version and database version and minimun
