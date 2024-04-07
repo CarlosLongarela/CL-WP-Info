@@ -8,7 +8,7 @@
  * Author URI: https://tabernawp.com/
  *
  * Tested up to: 6.5
- * Requires PHP: 5.6
+ * Requires PHP: 7.0
  *
  * @package CL WP Info
  * License: GPL2+
