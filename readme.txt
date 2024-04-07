@@ -5,7 +5,7 @@ Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 5.0
 Tested up to: 6.5
 Requires PHP: 7.0
-Stable tag: 1.4.24
+Stable tag: 1.4.25
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,9 @@ Show us information about WordPress install, PHP, Database and Hosting Server
 
 
 == Description ==
-* Note: this plugin is no longer maintained because WordPress offers a similar option in Tools -> Site health
+* Note: this plugin is no longer maintained to add new options because WordPress offers a similar option in Tools -> Site health
+About the tools available in this plugin, you have updated and new tools in a browser extension of this author (Best WordPress Tools) available for all browsers.
+
 WordPress plugin that show us information about WordPress install, PHP, Database and Hosting Server and also minimum requisites and recommendations for PHP and Database versions.
 
 == Installation ==
@@ -32,6 +34,9 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.25 - 2024-04-07 =
+* Info: Description updated.
+
 = 1.4.24 - 2024-04-07 =
 * Increased version to match tag version
 * Added blueprint to live test plugin form WordPress.org repo
