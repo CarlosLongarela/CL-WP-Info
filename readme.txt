@@ -10,7 +10,7 @@ License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Show us information about WordPress install, PHP, Database and Hosting Server
-![Wordpress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/cl-wp-info.svg)
+![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/cl-wp-info.svg)
 
 
 == Description ==
