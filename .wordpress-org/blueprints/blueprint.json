@@ -15,7 +15,7 @@
             "step": "installPlugin",
             "pluginZipFile": {
                 "resource": "url",
-                "url": "https://downloads.wordpress.org/plugin/cl-wp-info.1.4.23.zip"
+                "url": "https://downloads.wordpress.org/plugin/cl-wp-info.1.4.28.zip"
             },
             "options": {
                 "activate": true
