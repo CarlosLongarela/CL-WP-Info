@@ -3,9 +3,9 @@ Contributors: carloslongarela
 Tags: info, system, debug, development
 Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 5.0
-Tested up to: 6.7.1
+Tested up to: 6.8
 Requires PHP: 7.0
-Stable tag: 1.4.28
+Stable tag: 1.4.29
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,19 +34,25 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.29 - 2025-04-08 =
+* Info - Updated blueprint.
+* Info - Updated Tested up to.
+* Fix - Undefined variable $mem_info
+* FIX - wp_unslash to several variables
+
 = 1.4.28 - 2024-12-31 =
-* Info: Updated blueprint.
+* Info - Updated blueprint.
 
 = 1.4.27 - 2024-12-07 =
-* Info: Updated Tested up to.
+* Info - Updated Tested up to.
 
 
 = 1.4.26 - 2024-12-07 =
-* Info: Version and compatibility updated.
+* Info - Version and compatibility updated.
 * Update - PHP and DB minimum and recomended versions updated
 
 = 1.4.25 - 2024-04-07 =
-* Info: Description updated.
+* Info - Description updated.
 
 = 1.4.24 - 2024-04-07 =
 * Increased version to match tag version

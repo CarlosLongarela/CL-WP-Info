@@ -145,7 +145,7 @@ class Cl_WP_Info {
 			$this->wp_site_domain             = esc_html__( 'Not available', 'cl-wp-info' );
 			$this->wp_site_domain_without_www = esc_html__( 'Not available', 'cl-wp-info' );
 		} else {
-			$this->wp_site_domain             = $_SERVER['SERVER_NAME'];
+			$this->wp_site_domain             = sanitize_text_field( wp_unslash( $_SERVER['SERVER_NAME'] ) );
 			$this->wp_site_domain_without_www = str_replace( 'www.', '', $this->wp_site_domain );
 		}
 
@@ -265,7 +265,7 @@ class Cl_WP_Info {
 		}
 		// @codingStandardsIgnoreEnd
 
-		if ( $mem_info ) {
+		if ( isset( $mem_info ) && $mem_info ) {
 			$mem_data = explode( "\n", $mem_info );
 
 			$html .= '<tr>';
@@ -301,14 +301,14 @@ class Cl_WP_Info {
 		if ( ! empty( $_SERVER['SERVER_SOFTWARE'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . esc_html( $_SERVER['SERVER_SOFTWARE'] ) . '</td>'; // WPCS: input var ok.
+			$html .= '<td>' . esc_html( sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['USER'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server User:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . esc_html( $_SERVER['USER'] ) . '</td>';
+			$html .= '<td>' . esc_html( sanitize_text_field( wp_unslash( $_SERVER['USER'] ) ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
@@ -322,35 +322,35 @@ class Cl_WP_Info {
 		if ( ! empty( $_SERVER['SERVER_PORT'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Port:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['SERVER_PORT'] . '</td>';
+			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_PORT'] ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['SERVER_ADDR'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Ip:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['SERVER_ADDR'] . '</td>';
+			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['REQUEST_SCHEME'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Scheme:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['REQUEST_SCHEME'] . '</td>';
+			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['REQUEST_SCHEME'] ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['SERVER_PROTOCOL'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Http Version:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['SERVER_PROTOCOL'] . '</td>';
+			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_PROTOCOL'] ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['DOCUMENT_ROOT'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Root:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $_SERVER['DOCUMENT_ROOT'] . '</td>';
+			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['DOCUMENT_ROOT'] ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
