@@ -3,9 +3,9 @@ Contributors: carloslongarela
 Tags: info, system, debug, development
 Donate link: https://www.paypal.me/CarlosLongarela
 Requires at least: 5.0
-Tested up to: 6.8
-Requires PHP: 7.0
-Stable tag: 1.4.29
+Tested up to: 6.9.1
+Requires PHP: 7.4
+Stable tag: 1.4.30
 License: GPL2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,10 @@ WordPress plugin that show us information about WordPress install, PHP, Database
 7. External tools submenu
 
 == Changelog ==
+= 1.4.30 - 2026-02-25 =
+* Info - Updated Tested up to.
+* Feature - Improve services presentation
+
 = 1.4.29 - 2025-04-08 =
 * Info - Updated blueprint.
 * Info - Updated Tested up to.

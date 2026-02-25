@@ -139,7 +139,7 @@ class Cl_WP_Info {
 		$this->wp_site_url         = site_url();
 		$this->wp_site_title       = get_bloginfo( 'name' );
 		$this->wp_site_description = get_bloginfo( 'description' );
-		$this->db_version          = $wpdb->get_var( 'select version();' );
+		$this->db_version          = $wpdb->get_var( 'SELECT version()' );
 
 		if ( empty( $_SERVER['SERVER_NAME'] ) ) {
 			$this->wp_site_domain             = esc_html__( 'Not available', 'cl-wp-info' );
@@ -149,9 +149,7 @@ class Cl_WP_Info {
 			$this->wp_site_domain_without_www = str_replace( 'www.', '', $this->wp_site_domain );
 		}
 
-		$sql = 'SELECT option_value FROM ' . $wpdb->prefix . "options WHERE option_name = '_site_transient_update_core'";
-
-		$this->wp_update_core = maybe_unserialize( $wpdb->get_var( $sql ) ); // phpcs:ignore
+		$this->wp_update_core = get_site_transient( 'update_core' );
 
 		$this->wp_update_core_is_object = is_object( $this->wp_update_core );
 	}
@@ -166,7 +164,7 @@ class Cl_WP_Info {
 	public function cl_wp_info_made_by( $echo = true ) {
 		$html = '';
 		// Translators: %1$s Site title and %2$s Site url.
-		$html .= '<p>' . sprintf( esc_html__( '%1$s (%2$s) report by:', 'cl-wp-info' ), $this->wp_site_title, $this->wp_site_url );
+		$html .= '<p>' . sprintf( esc_html__( '%1$s (%2$s) report by:', 'cl-wp-info' ), esc_html( $this->wp_site_title ), esc_url( $this->wp_site_url ) );
 		$html .= ' <input type="text" value="" placeholder="' . esc_html__( 'Put your name or company name here', 'cl-wp-info' ) . '" /></p>';
 		$html .= '<p class="cl-only-print"><a href="https://es.wordpress.org/plugins/cl-wp-info/">' . esc_html__( 'Report made with CL WP Info WordPress plugin', 'cl-wp-info' ) . '</a></p>';
 
@@ -190,22 +188,22 @@ class Cl_WP_Info {
 		$html = '';
 
 		// WordPress Version.
-		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . $this->wp_version . '</strong>';
+		$html .= '<p><strong>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . ' ' . esc_html( $this->wp_version ) . '</strong>';
 
-		if ( $this->wp_update_core_is_object ) {
+		if ( $this->wp_update_core_is_object && ! empty( $this->wp_update_core->updates ) ) {
 			if ( version_compare( $this->wp_update_core->updates[0]->current, $this->wp_version, '<=' ) ) {
 				$html .= ' <span class="cl-ok">(' . esc_html__( 'You have latest available version', 'cl-wp-info' ) . ').</span>';
 			} else {
-				$html .= ' <span class="cl-error">(' . esc_html__( 'There is a new WordPress version available', 'cl-wp-info' ) . ': ' . $this->wp_update_core->updates[0]->version . ').</span>';
+				$html .= ' <span class="cl-error">(' . esc_html__( 'There is a new WordPress version available', 'cl-wp-info' ) . ': ' . esc_html( $this->wp_update_core->updates[0]->version ) . ').</span>';
 			}
 		}
 		$html .= '</p>';
 
-		if ( $this->wp_update_core_is_object ) {
+		if ( $this->wp_update_core_is_object && isset( $this->wp_update_core->last_checked ) ) {
 			$fecha_check = get_date_from_gmt( gmdate( 'Y-m-d H:i:s', $this->wp_update_core->last_checked ), get_option( 'date_format' ) . ' - ' . get_option( 'time_format' ) );
 
 			$html .= '<p>';
-			$html .= esc_html__( 'Last WordPress version checked:', 'cl-wp-info' ) . ' ' . $fecha_check;
+			$html .= esc_html__( 'Last WordPress version checked:', 'cl-wp-info' ) . ' ' . esc_html( $fecha_check );
 			$html .= '</p>';
 		}
 
@@ -220,10 +218,10 @@ class Cl_WP_Info {
 		$html .= '</p>';
 
 		$html .= '<p class="cl-versions-info"><small>';
-		$html .= esc_html__( 'Recommended PHP version', 'cl-wp-info' ) . ': <strong>' . CL_WP_INFO_REC_PHP . '</strong><br />';
-		$html .= esc_html__( 'Installed PHP version', 'cl-wp-info' ) . ': <strong>' . PHP_VERSION . '</strong><br />';
-		$html .= esc_html__( 'Minimum required PHP version', 'cl-wp-info' ) . ': <strong>' . CL_WP_INFO_MIN_PHP . '</strong><br />';
-		$html .= '</small><p>';
+		$html .= esc_html__( 'Recommended PHP version', 'cl-wp-info' ) . ': <strong>' . esc_html( CL_WP_INFO_REC_PHP ) . '</strong><br />';
+		$html .= esc_html__( 'Installed PHP version', 'cl-wp-info' ) . ': <strong>' . esc_html( PHP_VERSION ) . '</strong><br />';
+		$html .= esc_html__( 'Minimum required PHP version', 'cl-wp-info' ) . ': <strong>' . esc_html( CL_WP_INFO_MIN_PHP ) . '</strong><br />';
+		$html .= '</small></p>';
 
 		$html .= '<p>';
 		if ( version_compare( CL_WP_INFO_MIN_DB, $this->db_version, '<=' ) ) {
@@ -234,9 +232,9 @@ class Cl_WP_Info {
 		$html .= '</p>';
 
 		$html .= '<p class="cl-versions-info"><small>';
-		$html .= esc_html__( 'Server database version', 'cl-wp-info' ) . ': <strong>' . $this->db_version . '</strong><br />';
-		$html .= esc_html__( 'WordPress minimum recommended database version', 'cl-wp-info' ) . ': <strong>' . CL_WP_INFO_MIN_DB . '</strong><br />';
-		$html .= '</small><p>';
+		$html .= esc_html__( 'Server database version', 'cl-wp-info' ) . ': <strong>' . esc_html( $this->db_version ) . '</strong><br />';
+		$html .= esc_html__( 'WordPress minimum recommended database version', 'cl-wp-info' ) . ': <strong>' . esc_html( CL_WP_INFO_MIN_DB ) . '</strong><br />';
+		$html .= '</small></p>';
 
 		if ( $echo ) {
 			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -256,16 +254,16 @@ class Cl_WP_Info {
 		$html  = '';
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'OS Server:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . php_uname() . '</td>';
+		$html .= '<td>' . esc_html( php_uname() ) . '</td>';
 		$html .= '</tr>';
 
-		// @codingStandardsIgnoreStart
+		$mem_info = false;
 		if ( file_exists( '/proc/meminfo' ) ) {
-			$mem_info = @file_get_contents( '/proc/meminfo' );
+			// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+			$mem_info = file_get_contents( '/proc/meminfo' );
 		}
-		// @codingStandardsIgnoreEnd
 
-		if ( isset( $mem_info ) && $mem_info ) {
+		if ( $mem_info ) {
 			$mem_data = explode( "\n", $mem_info );
 
 			$html .= '<tr>';
@@ -273,7 +271,7 @@ class Cl_WP_Info {
 			$html .= '<td>';
 			foreach ( $mem_data as $linea ) {
 				if ( false !== strpos( $linea, ':' ) ) {
-					list( $clave, $valor ) = explode( ':', $linea );
+					[ $clave, $valor ] = explode( ':', $linea );
 
 					$valor = trim( $valor );
 					$valor = preg_replace( '/ kB$/', '', $valor );
@@ -282,7 +280,7 @@ class Cl_WP_Info {
 						$valor = intval( $valor );
 					}
 
-					$html .= '<strong>' . $clave . ':</strong> ';
+					$html .= '<strong>' . esc_html( $clave ) . ':</strong> ';
 					if ( $valor >= 1048576 ) { // Greater than 1GB.
 						$html .= number_format_i18n( $valor / 1048576 ) . ' GB.<br />';
 					} elseif ( $valor >= 1024 ) { // Greater than 1MB.
@@ -290,7 +288,7 @@ class Cl_WP_Info {
 					} elseif ( $valor > 0 ) {
 						$html .= number_format_i18n( $valor ) . ' kB.<br />';
 					} else {
-						$html .= $valor . '<br />';
+						$html .= esc_html( (string) $valor ) . '<br />';
 					}
 				}
 			}
@@ -315,42 +313,42 @@ class Cl_WP_Info {
 		if ( ! empty( $this->wp_site_domain ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Name:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . $this->wp_site_domain . '</td>';
+			$html .= '<td>' . esc_html( $this->wp_site_domain ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['SERVER_PORT'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Port:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_PORT'] ) ) . '</td>';
+			$html .= '<td>' . esc_html( sanitize_text_field( wp_unslash( $_SERVER['SERVER_PORT'] ) ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['SERVER_ADDR'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Ip:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ) ) . '</td>';
+			$html .= '<td>' . esc_html( sanitize_text_field( wp_unslash( $_SERVER['SERVER_ADDR'] ) ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['REQUEST_SCHEME'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Scheme:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['REQUEST_SCHEME'] ) ) . '</td>';
+			$html .= '<td>' . esc_html( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_SCHEME'] ) ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['SERVER_PROTOCOL'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Http Version:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['SERVER_PROTOCOL'] ) ) . '</td>';
+			$html .= '<td>' . esc_html( sanitize_text_field( wp_unslash( $_SERVER['SERVER_PROTOCOL'] ) ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( ! empty( $_SERVER['DOCUMENT_ROOT'] ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Web Server Root:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . sanitize_text_field( wp_unslash( $_SERVER['DOCUMENT_ROOT'] ) ) . '</td>';
+			$html .= '<td>' . esc_html( sanitize_text_field( wp_unslash( $_SERVER['DOCUMENT_ROOT'] ) ) ) . '</td>';
 			$html .= '</tr>';
 		}
 
@@ -372,7 +370,7 @@ class Cl_WP_Info {
 		$html  = '';
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'PHP Version:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . phpversion() . '</td>';
+		$html .= '<td>' . esc_html( phpversion() ) . '</td>';
 		$html .= '</tr>';
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'PHP Loaded Extensions:', 'cl-wp-info' ) . '</th>';
@@ -380,13 +378,13 @@ class Cl_WP_Info {
 
 		$php_extensions = get_loaded_extensions();
 		foreach ( $php_extensions as $valor ) {
-			$html .= $valor . ', ';
+			$html .= esc_html( $valor ) . ', ';
 		}
 		$html .= '</td>';
 		$html .= '</tr>';
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'PHP Webserver Interface:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . php_sapi_name() . '</td>';
+		$html .= '<td>' . esc_html( php_sapi_name() ) . '</td>';
 		$html .= '</tr>';
 
 		$php_ini = ini_get_all();
@@ -395,8 +393,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Date/Time Zone:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.timezone']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.timezone']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['date.timezone']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['date.timezone']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -404,8 +402,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Date/Time latitude:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_latitude']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_latitude']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['date.default_latitude']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['date.default_latitude']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -413,8 +411,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Date/Time longitude:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_longitude']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['date.default_longitude']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['date.default_longitude']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['date.default_longitude']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -422,8 +420,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Default charset:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['default_charset']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['default_charset']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['default_charset']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['default_charset']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -431,8 +429,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Error Log:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['error_log']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['error_log']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['error_log']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['error_log']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -440,8 +438,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Max File Uploads:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['max_file_uploads']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['max_file_uploads']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['max_file_uploads']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['max_file_uploads']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -449,8 +447,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Post Max Size:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['post_max_size']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['post_max_size']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['post_max_size']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['post_max_size']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -458,8 +456,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Upload Max File Size:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['upload_max_filesize']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['upload_max_filesize']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['upload_max_filesize']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['upload_max_filesize']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -467,8 +465,8 @@ class Cl_WP_Info {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Max Memory:', 'cl-wp-info' ) . '</th>';
 			$html .= '<td>';
-			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . $php_ini['memory_limit']['global_value'] . '</div>';
-			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . $php_ini['memory_limit']['local_value'] . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'PHP Global:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['memory_limit']['global_value'] ) . '</div>';
+			$html .= '<div><strong>' . esc_html__( 'App Local:', 'cl-wp-info' ) . '</strong> ' . esc_html( $php_ini['memory_limit']['local_value'] ) . '</div>';
 			$html .= '</tr>';
 		}
 
@@ -491,19 +489,19 @@ class Cl_WP_Info {
 		$html  = '';
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'Database Server:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . $this->db_version . '</td>';
+		$html .= '<td>' . esc_html( $this->db_version ) . '</td>';
 		$html .= '</tr>';
 
 		if ( defined( 'DB_NAME' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Database:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . DB_NAME . '</td>';
+			$html .= '<td>' . esc_html( DB_NAME ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress Database prefix:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . $wpdb->prefix . '</td>';
+		$html .= '<td>' . esc_html( $wpdb->prefix ) . '</td>';
 		$html .= '</tr>';
 
 		if ( defined( 'DB_USER' ) ) {
@@ -523,21 +521,21 @@ class Cl_WP_Info {
 		if ( defined( 'DB_HOST' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Database Hostname:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . DB_HOST . '</td>';
+			$html .= '<td>' . esc_html( DB_HOST ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( defined( 'DB_CHARSET' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Database Charset to use in creating database tables:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . DB_CHARSET . '</td>';
+			$html .= '<td>' . esc_html( DB_CHARSET ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( defined( 'DB_COLLATE' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Database Collate Type:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . DB_COLLATE . '</td>';
+			$html .= '<td>' . esc_html( DB_COLLATE ) . '</td>';
 			$html .= '</tr>';
 		}
 
@@ -559,24 +557,24 @@ class Cl_WP_Info {
 		$html  = '';
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress Version:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . $this->wp_version . '</td>';
+		$html .= '<td>' . esc_html( $this->wp_version ) . '</td>';
 		$html .= '</tr>';
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress URL:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . $this->wp_site_url . '</td>';
+		$html .= '<td>' . esc_url( $this->wp_site_url ) . '</td>';
 		$html .= '</tr>';
 
 		if ( defined( 'ABSPATH' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'Absolute Path to WordPress Directory:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . ABSPATH . '</td>';
+			$html .= '<td>' . esc_html( ABSPATH ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( defined( 'WP_CONTENT_DIR' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress Content Directory:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . WP_CONTENT_DIR . '</td>';
+			$html .= '<td>' . esc_html( WP_CONTENT_DIR ) . '</td>';
 			$html .= '</tr>';
 		}
 
@@ -601,20 +599,20 @@ class Cl_WP_Info {
 		if ( defined( 'WP_MEMORY_LIMIT' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress memory limit:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . WP_MEMORY_LIMIT . '</td>';
+			$html .= '<td>' . esc_html( WP_MEMORY_LIMIT ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		if ( defined( 'WP_MAX_MEMORY_LIMIT' ) ) {
 			$html .= '<tr>';
 			$html .= '<th>' . esc_html__( 'WordPress top memory limit:', 'cl-wp-info' ) . '</th>';
-			$html .= '<td>' . WP_MAX_MEMORY_LIMIT . '</td>';
+			$html .= '<td>' . esc_html( WP_MAX_MEMORY_LIMIT ) . '</td>';
 			$html .= '</tr>';
 		}
 
 		$html .= '<tr>';
 		$html .= '<th>' . esc_html__( 'WordPress locale:', 'cl-wp-info' ) . '</th>';
-		$html .= '<td>' . $this->wp_locale . '</td>';
+		$html .= '<td>' . esc_html( $this->wp_locale ) . '</td>';
 		$html .= '</tr>';
 
 		if ( defined( 'WP_CACHE' ) ) {
@@ -669,7 +667,7 @@ class Cl_WP_Info {
 		/* translators: number of posts in revision. */
 		$html .= '<li>' . sprintf( esc_html( _n( '%d revision post', '%d revision posts', $this->n_posts->inherit, 'cl-wp-info' ) ), $this->n_posts->inherit ) . '</li>';
 		/* translators: number of posts in trash. */
-		$html .= '<li>' . sprintf( esc_html( _n( '%d post in trashbin', '%d posts in trashbin', $this->n_posts->trash, 'cl-wp-info' ) ), $this->n_posts->trash ) . '</li>';
+		$html .= '<li>' . sprintf( esc_html( _n( '%d post in trashbin', '%d posts in trashbin', $this->n_posts->trash ?? 0, 'cl-wp-info' ) ), intval( $this->n_posts->trash ?? 0 ) ) . '</li>';
 		$html .= '</ul></td>';
 		$html .= '</tr>';
 
@@ -692,7 +690,7 @@ class Cl_WP_Info {
 		/* translators: number of pages in revision. */
 		$html .= '<li>' . sprintf( esc_html( _n( '%d revision page', '%d revision pages', $this->n_pages->inherit, 'cl-wp-info' ) ), $this->n_pages->inherit ) . '</li>';
 		/* translators: number of pages in trash. */
-		$html .= '<li>' . sprintf( esc_html( _n( '%d page in trashbin', '%d pages in trashbin', $this->n_pages->trash, 'cl-wp-info' ) ), $this->n_pages->trash ) . '</li>';
+		$html .= '<li>' . sprintf( esc_html( _n( '%d page in trashbin', '%d pages in trashbin', $this->n_pages->trash ?? 0, 'cl-wp-info' ) ), intval( $this->n_pages->trash ?? 0 ) ) . '</li>';
 		$html .= '</ul></td>';
 		$html .= '</tr>';
 
@@ -710,10 +708,10 @@ class Cl_WP_Info {
 
 		foreach ( $this->n_media as $media_type => $media_num ) {
 			if ( ! empty( $media_num ) && 'trash' !== $media_type ) {
-				$html .= '<li>' . esc_html__( 'MIME Type', 'cl-wp-info' ) . ' <em>(' . $media_type . ')</em>: ' . $media_num . '</li>';
+				$html .= '<li>' . esc_html__( 'MIME Type', 'cl-wp-info' ) . ' <em>(' . esc_html( $media_type ) . ')</em>: ' . intval( $media_num ) . '</li>';
 			}
 		}
-		$html .= '<li>' . esc_html__( 'Trash:', 'cl-wp-info' ) . ' ' . $this->n_media->trash . '</li>';
+		$html .= '<li>' . esc_html__( 'Trash:', 'cl-wp-info' ) . ' ' . intval( $this->n_media->trash ?? 0 ) . '</li>';
 		$html .= '</ul></td>';
 		$html .= '</tr>';
 
@@ -727,7 +725,7 @@ class Cl_WP_Info {
 		$html .= '<ul>';
 		foreach ( $this->n_users['avail_roles'] as $user_rol => $user_num ) {
 			if ( ! empty( $user_num ) ) {
-				$html .= '<li>' . $user_rol . ': ' . $user_num . '</li>';
+				$html .= '<li>' . esc_html( $user_rol ) . ': ' . intval( $user_num ) . '</li>';
 			}
 		}
 		$html .= '</ul>';
@@ -771,13 +769,13 @@ class Cl_WP_Info {
 			$tema_textdomain = $valor_tema->get( 'TextDomain' );
 
 			if ( empty( $valor_tema->get( 'ThemeURI' ) ) ) {
-				$html .= '<li>' . $valor_tema->get( 'Name' ) . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_tema->get( 'Version' ) . ')</em>';
+				$html .= '<li>' . esc_html( $valor_tema->get( 'Name' ) ) . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . esc_html( $valor_tema->get( 'Version' ) ) . ')</em>';
 			} else {
-				$html .= '<li>' . $valor_tema->get( 'Name' ) . ' <em><a href="' . $valor_tema->get( 'ThemeURI' ) . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_tema->get( 'Version' ) . ')</a></em>';
+				$html .= '<li>' . esc_html( $valor_tema->get( 'Name' ) ) . ' <em><a href="' . esc_url( $valor_tema->get( 'ThemeURI' ) ) . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . esc_html( $valor_tema->get( 'Version' ) ) . ')</a></em>';
 			}
 
 			if ( ! empty( $tema_padre ) ) {
-				$html .= ' <em>[' . esc_html__( 'Child Theme of', 'cl-wp-info' ) . ': ' . $tema_padre . ']</em>';
+				$html .= ' <em>[' . esc_html__( 'Child Theme of', 'cl-wp-info' ) . ': ' . esc_html( $tema_padre ) . ']</em>';
 			}
 
 			if ( $tema_activo_textdomain === $tema_textdomain ) {
@@ -787,16 +785,16 @@ class Cl_WP_Info {
 			// If theme update exists.
 			if ( false !== array_key_exists( $clave_tema, $tema_updates ) ) {
 				$html .= '<br /> <span class="cl-warning">- <strong>' . esc_html__( 'Update available:', 'cl-wp-info' ) . '</strong> ';
-				$html .= esc_html__( 'Version', 'cl-wp-info' ) . ': <strong>' . $tema_updates[ $clave_tema ]->update['new_version'] . '</strong>';
+				$html .= esc_html__( 'Version', 'cl-wp-info' ) . ': <strong>' . esc_html( $tema_updates[ $clave_tema ]->update['new_version'] ) . '</strong>';
 				$html .= '</span>';
 			}
 
-			$html .= '<br /> - <em>' . $valor_tema->get( 'Description' ) . '</em>';
+			$html .= '<br /> - <em>' . esc_html( $valor_tema->get( 'Description' ) ) . '</em>';
 			$html .= '<br /> - ' . esc_html__( 'Author:', 'cl-wp-info' ) . ' ';
 			if ( empty( $valor_tema->get( 'AuthorURI' ) ) ) {
-				$html .= $valor_tema->get( 'Author' );
+				$html .= esc_html( $valor_tema->get( 'Author' ) );
 			} else {
-				$html .= '<a href="' . $valor_tema->get( 'AuthorURI' ) . '" target="_blank" rel="noopener noreferrer">' . $valor_tema->get( 'Author' ) . '</a>';
+				$html .= '<a href="' . esc_url( $valor_tema->get( 'AuthorURI' ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( $valor_tema->get( 'Author' ) ) . '</a>';
 			}
 
 			$html .= '</li>';
@@ -832,9 +830,9 @@ class Cl_WP_Info {
 
 		foreach ( $plugins as $clave_plugin => $valor_plugin ) {
 			if ( empty( $valor_plugin['PluginURI'] ) ) {
-				$html .= '<li>' . $valor_plugin['Name'] . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_plugin['Version'] . ')</em>';
+				$html .= '<li>' . esc_html( $valor_plugin['Name'] ) . ' <em>(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . esc_html( $valor_plugin['Version'] ) . ')</em>';
 			} else {
-				$html .= '<li>' . $valor_plugin['Name'] . ' <em><a href="' . $valor_plugin['PluginURI'] . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . $valor_plugin['Version'] . ')</a></em>';
+				$html .= '<li>' . esc_html( $valor_plugin['Name'] ) . ' <em><a href="' . esc_url( $valor_plugin['PluginURI'] ) . '" target="_blank" rel="noopener noreferrer">(' . esc_html__( 'Version', 'cl-wp-info' ) . ': ' . esc_html( $valor_plugin['Version'] ) . ')</a></em>';
 			}
 
 			// If plugins is active.
@@ -845,17 +843,17 @@ class Cl_WP_Info {
 			// If plugin update exists.
 			if ( false !== array_key_exists( $clave_plugin, $plugins_updates ) ) {
 				$html .= '<br /> <span class="cl-warning">- <strong>' . esc_html__( 'Update available:', 'cl-wp-info' ) . '</strong> ';
-				$html .= esc_html__( 'Version', 'cl-wp-info' ) . ': <strong>' . $plugins_updates[ $clave_plugin ]->update->new_version . '</strong>';
-				$html .= ' <em>(' . esc_html__( 'Compatible with WordPress', 'cl-wp-info' ) . ': ' . $plugins_updates[ $clave_plugin ]->update->tested . ')</em>';
+				$html .= esc_html__( 'Version', 'cl-wp-info' ) . ': <strong>' . esc_html( $plugins_updates[ $clave_plugin ]->update->new_version ) . '</strong>';
+				$html .= ' <em>(' . esc_html__( 'Compatible with WordPress', 'cl-wp-info' ) . ': ' . esc_html( $plugins_updates[ $clave_plugin ]->update->tested ) . ')</em>';
 				$html .= '</span>';
 			}
 
-			$html .= '<br /> - <em>' . $valor_plugin['Description'] . '</em>';
+			$html .= '<br /> - <em>' . esc_html( $valor_plugin['Description'] ) . '</em>';
 			$html .= '<br /> - ' . esc_html__( 'Author:', 'cl-wp-info' ) . ' ';
 			if ( empty( $valor_plugin['AuthorURI'] ) ) {
-				$html .= $valor_plugin['Author'];
+				$html .= esc_html( $valor_plugin['Author'] );
 			} else {
-				$html .= '<a href="' . $valor_plugin['AuthorURI'] . '" target="_blank" rel="noopener noreferrer">' . $valor_plugin['Author'] . '</a>';
+				$html .= '<a href="' . esc_url( $valor_plugin['AuthorURI'] ) . '" target="_blank" rel="noopener noreferrer">' . esc_html( $valor_plugin['Author'] ) . '</a>';
 			}
 
 			$html .= '</li>';
@@ -887,7 +885,7 @@ class Cl_WP_Info {
 		$html .= '<td>';
 		$html .= '<ol>';
 		foreach ( $wp_scripts->queue as $script ) {
-			$html .= '<li>' . $script . ' => ' . $wp_scripts->registered[ $script ]->src . '</li>';
+			$html .= '<li>' . esc_html( $script ) . ' => ' . esc_url( $wp_scripts->registered[ $script ]->src ) . '</li>';
 		}
 		$html .= '</ol>';
 		$html .= '</td>';
@@ -898,7 +896,7 @@ class Cl_WP_Info {
 		$html .= '<td>';
 		$html .= '<ol>';
 		foreach ( $wp_styles->queue as $style ) {
-			$html .= '<li>' . $style . ' => ' . $wp_styles->registered[ $style ]->src . '</li>';
+			$html .= '<li>' . esc_html( $style ) . ' => ' . esc_url( $wp_styles->registered[ $style ]->src ) . '</li>';
 		}
 		$html .= '</ol>';
 		$html .= '</td>';
@@ -955,7 +953,7 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'PageSpeed Insights', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p> ' . esc_html__( 'PageSpeed Insights analyzes the content of a web page, then generates suggestions to make that page faster.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://developers.google.com/speed/pagespeed/insights/?url=' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://developers.google.com/speed/pagespeed/insights/?url=' . rawurlencode( $this->wp_site_url ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
@@ -985,20 +983,20 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'keycdn URL Speed', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Query a single asset from 14 test locations.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.keycdn.com/performance?url=' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://tools.keycdn.com/performance?url=' . rawurlencode( $this->wp_site_url ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Sucuri Loadtimetester', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'How fast is your site? You can test here the performance of any of your sites from across the globe.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://performance.sucuri.net/domain/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://performance.sucuri.net/domain/' . rawurlencode( $this->wp_site_domain ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Byte Check', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'TTFB measures the duration from the users browser making a HTTP request to the first byte being returned by the server.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'As soon as the browser has started receiving content, it can start building up the page infront of the user.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="http://www.bytecheck.com/results?resource=' . rawurlencode( $this->wp_site_url ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://www.bytecheck.com/results?resource=' . rawurlencode( $this->wp_site_url ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		if ( $echo ) {
@@ -1026,7 +1024,7 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'Geek Flare', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'Check if your site is taking advantage of new HTTP/2 protocol for fast loading page.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://tools.geekflare.com/http2-test?' . $this->wp_site_url . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://tools.geekflare.com/http2-test?url=' . rawurlencode( $this->wp_site_url ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my site', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
@@ -1056,14 +1054,14 @@ class Cl_WP_Info {
 		$html .= '<p>' . esc_html__( 'The DNS Check test will run a comprehensive DNS Report for your domain.', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'A DNS lookup is done directly against the root servers (or TLD Servers).', 'cl-wp-info' ) . '</p>';
 		$html .= '<p>' . esc_html__( 'Then we query each name server to make sure your DNS Servers all respond, measure their performance and audit the results against common best practices.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://mxtoolbox.com/SuperTool.aspx?action=dns%3a' . rawurlencode( $this->wp_site_domain_without_www ) . '&run=toolpage' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'DNS Checker', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'DNS Checker provides free dns lookup service for checking domain name server records against a randomly selected list of DNS servers in different corners of the world.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#A/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://dnschecker.org/#AAAA/' . $this->wp_site_domain . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain with IPv6', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://dnschecker.org/#A/' . rawurlencode( $this->wp_site_domain ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://dnschecker.org/#AAAA/' . rawurlencode( $this->wp_site_domain ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain with IPv6', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		if ( $echo ) {
@@ -1114,15 +1112,15 @@ class Cl_WP_Info {
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'MX Toolbox', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'All of your MX record, DNS, blacklist and SMTP diagnostics in one integrated tool.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=mx%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=smtp%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain SMTP', 'cl-wp-info' ) . '</a></p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' . $this->wp_site_domain_without_www . '&run=toolpage" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Check if my domain is in a blacklist', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://mxtoolbox.com/SuperTool.aspx?action=mx%3a' . rawurlencode( $this->wp_site_domain_without_www ) . '&run=toolpage' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://mxtoolbox.com/SuperTool.aspx?action=smtp%3a' . rawurlencode( $this->wp_site_domain_without_www ) . '&run=toolpage' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain SMTP', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://mxtoolbox.com/SuperTool.aspx?action=blacklist%3a' . rawurlencode( $this->wp_site_domain_without_www ) . '&run=toolpage' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Check if my domain is in a blacklist', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		$html .= '<div class="cl-wp-info-tools">';
 		$html .= '<h3>' . esc_html__( 'GSuite Toolbox CheckMX', 'cl-wp-info' ) . '</h3>';
 		$html .= '<p>' . esc_html__( 'GSuite tools for check MX records.', 'cl-wp-info' ) . '</p>';
-		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="https://toolbox.googleapps.com/apps/checkmx/check?domain=' . $this->wp_site_domain_without_www . '&dkim_selector=" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
+		$html .= '<p class="cl-centrado"><a class="cl-tools-btn" href="' . esc_url( 'https://toolbox.googleapps.com/apps/checkmx/check?domain=' . rawurlencode( $this->wp_site_domain_without_www ) . '&dkim_selector=' ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Test my domain MX', 'cl-wp-info' ) . '</a></p>';
 		$html .= '</div>';
 
 		if ( $echo ) {

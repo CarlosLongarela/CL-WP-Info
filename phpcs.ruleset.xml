@@ -12,11 +12,9 @@
 		</properties>
 	</rule>
 
-	<!--
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
-			<property name="prefixes" type="array" value="cl-wp-info" />
+			<property name="prefixes" type="array" value="cl_wp_info,CL_WP_INFO,Cl_WP_Info" />
 		</properties>
 	</rule>
-	-->
 </ruleset>

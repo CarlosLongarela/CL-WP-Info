@@ -1,49 +1,39 @@
-/* jshint devel:true */
+'use strict';
 
-( function( $ ) {
-	'use strict';
+document.addEventListener( 'DOMContentLoaded', () => {
 
-	$( function() {
+	const contenidos = [
+		'cl-content-wpo',
+		'cl-content-ttfb',
+		'cl-content-http2',
+		'cl-content-dns',
+		'cl-content-gzip',
+		'cl-content-mail',
+	];
 
-		function muestra_solo_div_actual( div_actual ) {
-			$( '#cl-content-wpo' ).hide();
-			$( '#cl-content-ttfb' ).hide();
-			$( '#cl-content-http2' ).hide();
-			$( '#cl-content-dns' ).hide();
-			$( '#cl-content-gzip' ).hide();
-			$( '#cl-content-mail' ).hide();
+	const muestraSoloDivActual = ( idActual ) => {
+		contenidos.forEach( ( id ) => {
+			document.getElementById( id ).style.display = 'none';
+		} );
+		document.getElementById( idActual ).style.display = 'flex';
+	};
 
-			$( div_actual ).show( '400' );
-		}
+	//**************************************************//
+	// Evento al hacer click en los diferentes botones //
+	//************************************************//
+	const botones = {
+		'cl-wpo':   'cl-content-wpo',
+		'cl-ttfb':  'cl-content-ttfb',
+		'cl-http2': 'cl-content-http2',
+		'cl-dns':   'cl-content-dns',
+		'cl-gzip':  'cl-content-gzip',
+		'cl-mail':  'cl-content-mail',
+	};
 
-		//**************************************************//
-		// Evento al hacer click en los diferentes botones //
-		//************************************************//
-		$( '#cl-wpo' ).on( 'click', function() {
-			muestra_solo_div_actual( '#cl-content-wpo' );
-		});
+	Object.entries( botones ).forEach( ( [ botonId, contenidoId ] ) => {
+		document.getElementById( botonId ).addEventListener( 'click', () => {
+			muestraSoloDivActual( contenidoId );
+		} );
+	} );
 
-		$( '#cl-ttfb' ).on( 'click', function() {
-			muestra_solo_div_actual( '#cl-content-ttfb' );
-		});
-
-		$( '#cl-http2' ).on( 'click', function() {
-			muestra_solo_div_actual( '#cl-content-http2' );
-		});
-
-		$( '#cl-dns' ).on( 'click', function() {
-			muestra_solo_div_actual( '#cl-content-dns' );
-		});
-
-		$( '#cl-gzip' ).on( 'click', function() {
-			muestra_solo_div_actual( '#cl-content-gzip' );
-		});
-
-		$( '#cl-mail' ).on( 'click', function() {
-			muestra_solo_div_actual( '#cl-content-mail' );
-		});
-	}); // Fin del evento de carga del DOM.
-
-})( jQuery );
-
-
+} ); // Fin del evento de carga del DOM.
