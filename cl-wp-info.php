@@ -3,12 +3,12 @@
  * Plugin Name: CL WP Info
  * Plugin URI: https://github.com/CarlosLongarela/CL-WP-Info
  * Description: Server information, PHP and WordPress plugins and themes so that we can easily preview the website we are going to work on.
- * Version: 1.4.30
+ * Version: 1.4.31
  * Author: Carlos Longarela
  * Author URI: https://tabernawp.com/
  *
  * Requires at least: 5.2
- * Tested up to: 6.9.1
+ * Tested up to: 7.0
  * Requires PHP: 7.4
  *
  * @package CL WP Info
@@ -32,7 +32,7 @@
 
 defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
-define( 'CL_WP_INFO_VERSION', '1.4.30' );
+define( 'CL_WP_INFO_VERSION', '1.4.31' );
 define( 'CL_WP_INFO_MIN_PHP', '7.4' );
 define( 'CL_WP_INFO_MIN_DB', '5.5.5' );
 define( 'CL_WP_INFO_MIN_DB_MARIA', '10' );
@@ -135,7 +135,7 @@ function cl_wp_info_general() {
 
 			<tr>
 				<th colspan="2"><?php esc_html_e( 'PHP Info', 'cl-wp-info' ); ?></th>
-			</tr>
+			</tr> 
 			<?php $cl_wp_info_obj->cl_wp_php_info(); ?>
 
 			<tr>
